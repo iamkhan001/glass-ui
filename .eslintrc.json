@@ -14,7 +14,6 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": [
@@ -23,7 +22,9 @@
         "custom": "ignore"
       }
     ],
-    "react/jsx-curly-spacing": [2, "never"]
+    "react/jsx-curly-spacing": [2, "never"],
+    "react/prop-types": "off",
+    "prettier/prettier": "off"
   },
   "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
 }
