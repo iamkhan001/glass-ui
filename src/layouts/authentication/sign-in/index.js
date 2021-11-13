@@ -34,6 +34,33 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 
 function SignIn() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function log() {
+    const daitel = { username, password }
+    console.warn(daitel)
+  
+
+   let result = await fetch("http://fooddelicious.in/accounts/sign-in/",{
+      method:'POST',
+      body:JSON.stringify(daitel),
+      headers:{
+         "Content-Type":"application/json",
+         "Accept":"application/json"
+      }
+    })
+    result = await result.json()
+    console.warn('result',result)
+    sessionStorage.setItem('refresh', result.refresh)
+    sessionStorage.setItem('access',result.access)
+    sessionStorage.setItem('first_name', result.account.first_name)
+    sessionStorage.setItem('last_name', result.account.last_name)
+    sessionStorage.setItem('mobile', result.account.mobile)
+    sessionStorage.setItem('email',result.account.email)
+  }
+
   const [rememberMe, setRememberMe] = useState(true);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -51,7 +78,7 @@ function SignIn() {
               Email
             </SuiTypography>
           </SuiBox>
-          <SuiInput type="email" placeholder="Email" />
+          <SuiInput type="email" placeholder="Email" value={username} onChange={(e) => setUsername(e.target.value)} />
         </SuiBox>
         <SuiBox mb={2}>
           <SuiBox mb={1} ml={0.5}>
@@ -59,7 +86,7 @@ function SignIn() {
               Password
             </SuiTypography>
           </SuiBox>
-          <SuiInput type="password" placeholder="Password" />
+          <SuiInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </SuiBox>
         <SuiBox display="flex" alignItems="center">
           <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -73,7 +100,7 @@ function SignIn() {
           </SuiTypography>
         </SuiBox>
         <SuiBox mt={4} mb={1}>
-          <SuiButton variant="gradient" buttonColor="info" fullWidth>
+          <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => log()}>
             sign in
           </SuiButton>
         </SuiBox>

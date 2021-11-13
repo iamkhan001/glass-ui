@@ -37,6 +37,16 @@ import Separator from "layouts/authentication/components/Separator";
 import curved6 from "assets/images/curved-images/curved14.jpg";
 
 function SignUp() {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function daitell(){
+   const item = {name,email,password}
+   console.warn(item);
+  }
+
   const [agreement, setAgremment] = useState(true);
 
   const handleSetAgremment = () => setAgremment(!agreement);
@@ -60,13 +70,13 @@ function SignUp() {
         <SuiBox pt={2} pb={3} px={3}>
           <SuiBox component="form" role="form">
             <SuiBox mb={2}>
-              <SuiInput placeholder="Name" />
+              <SuiInput type="name" placeholder="Name" value={name} onChange={(e) => setName (e.target.value)} />
             </SuiBox>
             <SuiBox mb={2}>
-              <SuiInput type="email" placeholder="Email" />
+              <SuiInput type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} />
             </SuiBox>
             <SuiBox mb={2}>
-              <SuiInput type="password" placeholder="Password" />
+              <SuiInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} />
             </SuiBox>
             <SuiBox display="flex" alignItems="center">
               <Checkbox checked={agreement} onChange={handleSetAgremment} />
@@ -83,7 +93,7 @@ function SignUp() {
               </SuiTypography>
             </SuiBox>
             <SuiBox mt={4} mb={1}>
-              <SuiButton variant="gradient" buttonColor="dark" fullWidth>
+              <SuiButton variant="gradient" buttonColor="dark" fullWidth onClick={() => daitell()} >
                 sign up
               </SuiButton>
             </SuiBox>

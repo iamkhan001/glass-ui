@@ -24,7 +24,8 @@
     ],
     "react/jsx-curly-spacing": [2, "never"],
     "react/prop-types": "off",
-    "prettier/prettier": "off"
+    "prettier/prettier": "off",
+    "no-const-assign": "off"
   },
   "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
 }
