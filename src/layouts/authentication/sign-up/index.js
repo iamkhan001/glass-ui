@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-material-ui
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // react-router-dom components
@@ -53,8 +38,8 @@ function SignUp() {
 
   return (
     <BasicLayout
-      title="Welcome!"
-      description="Use these awesome forms to login or create new account in your project for free."
+      title="Welcome to MI GLASS!"
+      description="A leading tech company in AI and VR"
       image={curved6}
     >
       <Card>
@@ -69,6 +54,9 @@ function SignUp() {
         <Separator />
         <SuiBox pt={2} pb={3} px={3}>
           <SuiBox component="form" role="form">
+          <SuiBox mb={2}>
+              <SuiInput type="name" placeholder="Company name" value={name} onChange={(e) => setName (e.target.value)} />
+            </SuiBox>
             <SuiBox mb={2}>
               <SuiInput type="name" placeholder="Name" value={name} onChange={(e) => setName (e.target.value)} />
             </SuiBox>

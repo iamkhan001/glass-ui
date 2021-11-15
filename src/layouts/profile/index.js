@@ -1,183 +1,151 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-material-ui
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
+import Divider from "@mui/material/Divider";
 import SuiTypography from "components/SuiTypography";
+import SuiInput from "components/SuiInput";
+import SuiButton from "components/SuiButton";
 
 // Soft UI Dashboard React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import ProfilesList from "examples/ProfilesList";
-import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
-import PlaceholderCard from "examples/Cards/PlaceholderCard";
+
+import { useState } from "react";
+
+// react-router-dom components
+import { Link } from "react-router-dom";
 
 // Overview page components
-import Header from "layouts/profile/components/Header";
-import PlatformSettings from "layouts/profile/components/PlatformSettings";
+import Header from "./components/Header";
 
-// Data
-import profilesListData from "layouts/profile/data/profilesListData";
-
-// Images
-import homeDecor1 from "assets/images/home-decor-1.jpg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 
 function Overview() {
+
+  const [curPassword, setCurPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [reNewPassword, setReNewPassword] = useState('');
+
+  const [firstName, setFirstName] = useState('Jovy');
+  const [lastName, setLastName] = useState('Chiu');
+  const [email, setEmail] = useState('jovy@mirobotic.sg');
+
+  async function updateInfo() {
+    console.log(`${firstName} ${lastName} ${email}`)
+  }
+
   return (
     <DashboardLayout>
       <Header />
       <SuiBox mt={5} mb={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>
-            <PlatformSettings />
-          </Grid>
-          <Grid item xs={12} md={6} xl={4}>
-            <ProfileInfoCard
+          <ProfileInfoCard
               title="profile information"
-              description="Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+              description=""
               info={{
-                fullName: "Alec M. Thompson",
-                mobile: "(44) 123 1234 123",
-                email: "alecthompson@mail.com",
-                location: "USA",
+                fullName: "Jovy Chiu",
+                mobile: "+65 1234 1234",
+                email: "jovy@mirobotic.sg",
+                location: "Singapore",
+                role: "Admin",
               }}
               social={[
-                {
-                  link: "https://www.facebook.com/CreativeTim/",
-                  icon: <FacebookIcon />,
-                  color: "facebook",
-                },
-                {
-                  link: "https://twitter.com/creativetim",
-                  icon: <TwitterIcon />,
-                  color: "twitter",
-                },
-                {
-                  link: "https://www.instagram.com/creativetimofficial/",
-                  icon: <InstagramIcon />,
-                  color: "instagram",
-                },
               ]}
               action={{ route: "", tooltip: "Edit Profile" }}
             />
           </Grid>
+          <Grid item xs={12} md={6} xl={4}>
+            <Card className="h-100">
+              <SuiBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
+                <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
+                Update account details
+                </SuiTypography>
+              </SuiBox>
+              <SuiBox p={2}>
+                <SuiBox opacity={0.3}>
+                  <Divider />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      First Name
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="text" placeholder="first name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Last Name
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="text" placeholder="last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Email
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </SuiBox>
+                <SuiBox mt={4} mb={1}>
+                  <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => updateInfo()}>
+                    Update Details
+                  </SuiButton>
+                </SuiBox>
+              </SuiBox>
+            </Card>
+          </Grid>
           <Grid item xs={12} xl={4}>
-            <ProfilesList title="conversations" profiles={profilesListData} />
+            <Card className="h-100">
+              <SuiBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
+                <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
+                Update password
+                </SuiTypography>
+              </SuiBox>
+              <SuiBox p={2}>
+                <SuiBox opacity={0.3}>
+                  <Divider />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Current password
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="password" placeholder="current password" value={curPassword} onChange={(e) => setCurPassword(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      New password
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="password" placeholder="new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Verify new password
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="password" placeholder="verify new password" value={reNewPassword} onChange={(e) => setReNewPassword(e.target.value)} />
+                </SuiBox>
+                <SuiBox mt={4} mb={1}>
+                  <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => updateInfo()}>
+                    Update Password
+                  </SuiButton>
+                </SuiBox>
+              </SuiBox>
+            </Card>          
           </Grid>
         </Grid>
       </SuiBox>
-      <SuiBox mb={3}>
-        <Card>
-          <SuiBox pt={2} px={2}>
-            <SuiBox mb={0.5}>
-              <SuiTypography variant="h6" fontWeight="medium">
-                Projects
-              </SuiTypography>
-            </SuiBox>
-            <SuiBox mb={1}>
-              <SuiTypography variant="button" fontWeight="regular" textColor="text">
-                Architects design houses
-              </SuiTypography>
-            </SuiBox>
-          </SuiBox>
-          <SuiBox p={2}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={homeDecor1}
-                  label="project #2"
-                  title="modern"
-                  description="As Uber works through a huge amount of internal management turmoil."
-                  action={{
-                    type: "internal",
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={homeDecor2}
-                  label="project #1"
-                  title="scandinavian"
-                  description="Music is something that every person has his or her own specific opinion about."
-                  action={{
-                    type: "internal",
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team4, name: "Peterson" },
-                    { image: team1, name: "Elena Morison" },
-                    { image: team2, name: "Ryan Milly" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <DefaultProjectCard
-                  image={homeDecor3}
-                  label="project #3"
-                  title="minimalist"
-                  description="Different people have different taste, and various types of music."
-                  action={{
-                    type: "internal",
-                    route: "/pages/profile/profile-overview",
-                    color: "info",
-                    label: "view project",
-                  }}
-                  authors={[
-                    { image: team4, name: "Peterson" },
-                    { image: team3, name: "Nick Daniel" },
-                    { image: team2, name: "Ryan Milly" },
-                    { image: team1, name: "Elena Morison" },
-                  ]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} xl={3}>
-                <PlaceholderCard title={{ variant: "h5", text: "New project" }} outlined />
-              </Grid>
-            </Grid>
-          </SuiBox>
-        </Card>
-      </SuiBox>
-
       <Footer />
     </DashboardLayout>
   );

@@ -33,7 +33,7 @@ import SuiTypography from "components/SuiTypography";
 import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 
-function ProfileInfoCard({ title, description, info, social, action }) {
+function ProfileInfoCard({ title, description, info, social}) {
   const labels = [];
   const values = [];
   const { socialMediaColors } = colors;
@@ -90,11 +90,6 @@ function ProfileInfoCard({ title, description, info, social, action }) {
         <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
           {title}
         </SuiTypography>
-        <SuiTypography component={Link} to={action.route} variant="body2" textColor="secondary">
-          <Tooltip title={action.tooltip} placement="top">
-            <Icon>edit</Icon>
-          </Tooltip>
-        </SuiTypography>
       </SuiBox>
       <SuiBox p={2}>
         <SuiBox mb={2} lineHeight={1.25}>
@@ -108,9 +103,6 @@ function ProfileInfoCard({ title, description, info, social, action }) {
         <SuiBox>
           {renderItems}
           <SuiBox display="flex" py={1} pr={2}>
-            <SuiTypography variant="button" fontWeight="bold" textTransform="capitalize">
-              social: &nbsp;
-            </SuiTypography>
             {renderSocial}
           </SuiBox>
         </SuiBox>

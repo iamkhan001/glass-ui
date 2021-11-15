@@ -1,3 +1,6 @@
+import { useState, React } from "react";
+import { Redirect, Link } from 'react-router-dom'
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -11,6 +14,7 @@ import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 
 // Soft UI Dashboard React base styles
+import {isAuthenticated, getUser} from "utils/session" 
 
 // Dashboard layout components
 import QrLogin from "./components/qrLogin";
@@ -18,6 +22,11 @@ import ContactUs from "./components/contactUs";
 
 // Data
 function Dashboard() {
+
+  if(!isAuthenticated()) {
+    return <Redirect to='/authentication/sign-in'  />
+  }
+  
   return (
     <DashboardLayout>
       <DashboardNavbar />

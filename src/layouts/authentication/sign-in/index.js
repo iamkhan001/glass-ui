@@ -1,64 +1,51 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v2.0.0
-=========================================================
+import { useState, React } from "react";
+import { useHistory, Redirect, Link } from 'react-router-dom'
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-material-ui
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState } from "react";
-
-// react-router-dom components
-import { Link } from "react-router-dom";
-
-// @mui material components
-import Switch from "@mui/material/Switch";
+import {isAuthenticated, saveUser} from "utils/session"
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
-
-// Authentication layout components
-import CoverLayout from "layouts/authentication/components/CoverLayout";
-
-// Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
+
+import CoverLayout from "../components/CoverLayout";
+
 
 function SignIn() {
 
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  if(isAuthenticated()) {
+    return <Redirect to='/dashboard'  />
+  }
 
   async function log() {
-    const daitel = { username, password }
-    console.warn(daitel)
-  
+    const details = { username, password }
 
-   let result = await fetch("http://fooddelicious.in/accounts/sign-in/",{
+   let result = await fetch(`http://fooddelicious.in/accounts/sign-in/`,{
       method:'POST',
-      body:JSON.stringify(daitel),
+      body:JSON.stringify(details),
       headers:{
          "Content-Type":"application/json",
          "Accept":"application/json"
       }
     })
     result = await result.json()
-    console.warn('result',result)
-    sessionStorage.setItem('refresh', result.refresh)
-    sessionStorage.setItem('access',result.access)
-    sessionStorage.setItem('first_name', result.account.first_name)
-    sessionStorage.setItem('last_name', result.account.last_name)
-    sessionStorage.setItem('mobile', result.account.mobile)
-    sessionStorage.setItem('email',result.account.email)
+    console.warn('result', result)
+
+    if(result.code === 200) {
+        saveUser(result)
+        history.push('/dashboard')
+    }else {
+        setError(result.msg)
+    }
+
   }
 
   const [rememberMe, setRememberMe] = useState(true);
@@ -67,7 +54,7 @@ function SignIn() {
 
   return (
     <CoverLayout
-      title="Welcome back"
+      title="Welcome to MI GLASS"
       description="Enter your email and password to sign in"
       image={curved9}
     >
@@ -88,15 +75,9 @@ function SignIn() {
           </SuiBox>
           <SuiInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </SuiBox>
-        <SuiBox display="flex" alignItems="center">
-          <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-          <SuiTypography
-            variant="button"
-            fontWeight="regular"
-            onClick={handleSetRememberMe}
-            customClass="cursor-pointer user-select-none"
-          >
-            &nbsp;&nbsp;Remember me
+        <SuiBox mt={3} textAlign="center">
+          <SuiTypography mt={3} variant="button" fontWeight="regular" textColor="error" textAlign="center">
+            {error}
           </SuiTypography>
         </SuiBox>
         <SuiBox mt={4} mb={1}>

@@ -30,11 +30,6 @@ import SuiAvatar from "components/SuiAvatar";
 // Soft UI Dashboard PRO React example components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// Soft UI Dashboard PRO React icons
-import Cube from "examples/Icons/Cube";
-import Document from "examples/Icons/Document";
-import Settings from "examples/Icons/Settings";
-
 // Soft UI Dashboard PRO React base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
@@ -42,11 +37,10 @@ import breakpoints from "assets/theme/base/breakpoints";
 import styles from "layouts/profile/components/Header/styles";
 
 // Images
-import burceMars from "assets/images/bruce-mars.jpg";
+import jovy from "assets/images/team-1.jpg";
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
-  const [tabValue, setTabValue] = useState(0);
   const classes = styles();
 
   useEffect(() => {
@@ -69,8 +63,6 @@ function Header() {
     return () => window.removeEventListener("resize", handleTabsOrientation);
   }, [tabsOrientation]);
 
-  const handleSetTabValue = (event, newValue) => setTabValue(newValue);
-
   return (
     <SuiBox position="relative">
       <DashboardNavbar absolute light />
@@ -79,7 +71,7 @@ function Header() {
         <Grid container spacing={3} alignItems="center">
           <Grid item>
             <SuiAvatar
-              src={burceMars}
+              src={jovy}
               alt="profile-image"
               variant="rounded"
               size="xl"
@@ -89,26 +81,12 @@ function Header() {
           <Grid item>
             <SuiBox height="100%" mt={0.5} lineHeight={1}>
               <SuiTypography variant="h5" fontWeight="medium">
-                Alex Thompson
+                Jovy Chiu
               </SuiTypography>
               <SuiTypography variant="button" textColor="text" fontWeight="medium">
-                CEO / Co-Founder
+                CEO / Founder
               </SuiTypography>
             </SuiBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} className="ml-auto">
-            <AppBar position="static">
-              <Tabs
-                orientation={tabsOrientation}
-                value={tabValue}
-                onChange={handleSetTabValue}
-                className="bg-transparent"
-              >
-                <Tab label="App" icon={<Cube />} />
-                <Tab label="Message" icon={<Document />} />
-                <Tab label="Settings" icon={<Settings />} />
-              </Tabs>
-            </AppBar>
           </Grid>
         </Grid>
       </Card>

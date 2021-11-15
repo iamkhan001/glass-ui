@@ -35,7 +35,7 @@ function Footer() {
           <SuiBox display="flex" justifyContent="center" flexWrap="wrap" mb={3}>
             <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
               <SuiTypography component="a" href="#" variant="body2" textColor="secondary">
-                Company
+                MI ROBOTIC
               </SuiTypography>
             </SuiBox>
             <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
@@ -43,14 +43,9 @@ function Footer() {
                 About Us
               </SuiTypography>
             </SuiBox>
-            <SuiBox mr={{ xs: 0, lg: 3, xl: 6 }}>
-              <SuiTypography component="a" href="#" variant="body2" textColor="secondary">
-                Team
-              </SuiTypography>
-            </SuiBox>
             <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
               <SuiTypography component="a" href="#" variant="body2" textColor="secondary">
-                Product
+                Products
               </SuiTypography>
             </SuiBox>
             <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
@@ -59,7 +54,7 @@ function Footer() {
               </SuiTypography>
             </SuiBox>
             <SuiTypography component="a" href="#" variant="body2" textColor="secondary">
-              Pricing
+                Contact Us
             </SuiTypography>
           </SuiBox>
         </Grid>
@@ -74,9 +69,6 @@ function Footer() {
             <SuiBox mr={3} color="secondary">
               <InstagramIcon fontSize="small" />
             </SuiBox>
-            <SuiBox mr={3} color="secondary">
-              <PinterestIcon fontSize="small" />
-            </SuiBox>
             <SuiBox color="secondary">
               <LinkedInIcon fontSize="small" />
             </SuiBox>
@@ -84,7 +76,7 @@ function Footer() {
         </Grid>
         <Grid item xs={12} lg={8} className="text-center">
           <SuiTypography variant="body2" textColor="secondary">
-            Copyright &copy; 2021 Soft by Creative Tim.
+            Copyright &copy; 2021 Soft by MI ROBOTIC.
           </SuiTypography>
         </Grid>
       </Grid>
