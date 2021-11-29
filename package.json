@@ -6,7 +6,7 @@
   "license": "See license in https://www.creative-tim.com/license",
   "description": "Material UI version of Soft UI Dashboard by Creative Tim",
   "homepage": "https://demos.creative-tim.com/soft-ui-dashboard-react/#/dashboard",
-  "proxy": "http://localhost:8080",
+  "proxy": "https://glass-api.mirobotic.tech/",
   "bugs": {
     "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
   },
