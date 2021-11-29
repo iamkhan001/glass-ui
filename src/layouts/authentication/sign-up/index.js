@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { useHistory, Redirect, Link } from 'react-router-dom'
+import {isAuthenticated, saveUser} from "utils/session"
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -21,15 +22,75 @@ import Separator from "layouts/authentication/components/Separator";
 // Images
 import curved6 from "assets/images/curved-images/curved14.jpg";
 
-function SignUp() {
+import axios from "axios";
 
-  const [name, setName] = useState('');
+function SignUp() {
+  const history = useHistory();
+
+  const [firstName, setFristName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [company, setCompany] = useState('');
+  const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
+  const [error, setError] = useState('');
 
-  function daitell(){
-   const item = {name,email,password}
-   console.warn(item);
+  const role = "A";
+  
+  async function register() {
+    
+    if(firstName.trim() === "") {
+      setError('Enter first name')
+      return
+    }
+    if(lastName.trim() === "") {
+      setError('Enter last name')
+      return
+    }
+    if(email.trim() === "") {
+      setError('Enter email')
+      return
+    }
+    if(password.trim() === "") {
+      setError('Enter password')
+      return
+    }
+    if(confPassword.trim() === "") {
+      setError('Confirm password')
+      return
+    }
+
+    if(password !== confPassword) {
+      setError('Password not matching!')
+      return;
+    }
+
+    const details = {firstName,lastName,company, mobile, email, password, role}
+    axios
+    .post("/accounts/sign-up/", details)
+    .then((res) => {
+        console.warn('result', res)
+
+        const result = res.data;
+
+        if(result.code === 200) {
+            saveUser(result)
+            history.push('/dashboard')
+        }else {
+            setError(result.msg)
+        }
+    })
+    .catch((err) => {
+      if (err.response) {
+        setError(err.response.data.msg)
+      } else if (err.request) {
+        console.log(err.request);
+      } else {
+        console.log('Error', err.message);
+      }
+      console.log(err.config);
+    });
   }
 
   const [agreement, setAgremment] = useState(true);
@@ -54,18 +115,33 @@ function SignUp() {
         <Separator />
         <SuiBox pt={2} pb={3} px={3}>
           <SuiBox component="form" role="form">
-          <SuiBox mb={2}>
-              <SuiInput type="name" placeholder="Company name" value={name} onChange={(e) => setName (e.target.value)} />
-            </SuiBox>
             <SuiBox mb={2}>
-              <SuiInput type="name" placeholder="Name" value={name} onChange={(e) => setName (e.target.value)} />
-            </SuiBox>
+              <SuiInput type="name" placeholder="First Name" value={firstName} onChange={(e) => setFristName (e.target.value)} />
+            </SuiBox>            
+            <SuiBox mb={2}>
+              <SuiInput type="name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName (e.target.value)} />
+            </SuiBox>   
             <SuiBox mb={2}>
               <SuiInput type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} />
+            </SuiBox>                     
+            <SuiBox mb={2}>
+              <SuiInput type="name" placeholder="Company name (optional)" value={company} onChange={(e) => setCompany (e.target.value)} />
             </SuiBox>
+            <SuiBox mb={2}>
+              <SuiInput type="phone" placeholder="Phone Number (optional)" value={mobile} onChange={(e) => setMobile (e.target.value)} />
+            </SuiBox>
+
             <SuiBox mb={2}>
               <SuiInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} />
             </SuiBox>
+            <SuiBox mb={2}>
+              <SuiInput type="password" placeholder="Confirm Password" value={confPassword} onChange={(e) => setConfPassword (e.target.value)} />
+            </SuiBox>
+            <SuiBox mt={3} textAlign="center">
+            <SuiTypography mt={3} variant="button" fontWeight="regular" textColor="error" textAlign="center">
+              {error}
+              </SuiTypography>
+            </SuiBox>            
             <SuiBox display="flex" alignItems="center">
               <Checkbox checked={agreement} onChange={handleSetAgremment} />
               <SuiTypography
@@ -81,7 +157,7 @@ function SignUp() {
               </SuiTypography>
             </SuiBox>
             <SuiBox mt={4} mb={1}>
-              <SuiButton variant="gradient" buttonColor="dark" fullWidth onClick={() => daitell()} >
+              <SuiButton variant="gradient" buttonColor="dark" fullWidth onClick={() => register()} >
                 sign up
               </SuiButton>
             </SuiBox>

@@ -4,7 +4,7 @@ export function isAuthenticated() {
     const access = sessionStorage.getItem('access', null);
     console.log(`access >> ${access}`);
     
-    if(access) {
+    if(access != null) {
         return true
     }
     
@@ -23,19 +23,23 @@ export function saveUser(result) {
 }
 
 export function logout() {
-    
-    sessionStorage.setItem('refresh', "")
-    sessionStorage.setItem('access', "")
-    sessionStorage.setItem('first_name', "")
-    sessionStorage.setItem('last_name', "")
-    sessionStorage.setItem('mobile', "")
-    sessionStorage.setItem('email', "")
-    console.log(`clear storage:`)
+    sessionStorage.removeItem('refresh')
+    sessionStorage.removeItem('access')
+    sessionStorage.removeItem('first_name')
+    sessionStorage.removeItem('last_name')
+    sessionStorage.removeItem('mobile')
+    sessionStorage.removeItem('email')
+    localStorage.clear();
 
+    console.log(`clear storage:`)
 }
 
 export function getUser(){
     return {
-        
+        firstName: sessionStorage.getItem('first_name', null),
+        lastName: sessionStorage.getItem('last_name', null),
+        company: sessionStorage.getItem('mobile', null),
+        email: sessionStorage.getItem('email', null),
+        mobile: sessionStorage.getItem('mobile', null),
     }
 }

@@ -1,6 +1,7 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import {isAuthenticated, getUser} from "utils/session" 
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -15,23 +16,18 @@ import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
 import { useState } from "react";
-
-// react-router-dom components
-import { Link } from "react-router-dom";
-
-// Overview page components
 import Header from "./components/Header";
 
 
 function Overview() {
-
+  const user = getUser()
   const [curPassword, setCurPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [reNewPassword, setReNewPassword] = useState('');
 
-  const [firstName, setFirstName] = useState('Jovy');
+  const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState('Chiu');
-  const [email, setEmail] = useState('jovy@mirobotic.sg');
+  const [email, setEmail] = useState(user.lastName);
 
   async function updateInfo() {
     console.log(`${firstName} ${lastName} ${email}`)
@@ -47,10 +43,10 @@ function Overview() {
               title="profile information"
               description=""
               info={{
-                fullName: "Jovy Chiu",
-                mobile: "+65 1234 1234",
-                email: "jovy@mirobotic.sg",
-                location: "Singapore",
+                fullName: `${user.firstName} ${user.lastName}`,
+                mobile: `${user.mobile}`,
+                email: `${user.email}`,
+                location: `location`,
                 role: "Admin",
               }}
               social={[
