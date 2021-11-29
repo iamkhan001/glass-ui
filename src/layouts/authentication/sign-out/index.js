@@ -1,4 +1,5 @@
 import logout from 'utils/session'
+import { Redirect } from 'react-router-dom'
 
 function SignOut() {
 
@@ -6,7 +7,7 @@ function SignOut() {
 
   console.log(`clear storage:`)
   return (
-    <p>Good Bye!</p>
+    <Redirect to='/authentication/sign-in'  />
   );
 }
 

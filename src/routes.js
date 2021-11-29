@@ -18,6 +18,7 @@ import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 
+
 const routes = [
   {
     type: "collapse",
@@ -92,15 +93,15 @@ const routes = [
     component: SignOut,
     noCollapse: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Sign In",
-  //   key: "sign-in",
-  //   route: "/authentication/sign-in",
-  //   icon: <Document size="12px" />,
-  //   component: SignIn,
-  //   noCollapse: true,
-  // },
+  {
+    type: "collapse",
+    name: "Sign In",
+    key: "sign-in",
+    route: "/authentication/sign-in",
+    icon: <Document size="12px" />,
+    component: SignIn,
+    noCollapse: true,
+  },
   {
     type: "collapse",
     name: "Sign Up",
