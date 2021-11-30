@@ -1,7 +1,7 @@
 import { useState, React } from "react";
 import { useHistory, Redirect, Link } from 'react-router-dom'
 
-import {isAuthenticated, saveUser} from "utils/session"
+import {isAuthenticated, logout, saveUser} from "utils/session"
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -29,11 +29,12 @@ function SignIn() {
   // }
 
 
+  logout();
 
   async function login() {
     const details = { username, password }
     axios
-    .post("/accounts/sign-in/", details)
+    .post("https://glass-api.mirobotic.tech/accounts/sign-in/", details)
     .then((res) => {
         console.warn('result', res)
 
