@@ -23,9 +23,9 @@ import ContactUs from "./components/contactUs";
 // Data
 function Dashboard() {
 
-  // if(!isAuthenticated()) {
-  //   return <Redirect to='/authentication/sign-in'  />
-  // }
+  if(!isAuthenticated()) {
+    return <Redirect to='/authentication/sign-in'  />
+  }
   
   return (
     <DashboardLayout>

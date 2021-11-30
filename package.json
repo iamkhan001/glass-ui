@@ -5,7 +5,6 @@
   "author": "MI ROBOTIC",
   "license": "See license in https://www.creative-tim.com/license",
   "description": "Material UI version of Soft UI Dashboard by Creative Tim",
-  "homepage": "http://glass.mirobotic.tech/dashboard",
   "proxy": "https://glass-api.mirobotic.tech/",
   "bugs": {
     "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
