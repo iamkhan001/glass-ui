@@ -5,7 +5,6 @@
   "author": "MI ROBOTIC",
   "license": "See license in https://www.creative-tim.com/license",
   "description": "Material UI version of Soft UI Dashboard by Creative Tim",
-  "homepage": "http://glass.mirobotic.tech/dashboard",
   "proxy": "https://glass-api.mirobotic.tech/",
   "bugs": {
     "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
@@ -46,6 +45,7 @@
     "react-github-btn": "^1.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "serve": "^13.0.2",
     "stylis": "^4.0.10",
     "stylis-plugin-rtl": "^2.1.0",
     "web-vitals": "^1.0.1"
