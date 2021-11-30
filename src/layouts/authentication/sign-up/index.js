@@ -68,7 +68,7 @@ function SignUp() {
 
     const details = {firstName,lastName,company, mobile, email, password, role}
     axios
-    .post("/accounts/sign-up/", details)
+    .post("https://glass-api.mirobotic.tech/accounts/sign-up/", details)
     .then((res) => {
         console.warn('result', res)
 
