@@ -1,16 +1,17 @@
 import { useState, React } from "react";
 import { useHistory, Redirect, Link } from 'react-router-dom'
 
-import {isAuthenticated, logout, saveUser} from "utils/session"
+import {logout, saveUser} from "utils/session"
 
 // Soft UI Dashboard React components
+import {signInApi, apiPostUnsecure} from "utils/api"
+
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import axios from "axios";
-
 import CoverLayout from "../components/CoverLayout";
 
 
@@ -32,36 +33,26 @@ function SignIn() {
   logout();
 
   async function login() {
-    const details = { username, password }
-    axios
-    .post("https://glass-api.mirobotic.tech/accounts/sign-in/", details)
-    .then((res) => {
-        console.warn('result', res)
 
-        const result = res.data;
+    const data = { username, password }
 
-        if(result.code === 200) {
-            saveUser(result)
-            history.push('/dashboard')
-        }else {
-            setError(result.msg)
-        }
-    })
-    .catch((err) => {
-      if (err.response) {
-        setError(err.response.data.msg)
-      } else if (err.request) {
-        console.log(err.request);
-      } else {
-        console.log('Error', err.message);
-      }
-      console.log(err.config);
-    });
+    apiPostUnsecure(signInApi, data,
+      (response) => {
+         saveUser(response);
+         history.push('/dashboard');
+     },
+     (errorMsg) => {
+         setError(errorMsg);
+     }
+   )
+
   }
 
   const [rememberMe, setRememberMe] = useState(true);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  console.log('screen login');
 
   return (
     <CoverLayout

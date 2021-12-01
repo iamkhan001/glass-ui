@@ -23,6 +23,8 @@ import ContactUs from "./components/contactUs";
 // Data
 function Dashboard() {
 
+  console.log('screen dashboard');
+
   if(!isAuthenticated()) {
     return <Redirect to='/authentication/sign-in'  />
   }

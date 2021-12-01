@@ -1,7 +1,9 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import {isAuthenticated, getUser} from "utils/session" 
+import {Alert, AlertTitle} from "@mui/material";
+import {getUser, updateUser} from "utils/session"
+import {progressDialog, alertDialog} from "utils/diloag"
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -14,29 +16,164 @@ import SuiButton from "components/SuiButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+import {profileApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
 
 import { useState } from "react";
 import Header from "./components/Header";
 
+function getAlert(msg) {
+  let view = null;
+
+  if(msg) {
+    view = (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+         {msg}
+      </Alert>
+    )
+  }
+
+  return view;
+}
 
 function Overview() {
-  const user = getUser()
+  let user = getUser()
   const [curPassword, setCurPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [reNewPassword, setReNewPassword] = useState('');
 
   const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState('Chiu');
-  const [email, setEmail] = useState(user.lastName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [company, setCompany] = useState(user.company);
+  const [email, setEmail] = useState(user.email);
+  const [mobile, setMobile] = useState(user.mobile);
+  const [error, setError] = useState('');
+  const [progress, setProgress] = useState(false);
+  const [showAlertCancel, setShowAlertCancel] = useState(false);
+  const [showAlertTitle, setShowAlertTitle] = useState('');
+  const [showAlertMessage, setShowAlertMessage] = useState('');
+
+  /*
+  apiCallSecureGet(profileApi,
+    (response) => {
+       saveUser(response);
+   },
+   (errorMsg) => {
+       setError(errorMsg||'Error');
+       setInterval( () => {setError('')}, 3000);
+       console.log('ui error', errorMsg||'Error');
+   }
+  )
+  */
+
+  console.log('screen profile');
+  
+  function onAlertOk() {
+    setShowAlertTitle('');
+  }
+
+  function onAlertCancel() {
+    setShowAlertTitle('');
+  }
+
+  function showError(msg) {
+    setError(msg);
+    setTimeout( () => {setError('')}, 3000);
+  }
+
+  function showAlert(cancel, title, message) {
+    setShowAlertTitle(title);
+    setShowAlertMessage(message);
+    setShowAlertCancel(cancel);
+  }
 
   async function updateInfo() {
-    console.log(`${firstName} ${lastName} ${email}`)
+    
+    if(firstName.trim() === "") {
+      showError('Enter first name')
+      return
+    }
+    if(lastName.trim() === "") {
+      showError('Enter last name')
+      return
+    }
+    if(email.trim() === "") {
+      showError('Enter email')
+      return
+    }
+    setProgress(true);
+    const data = {firstName,lastName,company, mobile, email}
+    apiPutSecure(profileApi, data,
+       (response) => {
+          updateUser(response);
+          user = getUser();
+          setFirstName(user.firstName);
+          setLastName(user.lastName);
+          setEmail(user.email);
+          setMobile(user.mobile);
+          setCompany(user.company);
+          setProgress(false);
+          showAlert(false, "Success!", "Account details updated successfully!")
+      },
+      (errorMsg) => {
+          setProgress(false);
+          showAlert(false, "Error!", errorMsg)
+          setTimeout( () => {showError(null)}, 3000)
+      }
+    )
+  
+  }
+
+  async function updatePassowrd() {
+    
+    if(curPassword.trim() === "") {
+      showError('Enter Current password')
+      return
+    }
+    if(newPassword.trim() === "") {
+      showError('Enter new password')
+      return
+    }
+    if(reNewPassword.trim() === "") {
+      showError('Confirm new passowrd')
+      return
+    }
+
+    if(newPassword !== reNewPassword) {
+      showError('Password not matching!')
+      return;
+    }
+
+    setProgress(true);
+    const data = {
+        'old_password': curPassword,
+        'new_password': newPassword,
+    }
+
+    apiPostSecure(resetPasswordApi, data,
+       (response) => {
+          showAlert(false, "Success!", "Password updated successfully!")
+          setCurPassword('');
+          setNewPassword('');
+          setReNewPassword('');
+          setProgress(false);
+      },
+      (errorMsg) => {
+          setProgress(false);
+          showAlert(false, "Error!", errorMsg)
+          setTimeout( () => {showError(null)}, 3000)
+      }
+    )
+  
   }
 
   return (
     <DashboardLayout>
       <Header />
       <SuiBox mt={5} mb={3}>
+      {getAlert(error)}
+      {progressDialog('Updating profile', progress)}
+      {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>
           <ProfileInfoCard
@@ -54,6 +191,7 @@ function Overview() {
               action={{ route: "", tooltip: "Edit Profile" }}
             />
           </Grid>
+         
           <Grid item xs={12} md={6} xl={4}>
             <Card className="h-100">
               <SuiBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -84,10 +222,26 @@ function Overview() {
                 <SuiBox mb={2}>
                   <SuiBox mb={1} ml={0.5}>
                     <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Company
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="text" placeholder="Company" value={company} onChange={(e) => setCompany(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
                       Email
                     </SuiTypography>
                   </SuiBox>
-                  <SuiInput type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <SuiInput type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </SuiBox>
+                <SuiBox mb={2}>
+                  <SuiBox mb={1} ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Phone 
+                    </SuiTypography>
+                  </SuiBox>
+                  <SuiInput type="phone" placeholder="Phone" value={mobile} onChange={(e) => setMobile(e.target.value)} />
                 </SuiBox>
                 <SuiBox mt={4} mb={1}>
                   <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => updateInfo()}>
@@ -110,7 +264,7 @@ function Overview() {
                 </SuiBox>
                 <SuiBox mb={2}>
                   <SuiBox mb={1} ml={0.5}>
-                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                    <SuiTypography autoComplete="off" component="label" variant="caption" fontWeight="bold" autofill>
                       Current password
                     </SuiTypography>
                   </SuiBox>
@@ -118,7 +272,7 @@ function Overview() {
                 </SuiBox>
                 <SuiBox mb={2}>
                   <SuiBox mb={1} ml={0.5}>
-                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                    <SuiTypography autoComplete="off" component="label" variant="caption" fontWeight="bold">
                       New password
                     </SuiTypography>
                   </SuiBox>
@@ -126,14 +280,14 @@ function Overview() {
                 </SuiBox>
                 <SuiBox mb={2}>
                   <SuiBox mb={1} ml={0.5}>
-                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                    <SuiTypography autoComplete="off" component="label" variant="caption" fontWeight="bold">
                       Verify new password
                     </SuiTypography>
                   </SuiBox>
                   <SuiInput type="password" placeholder="verify new password" value={reNewPassword} onChange={(e) => setReNewPassword(e.target.value)} />
                 </SuiBox>
                 <SuiBox mt={4} mb={1}>
-                  <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => updateInfo()}>
+                  <SuiButton variant="gradient" buttonColor="info" fullWidth onClick={() => updatePassowrd()}>
                     Update Password
                   </SuiButton>
                 </SuiBox>

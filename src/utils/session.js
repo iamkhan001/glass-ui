@@ -1,5 +1,9 @@
 import { func } from "prop-types";
 
+export function getAccessToken() {
+    return sessionStorage.getItem('access', null);
+}
+
 export function isAuthenticated() {
     const access = sessionStorage.getItem('access', null);
     console.log(`access >> ${access}`);
@@ -20,6 +24,15 @@ export function saveUser(result) {
     sessionStorage.setItem('last_name', result.account.last_name)
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
+    sessionStorage.setItem('company',result.account.company)
+}
+
+export function updateUser(result) {
+    sessionStorage.setItem('first_name', result.account.first_name)
+    sessionStorage.setItem('last_name', result.account.last_name)
+    sessionStorage.setItem('mobile', result.account.mobile)
+    sessionStorage.setItem('email',result.account.email)
+    sessionStorage.setItem('company',result.account.company)
 }
 
 export function logout() {
@@ -36,9 +49,10 @@ export function logout() {
 
 export function getUser(){
     return {
+        access: sessionStorage.getItem('access', null),
         firstName: sessionStorage.getItem('first_name', null),
         lastName: sessionStorage.getItem('last_name', null),
-        company: sessionStorage.getItem('mobile', null),
+        company: sessionStorage.getItem('company', null),
         email: sessionStorage.getItem('email', null),
         mobile: sessionStorage.getItem('mobile', null),
     }
