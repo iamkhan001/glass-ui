@@ -7,6 +7,7 @@ export const baseUrl = "https://glass-api.mirobotic.tech/";
 export const signInApi = "accounts/sign-in/";
 export const signUpApi = "accounts/sign-up/";
 export const profileApi = "accounts/profile/";
+export const profileUpdateApi = "accounts/update-account/";
 export const resetPasswordApi = "accounts/reset-password/";
 
 

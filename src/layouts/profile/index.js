@@ -16,7 +16,7 @@ import SuiButton from "components/SuiButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import {profileApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
+import {profileUpdateApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
 
 import { useState } from "react";
 import Header from "./components/Header";
@@ -103,7 +103,7 @@ function Overview() {
     }
     setProgress(true);
     const data = {firstName,lastName,company, mobile, email}
-    apiPutSecure(profileApi, data,
+    apiPostSecure(profileUpdateApi, data,
        (response) => {
           updateUser(response);
           user = getUser();
