@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useHistory, Redirect, Link } from 'react-router-dom'
 import {isAuthenticated, saveUser} from "utils/session"
 
+import {signUpApi, apiPostUnsecure} from "utils/api"
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
@@ -38,6 +40,8 @@ function SignUp() {
 
   const role = "A";
   
+  console.log('screen register');
+
   async function register() {
     
     if(firstName.trim() === "") {
@@ -66,31 +70,18 @@ function SignUp() {
       return;
     }
 
-    const details = {firstName,lastName,company, mobile, email, password, role}
-    axios
-    .post("https://glass-api.mirobotic.tech/accounts/sign-up/", details)
-    .then((res) => {
-        console.warn('result', res)
-
-        const result = res.data;
-
-        if(result.code === 200) {
-            saveUser(result)
-            history.push('/dashboard')
-        }else {
-            setError(result.msg)
-        }
-    })
-    .catch((err) => {
-      if (err.response) {
-        setError(err.response.data.msg)
-      } else if (err.request) {
-        console.log(err.request);
-      } else {
-        console.log('Error', err.message);
+    const data = {firstName,lastName,company, mobile, email, password, role}
+   
+    apiPostUnsecure(signUpApi, data,
+       (response) => {
+          saveUser(response);
+          history.push('/dashboard');
+      },
+      (errorMsg) => {
+          setError(errorMsg);
       }
-      console.log(err.config);
-    });
+    )
+
   }
 
   const [agreement, setAgremment] = useState(true);
