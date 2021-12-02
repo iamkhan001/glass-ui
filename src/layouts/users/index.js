@@ -1,8 +1,11 @@
 import Card from "@mui/material/Card";
+import { Redirect, Link } from 'react-router-dom'
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+
+import {isAuthenticated, getUser} from "utils/session" 
 
 // Soft UI Dashboard React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -17,6 +20,11 @@ import styles from "./styles";
 import usersTableData from "./data/usersTableData";
 
 function Tables() {
+
+  if(!isAuthenticated()) {
+    return <Redirect to='/authentication/sign-in'  />
+  }
+
   const classes = styles();
   const { columns, rows } = usersTableData;
 
