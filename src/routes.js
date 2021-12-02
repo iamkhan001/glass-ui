@@ -28,6 +28,7 @@ const routes = [
     icon: <Shop size="12px" />,
     component: Dashboard,
     noCollapse: true,
+    visible: true,
   },
   {
     type: "collapse",
@@ -37,15 +38,17 @@ const routes = [
     icon: <Office size="12px" />,
     component: Meetings,
     noCollapse: true,
+    visible: true,
   },
   {
     type: "collapse",
-    name: "Users",
-    key: "users",
-    route: "/users",
+    name: "members",
+    key: "members",
+    route: "/members",
     icon: <CreditCard size="12px" />,
     component: Users,
     noCollapse: true,
+    visible: true,
   },
   {
     type: "collapse",
@@ -55,6 +58,7 @@ const routes = [
     icon: <Cube size="12px" />,
     component: Licenses,
     noCollapse: true,
+    visible: true,
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
@@ -65,6 +69,7 @@ const routes = [
     icon: <CustomerSupport size="12px" />,
     component: Profile,
     noCollapse: true,
+    visible: true,
   },
   {
     type: "collapse",
@@ -74,16 +79,8 @@ const routes = [
     icon: <CustomerSupport size="12px" />,
     component: Wifi,
     noCollapse: true,
+    visible: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Account",
-  //   key: "account",
-  //   route: "/account",
-  //   icon: <CustomerSupport size="12px" />,
-  //   component: Account,
-  //   noCollapse: true,
-  // },
   {
     type: "collapse",
     name: "Sign Out",
@@ -92,6 +89,7 @@ const routes = [
     icon: <Document size="12px" />,
     component: SignOut,
     noCollapse: true,
+    visible: true,
   },
   {
     type: "collapse",
@@ -100,7 +98,8 @@ const routes = [
     route: "/authentication/sign-in",
     icon: <Document size="12px" />,
     component: SignIn,
-    noCollapse: true,
+    noCollapse: false,
+    visible: true,
   },
   {
     type: "collapse",
@@ -109,7 +108,8 @@ const routes = [
     route: "/authentication/sign-up",
     icon: <Document size="12px" />,
     component: SignUp,
-    noCollapse: true,
+    noCollapse: false,
+    visible: true,
   },
 ];
 
