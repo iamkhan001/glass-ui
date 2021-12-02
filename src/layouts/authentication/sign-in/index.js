@@ -11,9 +11,7 @@ import SuiTypography from "components/SuiTypography";
 import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
-import axios from "axios";
 import CoverLayout from "../components/CoverLayout";
-
 
 function SignIn() {
 
@@ -23,16 +21,22 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  console.log('login')
-
   // if(isAuthenticated()) {
   //   return <Redirect to='/dashboard'  />
   // }
 
-
   logout();
 
   async function login() {
+
+    if(username.trim() === "") {
+      setError('Enter username')
+      return
+    }
+    if(password.trim() === "") {
+      setError('Enter password')
+      return
+    }
 
     const data = { username, password }
 
@@ -60,6 +64,7 @@ function SignIn() {
       description="Enter your email and password to sign in"
       image={curved9}
     >
+      
       <SuiBox component="form" role="form">
         <SuiBox mb={2}>
           <SuiBox mb={1} ml={0.5}>
@@ -103,6 +108,7 @@ function SignIn() {
           </SuiTypography>
         </SuiBox>
       </SuiBox>
+    
     </CoverLayout>
   );
 }
