@@ -2,8 +2,10 @@
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import {Alert, AlertTitle} from "@mui/material";
-import {getUser, updateUser} from "utils/session"
 import {progressDialog, alertDialog} from "utils/diloag"
+import { Redirect, Link } from 'react-router-dom'
+
+import {isAuthenticated, updateUser, getUser} from "utils/session" 
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -37,6 +39,11 @@ function getAlert(msg) {
 }
 
 function Overview() {
+
+  if(!isAuthenticated()) {
+    return <Redirect to='/authentication/sign-in'  />
+  }
+
   let user = getUser()
   const [curPassword, setCurPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');

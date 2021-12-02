@@ -46,7 +46,7 @@ function showSuccessAlert(msg) {
   if(msg == null || msg.trim() === '') {
     view = (
       <SuiTypography m={2} fontWeight="medium" textColor="text">
-        Enter WIFI credentials
+        Scan this QR code on your google glass to connect wifi
       </SuiTypography> 
     )
   }else {
@@ -61,14 +61,17 @@ function showSuccessAlert(msg) {
   return view;
 }
 
-function generateQRCode(ssid, password, selection, isHidden) {
+function generateQRCode(ssid, password, selection, isHidden, setAlert) {
 
   console.log('qr code', ssid, password, selection, isHidden);
   if(ssid === null || password.trim() === '') {
+    setAlert('')
     return (
       <SuiBox component="img"  src={qrCodeImage} alt="QR Login" width="200px" pt={3} />
     )
   }
+
+  setAlert("Scan this QR code to connect your wifi")
   
   const qr = `WIFI:S:${ssid};T:${selection};P:${password};H:${isHidden};;`
   return (
@@ -123,13 +126,12 @@ function Wifi() {
       setAlert('')
       return
     }
-    setAlert("Scan this QR code on your google glass to connect wifi")
     setIsValid(true);
   }
 
   function createQrCode() {
       if(isValid) {
-        return generateQRCode(ssid, password, selection, isHidden);
+        return generateQRCode(ssid, password, selection, isHidden, setAlert);
       }
       return (
         <SuiBox component="img"  src={qrCodeImage} alt="QR Login" width="200px" pt={3} />

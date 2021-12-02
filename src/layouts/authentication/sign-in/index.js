@@ -56,7 +56,7 @@ function SignIn() {
 
   return (
     <CoverLayout
-      title="Welcome to MI GLASS"
+      title="Welcome to MI ROBOTIC!"
       description="Enter your email and password to sign in"
       image={curved9}
     >
