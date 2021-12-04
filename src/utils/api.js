@@ -10,6 +10,11 @@ export const profileApi = "accounts/profile/";
 export const profileUpdateApi = "accounts/update-account/";
 export const resetPasswordApi = "accounts/reset-password/";
 
+export const membersApi = "accounts/members/";
+export const memberUpdateApi = "accounts/update-member/";
+export const memeberActivateApi = "accounts/activate-member/";
+export const memberDeleteApi = "accounts/delete-member/";
+
 
 export const routs = {
     signin : `${baseUrl}accounts/sign-in/`,
@@ -27,9 +32,8 @@ export function getRouts() {
 export function apiCallSecureGet(api, response, error) {
 
   console.log('apiCallSecureGet ', api);
-
-    axios
-    .get(`${baseUrl}${api}/test`, 
+  axios
+    .get(`${baseUrl}${api}`, 
       {
         headers: {
           'Authorization': `Token ${getAccessToken()}`

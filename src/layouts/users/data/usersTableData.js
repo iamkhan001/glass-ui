@@ -37,18 +37,29 @@ function EmailCell({ email }) {
   );
 }
 
-function ActionCell({userId, status, onActivate, onDeactivate, onEdit, onDelete}) {
-  console.log(`user ${userId}`)
+function StatusCell({ status }) {
+  if(status) {
+    return (
+      <SuiBadge variant="gradient" badgeContent="active" color="success" size="extra-small" />
+    )
+  }
+  return (
+    <SuiBadge variant="gradient" badgeContent="inactive" color="secondary" size="extra-small" />
+  )
+}
+
+function ActionCell({user, onActivate, onDeactivate, onEdit, onDelete}) {
+  console.log('ActionCell', user);
   let active;
-  if (status === "Inactive") {
-    active = <SuiButton variant="caption" fontWeight="medium" textColor="success" onClick={() => onActivate(userId)}>
+  if (user.is_active) {
+    active = <SuiButton variant="caption" fontWeight="medium" textColor="success" onClick={() => onActivate(user)}>
     <Icon className="material-icons-round" color="success">key</Icon>
       <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="success">
           Activate
       </SuiTypography>
     </SuiButton>
   } else {
-    active = <SuiButton variant="caption" fontWeight="medium" textColor="secondary"  onClick={() => onDeactivate(userId)}>
+    active = <SuiButton variant="caption" fontWeight="medium" textColor="secondary"  onClick={() => onDeactivate(user)}>
     <Icon className="material-icons-round" color="secondary">lock</Icon>
       <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="secondary">
           Deactivate
@@ -58,13 +69,13 @@ function ActionCell({userId, status, onActivate, onDeactivate, onEdit, onDelete}
   return (
     <SuiBox display="flex" flexDirection="row">
         {active}
-        <SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onEdit(userId)}>
+        <SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onEdit(user)}>
           <Icon className="material-icons-round">edit</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
               Edit
           </SuiTypography>
         </SuiButton>
-        <SuiButton variant="caption" fontWeight="medium" textColor="error"  onClick={() => onDelete(userId)}>
+        <SuiButton variant="caption" fontWeight="medium" textColor="error"  onClick={() => onDelete(user)}>
           <Icon className="material-icons-round" color="error">delete</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="error">
               Delete
@@ -75,46 +86,17 @@ function ActionCell({userId, status, onActivate, onDeactivate, onEdit, onDelete}
 }
 
 export default function getRows(data, onActivate, onDeactivate, onEdit, onDelete) {
-  return [
-    {
-      name: <NameCell image={team1} name="Jovy Chiu"  />,
-      email: <EmailCell email="jovy@mirobotic.sg" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="active" color="success" size="extra-small" />
-      ),
-      action: <ActionCell userId='1' status="Active" onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete} />,
-    },
-    {
-      name: <NameCell image={team3} name="Imran Khan"  />,
-      email: <EmailCell email="imran@mirobotic.sg" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="active" color="success" size="extra-small" />
-      ),
-      action: <ActionCell userId='1' status="Active"  onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete} />,
-    },
-    {
-      name: <NameCell image={team2} name="John Michael"  />,
-      email: <EmailCell email="john@mirobotic.sg" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="active" color="success" size="extra-small" />
-      ),
-      action: <ActionCell userId='1' status="Active"  onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete}/>,
-    },
-    {
-      name: <NameCell image={team4} name="Sam Shaikh"  />,
-      email: <EmailCell email="sam@mirobotic.sg" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="inactive" color="secondary" size="extra-small" />
-      ),
-      action: <ActionCell userId='1' status="Inactive"  onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete}/>,
-    },
-    {
-      name: <NameCell image={team5} name="Fari Khan"  />,
-      email: <EmailCell email="fari@mirobotic.sg" />,
-      status: (
-        <SuiBadge variant="gradient" badgeContent="active" color="success" size="extra-small" />
-      ),
-      action: <ActionCell userId='1' status="Active"  onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete}/>,
-    },
-  ]
+  const rows = [];
+  data.map((user) =>
+    rows.push(
+      {
+        name: <NameCell image={team1} name={`${user.first_name} ${user.last_name}`}  />,
+        email: <EmailCell email={user.email} />,
+        status: <StatusCell status={user.is_active} />,
+        action: <ActionCell user={user} onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete} />,
+      }
+    )
+  );
+
+  return rows;
 }
