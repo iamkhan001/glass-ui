@@ -1,52 +1,27 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-material-ui
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
-// react-router components
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 
-// jss components
 import { create } from "jss";
 
-// jss-rtl components
 import rtl from "jss-rtl";
 
-// @mui style components
 import { StylesProvider, jssPreset } from "@mui/styles";
 
-// @mui material components
 import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
-// Soft UI Dashboard PRO React components
 import SuiBox from "components/SuiBox";
 
-// Soft UI Dashboard PRO React example components
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
-// Soft UI Dashboard PRO React themes
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
-// Soft UI Dashboard PRO React routes
 import routes from "routes";
 
-// Soft UI Dashboard PRO React contexts
 import { useSoftUIController } from "context";
 
 import rtlPlugin from "stylis-plugin-rtl";

@@ -59,7 +59,10 @@ function Tables() {
   const [mobile, setMobile] = useState('');
   const [userId, setUserId] = useState('');
 
-  const [showAddMember, setShowAddMember] = useState(false);
+  const [firstNameNew, setFirstNameNew] = useState('');
+  const [lastNameNew, setLastNameNew] = useState('');
+  const [emailNew, setEmailNew] = useState('');
+  const [mobileNew, setMobileNew] = useState('');
 
   const [error, setError] = useState('');
   const [progress, setProgress] = useState(false);
@@ -70,6 +73,7 @@ function Tables() {
 
   const [members, setMembers] = useState([]);
 
+  const [content, setContent] = useState('list');
   const [role, setRole] = useState('U');
   const [loadUsers, setLoadUsers] = useState(true);
 
@@ -91,23 +95,14 @@ function Tables() {
     showAlert(true, "Deactivate Member?", "Click on okay if you want to deactivate member.")
   }
 
-  function showAddNewMemberModal() {
-    setTimeout(() => {
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setMobile('');
-      setShowAddMember(true);
-    }, 1000);
-  }
-
   function onEdit(user) {
     console.log('edit >> ', user);
     setFirstName(user.first_name);
     setLastName(user.last_name);
     setEmail(user.email);
     setMobile(user.mobile);
-    setUserId(user.accountId)
+    setUserId(user.accountId);
+    setContent('edit');
   }
 
   function onDelete(id) {
@@ -130,6 +125,12 @@ function Tables() {
     setShowAlertTitle('');
   }
 
+  function updateConentView(selection) {
+    console.log('selection >> ', selection);
+    setLoadUsers(true);
+    setContent(selection);
+  }
+
   function showProgress(title) {
     setProgressTitle(title)
     setProgress(true)
@@ -145,8 +146,8 @@ function Tables() {
     setTimeout( () => {setError('')}, 3000);
   }
 
-  function addMember() {
-    console.log('add member');
+  function updateMember() {
+    console.log('updateMember');
 
     if(firstName.trim() === "") {
       showError('Enter first name')
@@ -167,24 +168,63 @@ function Tables() {
       'lastName': lastName, 
       'mobile': mobile,
       'email' : email,
-      'role': role
+      'role': role,
+      'accountId': userId
     }
 
-    let api = '';
-    if(userId.trim() === '') {
-      api = membersApi;
-    }else {
-      api = memberUpdateApi;
-    }
-
-    apiPostSecure(api, data,
+    apiPostSecure(memberUpdateApi, data,
        (response) => {
           setFirstName("");
           setLastName("");
           setEmail("");
           setMobile("");
+          setUserId("");
+          setLoadUsers(true);
           hideProgress();
-          showAlert(false, "Success!", data.msg)
+          showAlert(false, "Success!", response.msg)
+      },
+      (errorMsg) => {
+          hideProgress();
+          showAlert(false, "Error!", errorMsg)
+          setTimeout( () => {showError(null)}, 3000)
+      }
+    )
+
+  }
+
+  function addMember() {
+    console.log('add member');
+
+    if(firstNameNew.trim() === "") {
+      showError('Enter first name')
+      return
+    }
+    if(lastNameNew.trim() === "") {
+      showError('Enter last name')
+      return
+    }
+    if(emailNew.trim() === "") {
+      showError('Enter email')
+      return
+    }
+    showProgress("Creating member account!")
+
+    const data = {
+      'firstName': firstNameNew,
+      'lastName': lastNameNew, 
+      'mobile': mobileNew,
+      'email' : emailNew,
+      'role': role,
+    }
+
+    apiPostSecure(membersApi, data,
+       (response) => {
+          setFirstNameNew("");
+          setLastNameNew("");
+          setEmailNew("");
+          setMobileNew("");
+          hideProgress();
+          showAlert(false, "Success!", response.msg)
       },
       (errorMsg) => {
           hideProgress();
@@ -196,11 +236,11 @@ function Tables() {
   }
 
   const addView = (
-    <Card className="h-100">
+<Card className="h-100">
       <SuiBox pt={2} px={2}>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center">
           <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
-            Enter member details
+            Update member details
           </SuiTypography>
         </SuiBox>
         <SuiBox opacity={0.3}>
@@ -214,7 +254,7 @@ function Tables() {
                   First Name
                 </SuiTypography>
               </SuiBox>
-              <SuiInput type="text" placeholder="first name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+              <SuiInput type="text" placeholder="first name" value={firstNameNew} onChange={(e) => setFirstNameNew(e.target.value)} />
             </SuiBox>
           </Grid>
           <Grid item xs={12} md={6} xl={6}>
@@ -224,7 +264,7 @@ function Tables() {
                   Last Name
                 </SuiTypography>
               </SuiBox>
-              <SuiInput type="text" placeholder="last name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+              <SuiInput type="text" placeholder="last name" value={lastNameNew} onChange={(e) => setLastNameNew(e.target.value)} />
             </SuiBox>          
           </Grid>
           <Grid item xs={12} md={6} xl={6}>
@@ -234,7 +274,7 @@ function Tables() {
                   Email
                 </SuiTypography>
               </SuiBox>
-              <SuiInput type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <SuiInput type="email" placeholder="email" value={emailNew} onChange={(e) => setEmailNew(e.target.value)} />
             </SuiBox>          
           </Grid>
           <Grid item xs={12} md={6} xl={6}>
@@ -244,13 +284,13 @@ function Tables() {
                   Phone (optional) 
                 </SuiTypography>
               </SuiBox>
-              <SuiInput type="phone" placeholder="Phone" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+              <SuiInput type="phone" placeholder="Phone" value={mobileNew} onChange={(e) => setMobileNew(e.target.value)} />
             </SuiBox>
           </Grid>
         </Grid>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center" py={3}>
           <SuiBox display="flex" flexDirection="row" >
-            <SuiButton variant="gradient" buttonColor="secondary"  onClick={() => setShowAddMember(false)} >
+            <SuiButton variant="gradient" buttonColor="secondary"  onClick={() => updateConentView('list')} >
               cancel
             </SuiButton>
             <SuiBox pl={2}>
@@ -319,11 +359,13 @@ function Tables() {
         </Grid>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center" py={3}>
           <SuiBox display="flex" flexDirection="row" >
-            <SuiButton variant="gradient" buttonColor="secondary"  onClick={() => setShowAddMember(false)} >
+            <SuiButton variant="gradient" buttonColor="secondary"  onClick={() =>
+               updateConentView('list')
+               } >
               cancel
             </SuiButton>
             <SuiBox pl={2}>
-              <SuiButton variant="gradient" buttonColor="primary"  onClick={() => addMember()}  p={2} >
+              <SuiButton variant="gradient" buttonColor="primary"  onClick={() => updateMember()}  p={2} >
                 Update Member
               </SuiButton>
             </SuiBox>
@@ -339,6 +381,7 @@ function Tables() {
       (response) => {
           setLoadUsers(false);
           setMembers(getRows(response.list, onActivate, onDeactivate, onEdit, onDelete));
+          setContent('list');
       },
       (errorMsg) => {
           setLoadUsers(false);
@@ -351,6 +394,51 @@ function Tables() {
 
   useEffect(() => {loadMembers();}, [loadUsers])
 
+  function showMembers() {
+
+    console.log('show members');
+
+    return (
+      <Card>
+        <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+            <SuiTypography variant="h6">Members</SuiTypography>
+            <SuiButton variant="gradient" buttonColor="dark"  onClick={() => setContent('add')}>
+              <Icon className="font-bold">add</Icon>
+              &nbsp;New Member
+            </SuiButton>
+        </SuiBox>
+        <SuiBox customClass={classes.tables_table}>
+          <Table columns={columns} rows={members} />
+        </SuiBox>
+      </Card>
+    )
+  }
+
+  function showAddMember() {
+    return addView;
+  }
+
+  function showUpdateMember() {
+      return updateView;
+  }
+
+  function getContentView(state) {
+
+    if(state === 'list') {
+      return showMembers();
+    }
+  
+    if(state === 'add') {
+      return showAddMember();
+    }
+  
+    if(state === 'edit') {
+      return showUpdateMember();
+    }
+  
+    return null;
+  }
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -359,18 +447,7 @@ function Tables() {
           {getAlert(error)}
           {progressDialog(progressTitle, progress)}
           {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
-          <Card>
-            <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-                <SuiTypography variant="h6">Members</SuiTypography>
-                <SuiButton variant="gradient" buttonColor="dark"  onClick={() => showAddNewMemberModal()}>
-                  <Icon className="font-bold">add</Icon>
-                  &nbsp;New Member
-                </SuiButton>
-            </SuiBox>
-            <SuiBox customClass={classes.tables_table}>
-              <Table columns={columns} rows={members} />
-            </SuiBox>
-          </Card>
+          {getContentView(content)}
         </SuiBox>
       </SuiBox>
       <Footer />
