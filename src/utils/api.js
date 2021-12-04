@@ -1,14 +1,19 @@
 import axios from "axios";
 import {isAuthenticated, getAccessToken} from './session'
 
-// export const baseUrl = "http://localhost:8080/";
-export const baseUrl = "https://glass-api.mirobotic.tech/";
+export const baseUrl = "http://localhost:8080/";
+// export const baseUrl = "https://glass-api.mirobotic.tech/";
 
 export const signInApi = "accounts/sign-in/";
 export const signUpApi = "accounts/sign-up/";
 export const profileApi = "accounts/profile/";
 export const profileUpdateApi = "accounts/update-account/";
 export const resetPasswordApi = "accounts/reset-password/";
+
+export const membersApi = "accounts/members/";
+export const memberUpdateApi = "accounts/update-member/";
+export const memeberActivateApi = "accounts/activate-member/";
+export const memberDeleteApi = "accounts/delete-member/";
 
 
 export const routs = {
@@ -27,9 +32,8 @@ export function getRouts() {
 export function apiCallSecureGet(api, response, error) {
 
   console.log('apiCallSecureGet ', api);
-
-    axios
-    .get(`${baseUrl}${api}/test`, 
+  axios
+    .get(`${baseUrl}${api}`, 
       {
         headers: {
           'Authorization': `Token ${getAccessToken()}`
