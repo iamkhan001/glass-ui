@@ -51,7 +51,7 @@ function StatusCell({ status }) {
 function ActionCell({user, onActivate, onDeactivate, onEdit, onDelete}) {
   console.log('ActionCell', user);
   let active;
-  if (user.is_active) {
+  if (!user.is_active) {
     active = <SuiButton variant="caption" fontWeight="medium" textColor="success" onClick={() => onActivate(user)}>
     <Icon className="material-icons-round" color="success">key</Icon>
       <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="success">

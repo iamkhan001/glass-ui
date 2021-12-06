@@ -57,9 +57,8 @@ export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
 }
 
 
-export const progressDialog = (title, open) => {
-
-  console.log('alert');
+export const progressDialog = (title) => {
+  const open = (title != null && title.trim() !== '');
 
   return (
     <Dialog

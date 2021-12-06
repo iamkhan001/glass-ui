@@ -55,10 +55,10 @@ function Overview() {
   const [email, setEmail] = useState(user.email);
   const [mobile, setMobile] = useState(user.mobile);
   const [error, setError] = useState('');
-  const [progress, setProgress] = useState(false);
   const [showAlertCancel, setShowAlertCancel] = useState(false);
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
+  const [progressTitle, setProgressTitle] = useState('');
 
   /*
   apiCallSecureGet(profileApi,
@@ -108,7 +108,7 @@ function Overview() {
       showError('Enter email')
       return
     }
-    setProgress(true);
+    setProgressTitle('Updating Profile!');
     const data = {firstName,lastName,company, mobile, email}
     apiPostSecure(profileUpdateApi, data,
        (response) => {
@@ -119,11 +119,11 @@ function Overview() {
           setEmail(user.email);
           setMobile(user.mobile);
           setCompany(user.company);
-          setProgress(false);
+          setProgressTitle('');
           showAlert(false, "Success!", "Account details updated successfully!")
       },
       (errorMsg) => {
-          setProgress(false);
+          setProgressTitle('');
           showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
@@ -151,7 +151,7 @@ function Overview() {
       return;
     }
 
-    setProgress(true);
+    setProgressTitle('Updating Password!');
     const data = {
         'old_password': curPassword,
         'new_password': newPassword,
@@ -163,10 +163,10 @@ function Overview() {
           setCurPassword('');
           setNewPassword('');
           setReNewPassword('');
-          setProgress(false);
+          setProgressTitle('');
       },
       (errorMsg) => {
-          setProgress(false);
+          setProgressTitle('');
           showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
@@ -179,7 +179,7 @@ function Overview() {
       <Header />
       <SuiBox mt={5} mb={3}>
       {getAlert(error)}
-      {progressDialog('Updating profile', progress)}
+      {progressDialog(progressTitle)}
       {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>
