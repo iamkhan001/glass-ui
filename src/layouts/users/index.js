@@ -12,6 +12,7 @@ import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 
 import {isAuthenticated, getUser} from "utils/session" 
+import validator from 'validator'
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -210,6 +211,10 @@ function Tables() {
       showError('Enter email')
       return
     }
+    if(!validator.isEmail(email)) {
+      showError('Invalid email')
+      return
+    }
     showProgress("Creating member account!")
 
     const data = {
@@ -254,6 +259,10 @@ function Tables() {
     }
     if(emailNew.trim() === "") {
       showError('Enter email')
+      return
+    }
+    if(!validator.isEmail(emailNew)) {
+      showError('Invalid email')
       return
     }
     showProgress("Creating member account!")

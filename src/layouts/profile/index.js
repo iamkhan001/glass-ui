@@ -5,6 +5,8 @@ import {Alert, AlertTitle} from "@mui/material";
 import {progressDialog, alertDialog} from "utils/diloag"
 import { Redirect, Link } from 'react-router-dom'
 
+import validator from 'validator'
+
 import {isAuthenticated, updateUser, getUser} from "utils/session" 
 
 // Soft UI Dashboard React components
@@ -106,6 +108,10 @@ function Overview() {
     }
     if(email.trim() === "") {
       showError('Enter email')
+      return
+    }
+    if(!validator.isEmail(email)) {
+      showError('Invalid email')
       return
     }
     setProgressTitle('Updating Profile!');

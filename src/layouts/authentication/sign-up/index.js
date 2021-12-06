@@ -6,6 +6,8 @@ import {isAuthenticated, saveUser} from "utils/session"
 
 import {signUpApi, apiPostUnsecure} from "utils/api"
 
+import validator from 'validator'
+
 // @mui material components
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
@@ -54,6 +56,10 @@ function SignUp() {
     }
     if(email.trim() === "") {
       setError('Enter email')
+      return
+    }
+    if(!validator.isEmail(email)) {
+      setError('Invalid email')
       return
     }
     if(password.trim() === "") {
