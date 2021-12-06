@@ -6,6 +6,8 @@ import {logout, saveUser} from "utils/session"
 // Soft UI Dashboard React components
 import {signInApi, apiPostUnsecure} from "utils/api"
 
+import validator from 'validator'
+
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiInput from "components/SuiInput";
@@ -31,6 +33,10 @@ function SignIn() {
 
     if(username.trim() === "") {
       setError('Enter username')
+      return
+    }
+    if(!validator.isEmail(username)) {
+      setError('Invalid email')
       return
     }
     if(password.trim() === "") {

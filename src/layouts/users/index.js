@@ -12,6 +12,7 @@ import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 
 import {isAuthenticated, getUser} from "utils/session" 
+import validator from 'validator'
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -45,6 +46,9 @@ function getAlert(msg) {
   return view;
 }
 
+let selectedUser = null;
+let action = '';
+
 function Tables() {
 
   if(!isAuthenticated()) {
@@ -65,8 +69,7 @@ function Tables() {
   const [mobileNew, setMobileNew] = useState('');
 
   const [error, setError] = useState('');
-  const [progress, setProgress] = useState(false);
-  const [progressTitle, setProgressTitle] = useState(false);
+  const [progressTitle, setProgressTitle] = useState('');
   const [showAlertCancel, setShowAlertCancel] = useState(false);
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
@@ -77,6 +80,8 @@ function Tables() {
   const [role, setRole] = useState('U');
   const [loadUsers, setLoadUsers] = useState(true);
 
+
+
   const classes = styles();
 
   function showAlert(cancel, title, message) {
@@ -85,18 +90,24 @@ function Tables() {
     setShowAlertCancel(cancel);
   }
 
-  function onActivate(id) {
-    console.log('onActivate >> ', id);
-    showAlert(true, "Activate Member?", "Click on okay if you want to activate member.")
+  function onActivate(user) {
+    selectedUser = user;
+    action = 'A';
+    console.log('onActivate >> ', user);
+    showAlert(true, `Activate ${user.first_name} ${user.last_name}?`, "Click on okay if you want to activate member.")
   }
 
-  function onDeactivate(id) {
-    console.log('onDeactivate >> ', id);
-    showAlert(true, "Deactivate Member?", "Click on okay if you want to deactivate member.")
+  
+  function onDeactivate(user) {
+    selectedUser = user;
+    action = 'D';
+    console.log('onDeactivate >> ', user);
+    showAlert(true, `Deactivate ${user.first_name} ${user.last_name}?`, "Click on okay if you want to deactivate member.")
   }
 
   function onEdit(user) {
     console.log('edit >> ', user);
+    selectedUser = user;
     setFirstName(user.first_name);
     setLastName(user.last_name);
     setEmail(user.email);
@@ -105,9 +116,11 @@ function Tables() {
     setContent('edit');
   }
 
-  function onDelete(id) {
-    console.log('onDelete >> ', id);
-    showAlert(true, "Delete Member?", "Click on okay if you want to delete member.")
+  function onDelete(user) {
+    selectedUser = user;
+    action = 'R';
+    console.log('onDelete >> ', user);
+    showAlert(true, `Delete ${user.first_name} ${user.last_name}?`, "Click on okay if you want to delete member.")
   }
 
   const columns = [
@@ -117,11 +130,62 @@ function Tables() {
     { name: "action", align: "center" },
   ]
 
+  function showProgress(title) {
+    setProgressTitle(title)
+  }
+
+  function hideProgress() {
+    setProgressTitle('')
+  }
+
+  function showError(msg) {
+    setError(msg);
+    setTimeout( () => {setError('')}, 3000);
+  }
+
   function onAlertOk() {
     setShowAlertTitle('');
+    if(selectedUser == null) {
+      return
+    }
+
+    showProgress('Please wait!')
+    let data = null;
+    let api = '';
+
+    if(action === 'R') {
+      api = memberDeleteApi
+    }else {
+      api = memeberActivateApi
+    }
+
+    data = {
+      'status': action,
+      'accountId': selectedUser.accountId, 
+    }
+
+    apiPostSecure(api, data,
+       (response) => {
+          setLoadUsers(true);
+          hideProgress();
+          selectedUser = null;
+          action = '';
+          showAlert(false, "Success!", response.msg)
+      },
+      (errorMsg) => {
+          hideProgress();
+          selectedUser = null;
+          action = '';
+          showAlert(false, "Error!", errorMsg)
+          setTimeout( () => {showError(null)}, 3000)
+      }
+    )
+
   }
 
   function onAlertCancel() {
+    selectedUser = null;
+    action = '';
     setShowAlertTitle('');
   }
 
@@ -131,20 +195,6 @@ function Tables() {
     setContent(selection);
   }
 
-  function showProgress(title) {
-    setProgressTitle(title)
-    setProgress(true)
-  }
-
-  function hideProgress() {
-    setProgressTitle(false)
-    setProgress(false)
-  }
-
-  function showError(msg) {
-    setError(msg);
-    setTimeout( () => {setError('')}, 3000);
-  }
 
   function updateMember() {
     console.log('updateMember');
@@ -159,6 +209,10 @@ function Tables() {
     }
     if(email.trim() === "") {
       showError('Enter email')
+      return
+    }
+    if(!validator.isEmail(email)) {
+      showError('Invalid email')
       return
     }
     showProgress("Creating member account!")
@@ -205,6 +259,10 @@ function Tables() {
     }
     if(emailNew.trim() === "") {
       showError('Enter email')
+      return
+    }
+    if(!validator.isEmail(emailNew)) {
+      showError('Invalid email')
       return
     }
     showProgress("Creating member account!")
@@ -445,7 +503,7 @@ function Tables() {
       <SuiBox py={3}>
         <SuiBox mb={3}>
           {getAlert(error)}
-          {progressDialog(progressTitle, progress)}
+          {progressDialog(progressTitle)}
           {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
           {getContentView(content)}
         </SuiBox>
