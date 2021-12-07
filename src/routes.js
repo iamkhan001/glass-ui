@@ -6,6 +6,7 @@ import Licenses from "layouts/licenses";
 import Profile from "layouts/profile";
 import SignOut from "layouts/authentication/sign-out";
 import SignIn from "layouts/authentication/sign-in";
+import Activate from "layouts/authentication/activate";
 import SignUp from "layouts/authentication/sign-up";
 import Wifi from "layouts/wifi";
 import Account from "layouts/account";
@@ -98,6 +99,16 @@ const routes = [
     route: "/authentication/sign-in",
     icon: <Document size="12px" />,
     component: SignIn,
+    noCollapse: false,
+    visible: true,
+  },
+  {
+    type: "collapse",
+    name: "Activate",
+    key: "activate",
+    route: "/authentication/activate",
+    icon: <Document size="12px" />,
+    component: Activate,
     noCollapse: false,
     visible: true,
   },
