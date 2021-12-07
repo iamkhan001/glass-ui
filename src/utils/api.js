@@ -14,6 +14,8 @@ export const membersApi = "accounts/members/";
 export const memberUpdateApi = "accounts/update-member/";
 export const memeberActivateApi = "accounts/activate-member/";
 export const memberDeleteApi = "accounts/delete-member/";
+export const verifyTokenApi = "accounts/verify-token/";
+export const activateAccountApi = "accounts/activate/";
 
 
 export const routs = {
@@ -27,6 +29,35 @@ export function getRouts() {
         signup : `${baseUrl}accounts/sign-up/`,
         profile : `${baseUrl}accounts/profile/`,
     }
+}
+
+export function apiCallUnsecureGet(api, response, error) {
+
+  console.log('apiCallSecureGet ', api);
+  axios
+    .get(`${baseUrl}${api}`)
+    .then((res) => {
+        console.warn('result', res)
+        const result = res.data;
+        if(result.code === 200) {
+            response(result)
+        }else {
+            error(result.msg)
+        }
+    })
+    .catch((err) => {
+      if (err.response) {
+        error(err.response.data.msg)
+      } else if (err.request) {
+        console.log(err.request);
+        error(err.request)
+      } else {
+        console.log('Error', err.message);
+        error(`Error ${err.message}`)
+      }
+      console.log(err.config);
+    });
+
 }
 
 export function apiCallSecureGet(api, response, error) {

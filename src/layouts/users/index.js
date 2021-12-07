@@ -73,14 +73,12 @@ function Tables() {
   const [showAlertCancel, setShowAlertCancel] = useState(false);
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
+  const [loadUsers, setLoadUsers] = useState(true);
 
   const [members, setMembers] = useState([]);
 
   const [content, setContent] = useState('list');
   const [role, setRole] = useState('U');
-  const [loadUsers, setLoadUsers] = useState(true);
-
-
 
   const classes = styles();
 
