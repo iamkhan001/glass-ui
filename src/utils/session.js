@@ -25,6 +25,7 @@ export function saveUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('company',result.account.company)
+    sessionStorage.setItem('role',result.account.role)
 }
 
 export function updateUser(result) {
@@ -33,6 +34,7 @@ export function updateUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('company',result.account.company)
+    sessionStorage.setItem('role',result.account.role)
 }
 
 export function logout() {
@@ -42,6 +44,7 @@ export function logout() {
     sessionStorage.removeItem('last_name')
     sessionStorage.removeItem('mobile')
     sessionStorage.removeItem('email')
+    sessionStorage.removeItem('role')
     localStorage.clear();
 
     console.log(`clear storage:`)
@@ -55,5 +58,6 @@ export function getUser(){
         company: sessionStorage.getItem('company', null),
         email: sessionStorage.getItem('email', null),
         mobile: sessionStorage.getItem('mobile', null),
+        role: sessionStorage.getItem('role', null),
     }
 }

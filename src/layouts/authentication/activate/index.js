@@ -156,6 +156,7 @@ function SignIn() {
     if(token == null) {
       return
     }
+    showProgress('Please wait!');
     console.log('verifyToken');
     apiCallUnsecureGet(`${verifyTokenApi}?token=${token}`,
     (response) => {
@@ -171,7 +172,6 @@ function SignIn() {
 }
 
 useEffect(() => {
-  showProgress('Please wait!');
   verifyTokenFromServer();
 }, [verifyToken])
 
