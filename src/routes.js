@@ -100,7 +100,7 @@ const routes = [
     icon: <Document size="12px" />,
     component: SignIn,
     noCollapse: false,
-    visible: true,
+    visible: false,
   },
   {
     type: "collapse",
@@ -110,7 +110,7 @@ const routes = [
     icon: <Document size="12px" />,
     component: Activate,
     noCollapse: false,
-    visible: true,
+    visible: false,
   },
   {
     type: "collapse",
@@ -120,7 +120,7 @@ const routes = [
     icon: <Document size="12px" />,
     component: SignUp,
     noCollapse: false,
-    visible: true,
+    visible: false,
   },
 ];
 

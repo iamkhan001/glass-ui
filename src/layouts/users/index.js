@@ -4,9 +4,9 @@ import Grid from "@mui/material/Grid";
 import { Redirect, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from "react";
 
-
 import {Alert, AlertTitle} from "@mui/material";
 import {progressDialog, alertDialog} from "utils/diloag"
+import {getRoleName, getRoleId} from "utils/ext"
 
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
@@ -14,12 +14,15 @@ import SuiTypography from "components/SuiTypography";
 import {isAuthenticated, getUser} from "utils/session" 
 import validator from 'validator'
 
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Icon from "@material-ui/core/Icon";
+
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
-import Icon from "@mui/material/Icon";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
 import { membersApi, memberUpdateApi, memeberActivateApi, memberDeleteApi, apiCallSecureGet, apiPostSecure,} from "utils/api"
@@ -46,6 +49,25 @@ function getAlert(msg) {
   return view;
 }
 
+function getColumns(role) {
+  if(role === 'A') {
+    return [
+      { name: "name", align: "left" },
+      { name: "email", align: "left" },
+      { name: "status", align: "center" },
+      { name: "action", align: "center" },
+    ]
+  }
+ 
+  return [
+    { name: "name", align: "left" },
+    { name: "email", align: "left" },
+    { name: "status", align: "center" },
+    { name: "role", align: "center" },
+  ]
+
+}
+
 let selectedUser = null;
 let action = '';
 
@@ -56,6 +78,8 @@ function Tables() {
   }
 
   const componentMounted = useRef(true);
+
+  const loginUser = getUser();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -78,9 +102,22 @@ function Tables() {
   const [members, setMembers] = useState([]);
 
   const [content, setContent] = useState('list');
-  const [role, setRole] = useState('U');
+  const [role, setRole] = useState('Member');
+
+  const columns = getColumns(loginUser.role);
+
+  console.log('login', loginUser);
 
   const classes = styles();
+
+  const [openMenu, setOpenMenu] = useState();
+  const handleOpenMenu = ({ currentTarget }) => setOpenMenu(currentTarget);
+
+  const handleCloseMenu = (value) => {
+    console.log(`change ${value} ${this}` );
+    setOpenMenu(false);
+    setRole(value)
+  }
 
   function showAlert(cancel, title, message) {
     setShowAlertTitle(title);
@@ -111,6 +148,7 @@ function Tables() {
     setEmail(user.email);
     setMobile(user.mobile);
     setUserId(user.accountId);
+    setRole(getRoleName(user.role));
     setContent('edit');
   }
 
@@ -120,13 +158,8 @@ function Tables() {
     console.log('onDelete >> ', user);
     showAlert(true, `Delete ${user.first_name} ${user.last_name}?`, "Click on okay if you want to delete member.")
   }
-
-  const columns = [
-    { name: "name", align: "left" },
-    { name: "email", align: "left" },
-    { name: "status", align: "center" },
-    { name: "action", align: "center" },
-  ]
+  
+ 
 
   function showProgress(title) {
     setProgressTitle(title)
@@ -143,7 +176,7 @@ function Tables() {
 
   function onAlertOk() {
     setShowAlertTitle('');
-    if(selectedUser == null) {
+    if(selectedUser == null || action == null) {
       return
     }
 
@@ -167,13 +200,13 @@ function Tables() {
           setLoadUsers(true);
           hideProgress();
           selectedUser = null;
-          action = '';
+          action = null;
           showAlert(false, "Success!", response.msg)
       },
       (errorMsg) => {
           hideProgress();
           selectedUser = null;
-          action = '';
+          action = null;
           showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
@@ -183,7 +216,7 @@ function Tables() {
 
   function onAlertCancel() {
     selectedUser = null;
-    action = '';
+    action = null;
     setShowAlertTitle('');
   }
 
@@ -214,13 +247,14 @@ function Tables() {
       return
     }
     showProgress("Creating member account!")
+    const roleId = getRoleId(role);
 
     const data = {
       'firstName': firstName,
       'lastName': lastName, 
       'mobile': mobile,
       'email' : email,
-      'role': role,
+      'role': roleId,
       'accountId': userId
     }
 
@@ -231,12 +265,15 @@ function Tables() {
           setEmail("");
           setMobile("");
           setUserId("");
+          setRole("Member");
           setLoadUsers(true);
           hideProgress();
+          action = null;
           showAlert(false, "Success!", response.msg)
       },
       (errorMsg) => {
           hideProgress();
+          action = null;
           showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
@@ -265,12 +302,14 @@ function Tables() {
     }
     showProgress("Creating member account!")
 
+    const roleId = getRoleId(role);
+
     const data = {
       'firstName': firstNameNew,
       'lastName': lastNameNew, 
       'mobile': mobileNew,
       'email' : emailNew,
-      'role': role,
+      'role': roleId,
     }
 
     apiPostSecure(membersApi, data,
@@ -279,11 +318,14 @@ function Tables() {
           setLastNameNew("");
           setEmailNew("");
           setMobileNew("");
+          setRole("Member");
           hideProgress();
+          action = null;
           showAlert(false, "Success!", response.msg)
       },
       (errorMsg) => {
           hideProgress();
+          action = null;
           showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
@@ -296,7 +338,7 @@ function Tables() {
       <SuiBox pt={2} px={2}>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center">
           <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
-            Update member details
+            Add new member
           </SuiTypography>
         </SuiBox>
         <SuiBox opacity={0.3}>
@@ -304,7 +346,7 @@ function Tables() {
         </SuiBox>
         <Grid container spacing={6}>
           <Grid item  xs={12} md={6} xl={6}>
-            <SuiBox spacing={6} >
+            <SuiBox  >
               <SuiBox ml={0.5}>
                 <SuiTypography component="label" variant="caption" fontWeight="bold">
                   First Name
@@ -343,6 +385,29 @@ function Tables() {
               <SuiInput type="phone" placeholder="Phone" value={mobileNew} onChange={(e) => setMobileNew(e.target.value)} />
             </SuiBox>
           </Grid>
+        </Grid>
+        <Grid item xs={12} md={6} xl={6}>
+            <SuiBox mb={4}>
+                      <SuiTypography component="label" variant="caption" fontWeight="bold">
+                        Select Role
+                      </SuiTypography>
+                      <SuiBox>
+                        <SuiButton buttonColor="secondary" onClick={handleOpenMenu}>
+                          {role}
+                          <Icon className="material-icons-round font-bold">keyboard_arrow_down</Icon>
+                        </SuiButton>
+                        <Menu
+                          anchorEl={openMenu}
+                          getContentAnchorEl={null}
+                          transformOrigin={{ vertical: "top" , horizontal: "left" }}
+                          open={Boolean(openMenu)}
+                          onClose={() => handleCloseMenu("Member")}
+                        >
+                          <MenuItem onClick={() => handleCloseMenu("Member")}>Member</MenuItem>
+                          <MenuItem onClick={() => handleCloseMenu("Admin")}>Admin</MenuItem>
+                        </Menu>
+                      </SuiBox>
+            </SuiBox>
         </Grid>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center" py={3}>
           <SuiBox display="flex" flexDirection="row" >
@@ -412,6 +477,29 @@ function Tables() {
               <SuiInput type="phone" placeholder="Phone" value={mobile} onChange={(e) => setMobile(e.target.value)} />
             </SuiBox>
           </Grid>
+          <Grid item xs={12} md={6} xl={6}>
+            <SuiBox mb={2}>
+                      <SuiTypography component="label" variant="caption" fontWeight="bold">
+                        Select Role
+                      </SuiTypography>
+                      <SuiBox>
+                        <SuiButton buttonColor="secondary" onClick={handleOpenMenu}>
+                          {role}
+                          <Icon className="material-icons-round font-bold">keyboard_arrow_down</Icon>
+                        </SuiButton>
+                        <Menu
+                          anchorEl={openMenu}
+                          getContentAnchorEl={null}
+                          transformOrigin={{ vertical: "top" , horizontal: "left" }}
+                          open={Boolean(openMenu)}
+                          onClose={() => handleCloseMenu("Member")}
+                        >
+                          <MenuItem onClick={() => handleCloseMenu("Member")}>Member</MenuItem>
+                          <MenuItem onClick={() => handleCloseMenu("Admin")}>Admin</MenuItem>
+                        </Menu>
+                      </SuiBox>
+            </SuiBox>
+         </Grid>
         </Grid>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center" py={3}>
           <SuiBox display="flex" flexDirection="row" >
@@ -436,7 +524,7 @@ function Tables() {
       apiCallSecureGet(membersApi,
       (response) => {
           setLoadUsers(false);
-          setMembers(getRows(response.list, onActivate, onDeactivate, onEdit, onDelete));
+          setMembers(getRows(loginUser.role, response.list, onActivate, onDeactivate, onEdit, onDelete));
           setContent('list');
       },
       (errorMsg) => {
@@ -450,6 +538,18 @@ function Tables() {
 
   useEffect(() => {loadMembers();}, [loadUsers])
 
+  const addButton = () => {
+    if(loginUser.role === 'A') {
+      return (
+        <SuiButton variant="gradient" buttonColor="dark"  onClick={() => setContent('add')}>
+            <Icon className="material-icons-round font-bold">add</Icon>
+            &nbsp;New Member
+        </SuiButton>
+      )
+    }
+    return null;
+  }
+
   function showMembers() {
 
     console.log('show members');
@@ -458,10 +558,7 @@ function Tables() {
       <Card>
         <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
             <SuiTypography variant="h6">Members</SuiTypography>
-            <SuiButton variant="gradient" buttonColor="dark"  onClick={() => setContent('add')}>
-              <Icon className="font-bold">add</Icon>
-              &nbsp;New Member
-            </SuiButton>
+            {addButton()}
         </SuiBox>
         <SuiBox customClass={classes.tables_table}>
           <Table columns={columns} rows={members} />
