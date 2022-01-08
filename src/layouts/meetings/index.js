@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import { Redirect, Link } from 'react-router-dom'
+import { useHistory, Redirect, Link } from 'react-router-dom'
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -12,6 +12,8 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import Table from "examples/Table";
+import SuiButton from "components/SuiButton";
+import Icon from "@material-ui/core/Icon";
 
 // Custom styles for the Tables
 import styles from "./styles";
@@ -27,6 +29,11 @@ function Tables() {
 
   const classes = styles();
   const { columns, rows } = meetingsTableData;
+  const history = useHistory();
+
+  const setCreateMeeting = () => {
+      history.push('/create-meeting');
+  }
 
   return (
     <DashboardLayout>
@@ -36,6 +43,10 @@ function Tables() {
           <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
               <SuiTypography variant="h6">My meetings</SuiTypography>
+              <SuiButton variant="gradient" buttonColor="dark"  onClick={() => setCreateMeeting()}>
+                  <Icon className="material-icons-round font-bold">add</Icon>
+                  &nbsp;Create Meeting
+              </SuiButton>
             </SuiBox>
             <SuiBox customClass={classes.tables_table}>
               <Table columns={columns} rows={rows} />

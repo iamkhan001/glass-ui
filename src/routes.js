@@ -9,7 +9,7 @@ import SignIn from "layouts/authentication/sign-in";
 import Activate from "layouts/authentication/activate";
 import SignUp from "layouts/authentication/sign-up";
 import Wifi from "layouts/wifi";
-import Account from "layouts/account";
+import ZoomMeetings from "layouts/meeting-create";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
@@ -119,6 +119,16 @@ const routes = [
     route: "/authentication/sign-up",
     icon: <Document size="12px" />,
     component: SignUp,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "meeting",
+    key: "meeting",
+    route: "/create-meeting",
+    icon: <Document size="12px" />,
+    component: ZoomMeetings,
     noCollapse: false,
     visible: false,
   },
