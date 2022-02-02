@@ -25,7 +25,7 @@ import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
-import { membersApi, memberUpdateApi, memeberActivateApi, memberDeleteApi, apiCallSecureGet, apiPostSecure,} from "utils/api"
+import { membersApi, memberUpdateApi, createZoomUser, memeberActivateApi, memberDeleteApi, apiCallSecureGet, apiPostSecure,} from "utils/api"
 
 import BasicTable from './data/membersTable'
 
@@ -159,8 +159,6 @@ function Tables() {
     showAlert(true, `Delete ${user.first_name} ${user.last_name}?`, "Click on okay if you want to delete member.")
   }
   
- 
-
   function showProgress(title) {
     setProgressTitle(title)
   }
@@ -305,14 +303,16 @@ function Tables() {
     const roleId = getRoleId(role);
 
     const data = {
-      'firstName': firstNameNew,
-      'lastName': lastNameNew, 
-      'mobile': mobileNew,
-      'email' : emailNew,
-      'role': roleId,
+      "action": "create",
+      "user_info": {
+        "email": emailNew,
+        "type": 1,
+        "first_name": firstNameNew,
+        "last_name": lastNameNew
+      }
     }
 
-    apiPostSecure(membersApi, data,
+    createZoomUser(data,
        (response) => {
           setFirstNameNew("");
           setLastNameNew("");
@@ -326,7 +326,7 @@ function Tables() {
       (errorMsg) => {
           hideProgress();
           action = null;
-          showAlert(false, "Error!", errorMsg)
+          // showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
     )

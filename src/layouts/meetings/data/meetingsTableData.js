@@ -2,80 +2,87 @@ import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiButton from "components/SuiButton";
 import Icon from "@mui/material/Icon";
-import { ContentCopy } from '@mui/icons-material';
+import { ContentCopy, MeetingRoomSharp } from '@mui/icons-material';
+import {formatDate} from "utils/ext"
 
-function NameCell({name}) {
+function NameCell({name, agenda}) {
   return (
     <SuiBox display="flex" flexDirection="row">
-      <Icon mr={2} className="material-icons-round" color="secondary">today</Icon>
-      <SuiTypography ms={2} variant="caption" fontWeight="medium" textColor="text">
-        {name}
+      <SuiTypography ms={2} variant="h6" fontWeight="large" textColor="text">
+        {name} 
       </SuiTypography>
     </SuiBox>
   );
 }
 
-function TimeCell({ date, start, end }) {
+function TimeCell({ date, duration }) {
   return (
-    <SuiBox display="flex" flexDirection="row">
-      <Icon className="material-icons-round" color="secondary">schedule</Icon>
-      <SuiTypography  variant="caption" fontWeight="medium" textColor="text">
-        {date} {start} {end}
-      </SuiTypography>
+    <SuiBox>
+      <SuiBox display="flex" flexDirection="row">
+        <Icon  mr={2}  className="material-icons-round" color="info">today</Icon>
+        <SuiTypography  ml={1}  variant="caption" fontWeight="medium" textColor="text">
+          {formatDate(date)}
+        </SuiTypography>
+      </SuiBox>
+      <SuiBox display="flex" flexDirection="row">
+        <Icon  mr={2} className="material-icons-round" color="info">schedule</Icon>
+        <SuiTypography ml={1} variant="caption" fontWeight="medium" textColor="text">
+        {duration} mins 
+        </SuiTypography>
+      </SuiBox>      
     </SuiBox>
+
   );
 }
 
-function ActionCell({meetingId}) {
+function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
   console.log(`meeting ${meetingId}`)
 
   return (
     <SuiBox display="flex" flexDirection="row">
-        <SuiButton variant="caption" fontWeight="medium" textColor="text">
+        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(url)}>
           <ContentCopy />
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
-              Copy
+              Copy Link
           </SuiTypography>
         </SuiButton>        
-        <SuiButton variant="caption" fontWeight="medium" textColor="text">
-          <Icon className="material-icons-round">videocam</Icon>
-          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
-              Join
-          </SuiTypography>
-        </SuiButton>
-        <SuiButton variant="caption" fontWeight="medium" textColor="text">
+        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onEdit(meetingId, title)}>
           <Icon className="material-icons-round">edit</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
               Edit
           </SuiTypography>
         </SuiButton>
-
+        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onDelete(meetingId, title)}>
+          <Icon className="material-icons-round">delete</Icon>
+          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+              Delete
+          </SuiTypography>
+        </SuiButton>
     </SuiBox>
   )
 }
 
-export default {
-  columns: [
-    { name: "meeting", align: "left" },
+export function getMeetingRows(data, onCopyLink, onEdit, onDelete){
+  const rows = [];
+  data?.map((meeting) =>
+    rows.push(
+      {
+        name: <NameCell name={meeting.topic} agenda={meeting.agenda} />,
+        time: <TimeCell date={meeting.start_time} duration={meeting.duration} />,
+        action: <ActionCell meetingId={meeting.id} title={meeting.topic} url={meeting.join_url} onCopyLink={onCopyLink} onEdit={onEdit} onDelete={onDelete} />,
+      }
+    )
+  );
+  return rows;
+}
+
+export default getMeetingRows();
+
+export function getColoumns() {
+  return [
+    { name: "name", align: "left" },
     { name: "time", align: "left" },
     { name: "action", align: "center" },
-  ],
+  ]
+}
 
-  rows: [
-    {
-      meeting: <NameCell name="Test Meeting"  />,
-      time: <TimeCell date="12 Nov 2021" start="09:30 AM" end="10:30 AM"  />,
-      action: <ActionCell meetingId='1' />,
-    },
-    {
-      meeting: <NameCell name="Test Meeting"  />,
-      time: <TimeCell date="12 Nov 2021" start="09:30 AM" end="10:30 AM"  />,
-      action: <ActionCell meetingId='1' />,
-    },
-    {
-      meeting: <NameCell name="Test Meeting"  />,
-      time: <TimeCell date="12 Nov 2021" start="09:30 AM" end="10:30 AM"  />,
-      action: <ActionCell meetingId='1' />,
-    },
-  ],
-};

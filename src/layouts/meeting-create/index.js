@@ -29,7 +29,7 @@ function ZoomMeetings() {
         <SuiBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={7}>
-              <Typography> {generateSignature("test", "U")} </Typography>
+              <Typography/>
             </Grid>
             <Grid item xs={12} md={5}>
               {/* <Transactions /> */}

@@ -61,3 +61,7 @@ export function getUser(){
         role: sessionStorage.getItem('role', null),
     }
 }
+
+export function getUserEmail() {
+    return sessionStorage.getItem('email', null)
+}
