@@ -21,6 +21,7 @@ import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
 import Icon from "@material-ui/core/Icon";
 import {meetingsApi, usersApi, apiCallSecureGet, apiPostSecure} from "utils/api"
+import {dateToShowFormat, dateToServerFormat} from "utils/ext"
 
 import {getColoumns, getMeetingRows} from "./data/meetingsTableData";
 
@@ -89,10 +90,16 @@ function Tables() {
   };
 
 
-  function onCopyLink(url) {
-      navigator.clipboard.writeText(url);
-      console.log('copy >> ', url);
-      setShowToast(true)
+  function onCopyLink(id, url) {
+      // navigator.clipboard.writeText(url);
+      // console.log('copy >> ', url);
+      // setShowToast(true)
+      history.push({
+        pathname: '/meeting-info',
+        state: { 
+          meetingId: id, 
+        },
+      });
   }
 
   function onEdit(id, title) {
