@@ -8,13 +8,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
+const Alert = React.forwardRef(
+  function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  }
+);
 
 export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
 
   console.log('alert');
 
-  const open = title.trim() !== "";
+  const open = message.trim() !== "";
 
   let actions = null;
   if(showCancel) {
@@ -79,4 +87,19 @@ export const progressDialog = (title) => {
   );
 }
 
+
+
+/* error, warning, info, success */
+export function showToastMessage(open, type, msg, handleClose) {
+    return (
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
+         {msg}
+        </Alert>
+      </Snackbar>
+    );
+  }
+
+  
 export default progressDialog();
+

@@ -28,7 +28,9 @@
     "no-const-assign": "off",
     "no-unused-vars": "off",
     "no-console": "off",
+    "prefer-arrow-callback": "off",
     "no-self-import": "off",
+    "camelcase": "off",
     "import/no-named-as-default": "off",
     "import/prefer-default-export": "off"
   },
