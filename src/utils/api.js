@@ -228,7 +228,7 @@ export function apiPostSecure(api, data, response, onError) {
       }
     )
   .then((res) => {
-      console.warn('result', res)
+      console.log('result', res.data)
 
       const result = res.data;
 
@@ -241,6 +241,9 @@ export function apiPostSecure(api, data, response, onError) {
   })
   .catch((err) => {
     try {
+
+      console.log('error', err.response)
+
       if (err.response) {
         onError(err.response.data.msg)
       } else if (err.request) {

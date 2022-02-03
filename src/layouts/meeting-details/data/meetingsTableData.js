@@ -40,7 +40,7 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
 
   return (
     <SuiBox display="flex" flexDirection="row">
-        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(meetingId, url)}>
+        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(url)}>
           <Icon className="material-icons-round">info</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
               Details
