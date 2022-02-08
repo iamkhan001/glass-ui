@@ -29,7 +29,7 @@ export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
     actions = (
       <DialogActions>
         <Button onClick={() => {onCancel()}}>Cancel</Button>
-        <Button onClick={() => {onOkey()}} autoFocus>
+        <Button onClick={() => {onOkey()}} >
           Okey
         </Button>
     </DialogActions>
@@ -37,7 +37,7 @@ export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
   }else {
     actions = (
       <DialogActions>
-        <Button onClick={() => {onOkey()}} autoFocus>
+        <Button onClick={() => {onOkey()}} >
           Okey
         </Button>
     </DialogActions>

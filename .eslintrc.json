@@ -4,8 +4,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "prettier", "plugin:import/errors" , "plugin:import/warnings", "plugin:import/typescript"],
-  "parserOptions": {
+  "extends": ["prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],  "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
@@ -31,6 +30,7 @@
     "prefer-arrow-callback": "off",
     "no-self-import": "off",
     "camelcase": "off",
+    "react-hooks/rules-of-hooks": "off",
     "import/no-named-as-default": "off",
     "import/prefer-default-export": "off"
   },
