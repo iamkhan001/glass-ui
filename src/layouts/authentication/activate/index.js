@@ -182,7 +182,7 @@ useEffect(() => {
       image={curved9}
     >
       {progressDialog(progressTitle)}
-      {alertDialog(false, showAlertTitle, "you can login into your account now.", onAlertOk, () => {})}
+      {alertDialog(false, "you can login into your account now.", showAlertTitle, onAlertOk, () => {})}
       {getContent(userSate)}
     </CoverLayout>
   );

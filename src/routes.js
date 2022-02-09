@@ -7,6 +7,7 @@ import Profile from "layouts/profile";
 import SignOut from "layouts/authentication/sign-out";
 import SignIn from "layouts/authentication/sign-in";
 import Activate from "layouts/authentication/activate";
+import Zoom from "layouts/authentication/zoom";
 import SignUp from "layouts/authentication/sign-up";
 import Wifi from "layouts/wifi";
 import ZoomMeetingCreate from "layouts/meeting-create";
@@ -110,6 +111,16 @@ const routes = [
     route: "/authentication/activate",
     icon: <Document size="12px" />,
     component: Activate,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "Activate",
+    key: "activate",
+    route: "/authentication/zoom",
+    icon: <Document size="12px" />,
+    component: Zoom,
     noCollapse: false,
     visible: false,
   },

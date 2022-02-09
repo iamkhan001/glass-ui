@@ -1,3 +1,4 @@
+from time import time
 import requests
 
 url = "https://api.zoom.us/v2/meetings/73549523278/batch_registrants"
@@ -11,3 +12,7 @@ headers = {
 response = requests.request("POST", url, data=payload, headers=headers)
 
 print(response.text)
+
+
+print(int(time()))
+print(time())
