@@ -21,11 +21,16 @@ import Grid from "@mui/material/Grid";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import SuiButton from "components/SuiButton";
 
+import Cube from "examples/Icons/Cube";
+import Document from "examples/Icons/Document";
+import Settings from "examples/Icons/Settings";
 // Soft UI Dashboard PRO React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 import SuiAvatar from "components/SuiAvatar";
+import {zoomConnectUrl} from '../../../../utils/api'
 
 // Soft UI Dashboard PRO React example components
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -63,6 +68,11 @@ function Header() {
     return () => window.removeEventListener("resize", handleTabsOrientation);
   }, [tabsOrientation]);
 
+  function openInNewTab() {
+    const win = window.open(zoomConnectUrl, '_blank');
+    win.focus();
+  }
+
   return (
     <SuiBox position="relative">
       <DashboardNavbar absolute light />
@@ -87,6 +97,11 @@ function Header() {
                 CEO / Founder
               </SuiTypography>
             </SuiBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
+            <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
+                Connect Zoom
+            </SuiButton>
           </Grid>
         </Grid>
       </Card>
