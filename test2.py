@@ -1,8 +1,13 @@
-from lib2to3.pgen2 import token
 import requests
-token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IjVNUHV4ZTR5UVYtYldHclFYU1N1ZUEiLCJleHAiOjE2NDg3NTEzOTksImlhdCI6MTY0MTI3NjgxOH0.yyppd6thcgti7NhfMYx3jUJiU1RpJr-Dipa3hTx4914"
 
-r = requests.get("https://api.zoom.us/v2/users/jovy@mirobotic.sg/meetings",
-                 headers={"Authorization": "Bearer "+token})
+url = "https://api.zoom.us/v2/meetings/73549523278/batch_registrants"
 
-print(r.json())
+payload = '{ "auto_approve":true, "registrants": [ { "first_name": "Imran", "last_name": "Khan", "email": "email1@gmail.com" }, { "first_name": "Jovy", "last_name": "Chiu", "email": "email2@gmail.com" } ] }'
+headers = {
+    'authorization': "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IjVNUHV4ZTR5UVYtYldHclFYU1N1ZUEiLCJleHAiOjE2NTQwMjE3NDAsImlhdCI6MTY0MzY4NzE3M30.Z7dTon3IlnPEKlZBPOyg-Qez4he3NzUEzHweC49urvo",
+    'content-type': "application/json"
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)

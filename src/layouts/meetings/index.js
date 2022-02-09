@@ -150,7 +150,11 @@ function Tables() {
     (response) => {
       setProgressTitle("")
         setLoadMeetings(false);
-        setMeetings(getMeetingRows(response.data.meetings, onCopyLink, onEdit, onDelete));
+        if(response.data.meetings.length > 0) {
+          setMeetings(getMeetingRows(response.data.meetings, onCopyLink, onEdit, onDelete));
+        }else {
+          setError('Meetings not found!');
+        }
     },
     (errorMsg) => {
       setProgressTitle("")

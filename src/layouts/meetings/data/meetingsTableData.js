@@ -73,6 +73,7 @@ export function getMeetingRows(data, onCopyLink, onEdit, onDelete){
       }
     )
   );
+
   return rows;
 }
 
