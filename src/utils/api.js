@@ -9,7 +9,7 @@ export const zoomUrl = "https://api.zoom.us/v2";
 const zoomToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IjVNUHV4ZTR5UVYtYldHclFYU1N1ZUEiLCJleHAiOjE2NDg3NTEzOTksImlhdCI6MTY0MTI3NjgxOH0.yyppd6thcgti7NhfMYx3jUJiU1RpJr-Dipa3hTx4914"
 
 
-export const zoomConnectUrl = 'https://zoom.us/oauth/authorize?client_id=StvnB7AzT4ei1_thga9krg&response_type=code&redirect_uri=https%3A%2F%2Fglass.mirobotic.tech%2Fauthentication%2Fzoom';
+export const zoomConnectUrl = 'https://zoom.us/oauth/authorize?client_id=StvnB7AzT4ei1_thga9krg&response_type=code&redirect_uri=https%3A%2F%2Fglass.mirobotic.tech%2Fauthentication%2Fzoom&state=';
 export const zoomAuthApi = "zoom/auth/";
 
 export const signInApi = "accounts/sign-in/";
@@ -295,6 +295,35 @@ export function createZoomUser(data, response, error) {
         }
         console.log(err.config);
   });
+}
+
+export function getTokenFromZoom(code, state, onResponse, onError) {
+
+  console.log('getTokenFromZoom ', code);
+
+  var bodyFormData = new FormData();
+  bodyFormData.append('grant_type', 'authorization_code');
+  bodyFormData.append('code', code);
+  bodyFormData.append('redirect_uri', 'https://glass.mirobotic.tech/authentication/zoom');
+
+  axios({
+    method: "post",
+    url: "https://zoom.us/oauth/token",
+    data: bodyFormData,
+    headers: { 
+      'Authorization': `Basic cURMT3lncGZSSlNobG0zdUxDZEFYdzpmYlFIdkZSU3BBekY3eWc1QXFEbXpoMThaUHViaDlFcg==`,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+  })
+    .then(function (response) {
+      console.log(response);
+      onResponse('success!')
+    })
+    .catch(function (response) {
+      console.log(response);
+      onError('failed');
+    });
+  
 }
 
 export function getZoomMeetings(response, error) {

@@ -3,7 +3,7 @@ import { useLocation, useHistory, Redirect, Link } from 'react-router-dom'
 import {progressDialog, alertDialog} from "utils/diloag"
 
 // Soft UI Dashboard React components
-import {activateAccountApi, verifyTokenApi, apiCallUnsecureGet, zoomAuthApi, apiPostSecure} from "utils/api"
+import {activateAccountApi, getTokenFromZoom, verifyTokenApi, apiCallUnsecureGet, zoomAuthApi, apiPostSecure} from "utils/api"
 
 import validator from 'validator'
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
@@ -14,7 +14,7 @@ import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import CoverLayout from "../components/CoverLayout";
-import {isAuthenticated, getUser} from "utils/session" 
+import {isAuthenticated,  getUser, getUserEmail} from "utils/session" 
 
 function useQueryParams() {
     const params = new URLSearchParams(
@@ -30,9 +30,9 @@ function useQueryParams() {
 
 function SignIn() {
 
-  if(!isAuthenticated()) {
-    return <Redirect to='/authentication/sign-in'  />
-  }
+  // if(!isAuthenticated()) {
+  //   return <Redirect to='/authentication/sign-in'  />
+  // }
   
   const history = useHistory();
 
@@ -41,9 +41,10 @@ function SignIn() {
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [verifyToken, setVerifyToken] = useState(true);
 
-  const { code } = useQueryParams();
+  const { code, state } = useQueryParams();
 
   console.log('code', code)
+  console.log('state', state)
 
   function showProgress(title) {
     setProgressTitle(title)
@@ -85,8 +86,31 @@ function SignIn() {
    )
 }
 
+const verifyTokenFromZoom = async () => {
+  if(code == null) {
+    setStatus('Invalid link!')
+    return
+  }
+  
+  showProgress('Please wait!');
+
+  getTokenFromZoom(code, getUserEmail(),
+    (response) => {
+      setVerifyToken(false);
+      hideProgress();
+      setShowAlertTitle('Zoom account linked successfully!');
+      setStatus('Connected!');
+   },
+   (errorMsg) => {
+      setVerifyToken(false);
+      hideProgress();
+      setStatus(errorMsg);
+   }
+ )
+}
+
 useEffect(() => {
-  verifyTokenFromServer();
+  verifyTokenFromZoom()
 }, [verifyToken])
 
   return (
