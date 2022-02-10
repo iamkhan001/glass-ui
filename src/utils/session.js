@@ -25,6 +25,7 @@ export function saveUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('company',result.account.company)
+    sessionStorage.setItem('company_id',result.account.companyId)
     sessionStorage.setItem('role',result.account.role)
 }
 
@@ -64,4 +65,8 @@ export function getUser(){
 
 export function getUserEmail() {
     return sessionStorage.getItem('email', null)
+}
+
+export function getCompanyId() {
+    return sessionStorage.getItem('company_id', null)
 }

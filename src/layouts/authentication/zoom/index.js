@@ -15,6 +15,7 @@ import SuiButton from "components/SuiButton";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import CoverLayout from "../components/CoverLayout";
 import {isAuthenticated,  getUser, getUserEmail} from "utils/session" 
+import { apiPostUnsecure } from "utils/api";
 
 function useQueryParams() {
     const params = new URLSearchParams(
@@ -69,9 +70,9 @@ function SignIn() {
     }
     
     showProgress('Please wait!');
-    const data = { code }
+    const data = { code, state }
 
-    apiPostSecure(zoomAuthApi, data,
+    apiPostUnsecure(zoomAuthApi, data,
       (response) => {
         setVerifyToken(false);
         hideProgress();
@@ -110,7 +111,7 @@ const verifyTokenFromZoom = async () => {
 }
 
 useEffect(() => {
-  verifyTokenFromZoom()
+  verifyTokenFromServer()
 }, [verifyToken])
 
   return (
