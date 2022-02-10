@@ -43,7 +43,7 @@ import styles from "layouts/profile/components/Header/styles";
 
 // Images
 import jovy from "assets/images/team-1.jpg";
-import {getUserEmail} from "../../../../utils/session"
+import {getCompanyId} from "../../../../utils/session"
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -70,7 +70,7 @@ function Header() {
   }, [tabsOrientation]);
 
   function openInNewTab() {
-    const win = window.open(`${zoomConnectUrl}${getUserEmail()}`, '_blank');
+    const win = window.open(`${zoomConnectUrl}${getCompanyId()}`);
     win.focus();
   }
 
