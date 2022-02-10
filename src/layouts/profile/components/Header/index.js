@@ -43,7 +43,7 @@ import styles from "layouts/profile/components/Header/styles";
 
 // Images
 import jovy from "assets/images/team-1.jpg";
-import {getCompanyId} from "../../../../utils/session"
+import {getCompanyId, isZoomConnected, isAdmin} from "../../../../utils/session"
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -74,6 +74,36 @@ function Header() {
     win.focus();
   }
 
+  function getConnectView() {
+    console.log('zoom', isZoomConnected())
+    if (!isZoomConnected()) {
+        if(isAdmin()) {
+          return (
+            <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
+              <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
+                  Connect Zoom
+              </SuiButton>
+            </Grid>
+          )
+        }
+
+        return (
+          <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
+            <SuiTypography style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
+              Zoom not connected
+            </SuiTypography>
+          </Grid>
+        )
+    }
+    return (
+      <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
+        <SuiTypography style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
+            Zoom Connected
+        </SuiTypography>
+      </Grid>
+    )
+  }
+
   return (
     <SuiBox position="relative">
       <DashboardNavbar absolute light />
@@ -99,11 +129,7 @@ function Header() {
               </SuiTypography>
             </SuiBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-            <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
-                Connect Zoom
-            </SuiButton>
-          </Grid>
+          {getConnectView()}
         </Grid>
       </Card>
     </SuiBox>

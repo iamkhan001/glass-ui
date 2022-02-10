@@ -75,9 +75,9 @@ function SignIn() {
     apiPostUnsecure(zoomAuthApi, data,
       (response) => {
         setVerifyToken(false);
+        setStatus('')
         hideProgress();
         setShowAlertTitle('Zoom account linked successfully!');
-        setStatus('Connected!');
      },
      (errorMsg) => {
         setVerifyToken(false);
