@@ -180,6 +180,11 @@ function Overview() {
   
   }
 
+  let scope = '----'
+  if(user.scope !== null) {
+    scope = user.scope;
+  }
+
   return (
     <DashboardLayout>
       <Header />
@@ -198,6 +203,7 @@ function Overview() {
                 email: `${user.email}`,
                 location: `location`,
                 role: "Admin",
+                zoom_scope: scope || "----"
               }}
               social={[
               ]}
