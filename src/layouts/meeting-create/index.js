@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import { useState, useEffect, useRef } from "react";
 import { useHistory, Redirect, Link } from 'react-router-dom'
+import Select, {StylesConfig} from 'react-select'
+import makeAnimated from 'react-select/animated';
 
 import {Alert, AlertTitle} from "@mui/material";
 import {progressDialog, alertDialog} from "utils/diloag"
@@ -28,7 +30,7 @@ import Divider from "@mui/material/Divider";
 import {generateSignature} from 'utils/zoom_api'
 import {Typography } from "@mui/material";
 import {dateToShowFormat, getTimeZone, dateToServerFormat} from "utils/ext"
-import {meetingsApi, apiPostSecure} from "utils/api"
+import {meetingsApi, apiPostSecure, membersApi, apiCallSecureGet} from "utils/api"
 
 function showErrorAlert(msg) {
   let view = null;
@@ -60,11 +62,25 @@ function showSuccessAlert(msg) {
   return view;
 }
 
+function generatePassword(length) {
+  let result           = '';
+  const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  console.log('password', result);
+  return result;
+}
+
+
 function ZoomMeetings() {
 
   if(!isAuthenticated()) {
     return <Redirect to='/authentication/sign-in'  />
   }
+
+  const fontSize = '12px';
 
   const history = useHistory();
 
@@ -73,11 +89,52 @@ function ZoomMeetings() {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [duration, setDuration] = useState('')
-  const [password, setPassword] = useState('')
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [loadUsers, setLoadUsers] = useState(true);
+  const [members, setMembers] = useState([]);
 
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [progress, setProgress] = useState('');
+
+  const styles = {
+    control: base => ({
+      ...base,
+      fontSize: "14px"
+    }),
+    menu: base => ({
+      ...base,
+      fontSize: "14px"
+    })
+  };
+
+  const loadMembers = async () => {
+    console.log('loadMembers');
+    apiCallSecureGet(membersApi,
+    (response) => {
+        setLoadUsers(false);
+        const users = []
+        response.list.map((user) =>
+          users.push(
+            {
+              value: user.accountId,  label: `${user.first_name} ${user.last_name}`
+            }
+          )
+        );  
+        setMembers(users)
+        console.log('users', users);
+    },
+    (errorMsg) => {
+        setLoadUsers(false);
+        showError(errorMsg||'Error');
+        console.log('ui error', errorMsg||'Error');
+      }
+    )
+  }
+
+  useEffect(() => {loadMembers();}, [loadUsers])
+
+  const animatedComponents = makeAnimated();
 
   function showError(msg) {
     setError(msg);
@@ -89,12 +146,26 @@ function ZoomMeetings() {
     setTimeout( () => {setMessage('')}, 3000);
   }
 
+  function handleChange(selectedOption){
+    this.setState({ selectedOption }, () =>
+      console.log(`Option selected:`, this.state.selectedOption)
+    );
+  };
+
   const timezoneOffset = getTimeZone();
 
   console.log('TZ > ',timezoneOffset);
 
   const createMeeting = () => {
-    console.log('create meeting');
+    console.log('selectedOption', selectedOption);
+    
+    const meetingMembers = []
+    
+    selectedOption.map((user) =>
+      meetingMembers.push(user.value)
+    );  
+
+    console.log('create meeting', meetingMembers);
 
     if(title.trim() === "") {
       showErrorAlert('Enter meeting title')
@@ -103,11 +174,6 @@ function ZoomMeetings() {
 
     if(agenda.trim() === "") {
       showError('Enter meeting agenda')
-      return
-    }
-
-    if(password.trim() === "") {
-      showError('Enter password to join meeting')
       return
     }
 
@@ -126,6 +192,7 @@ function ZoomMeetings() {
       return
     }
 
+
     const email = getUserEmail();
 
     const body = {
@@ -137,8 +204,9 @@ function ZoomMeetings() {
         'duration': duration,
         'schedule_for': email,
         'timezone': timezoneOffset,
-        'password': password,
+        'password': generatePassword(8),
         'agenda': agenda,
+        'members': meetingMembers
     }
 
     console.log('body', body);
@@ -153,7 +221,6 @@ function ZoomMeetings() {
             setAgenda('');
             setDate('');
             setTime('');
-            setPassword('');
             setDuration('');
             showMessage('Meeting Created Successfully')
             return
@@ -164,9 +231,9 @@ function ZoomMeetings() {
         setProgress('');
         showError(err.msg)
       })
-
-
   }
+
+  console.log('members', members.length);
 
   function onBack() {
     console.log('on back');
@@ -190,6 +257,24 @@ function ZoomMeetings() {
               <Divider />
             </SuiBox>
             <Grid container spacing={6}>
+            <Grid item xs={12} md={8} xl={8}>
+                <SuiBox >
+                  <SuiBox  ml={0.5}>
+                    <SuiTypography component="label" variant="caption" fontWeight="bold">
+                      Add Members in this meeting 
+                    </SuiTypography>
+                    <Select
+                        styles={styles}
+                        onChange={setSelectedOption}
+                        placeholder='Search or select members'
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        options={members}
+                      />
+                  </SuiBox>
+                </SuiBox>
+              </Grid>   
               <Grid item  xs={12} md={6} xl={6}>
                 <SuiBox  >
                   <SuiBox ml={0.5}>
@@ -209,17 +294,8 @@ function ZoomMeetings() {
                   </SuiBox>
                   <SuiInput type="text" placeholder="Agenda" value={agenda} onChange={(e) => setAgenda(e.target.value)} />
                 </SuiBox>          
-              </Grid><Grid item  xs={12} md={6} xl={6}>
-                <SuiBox  >
-                  <SuiBox ml={0.5}>
-                    <SuiTypography component="label" variant="caption" fontWeight="bold">
-                      Password
-                    </SuiTypography>
-                  </SuiBox>
-                  <SuiInput type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </SuiBox>
               </Grid>
-              <Grid item xs={12} md={6} xl={6}>
+              <Grid item xs={12} md={3} xl={3}>
                 <SuiBox >
                   <SuiBox  ml={0.5}>
                     <SuiTypography component="label" variant="caption" fontWeight="bold">
@@ -229,7 +305,7 @@ function ZoomMeetings() {
                   <SuiInput type="text" pattern="[0-9]*" placeholder="Duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
                 </SuiBox>          
               </Grid>
-              <Grid item xs={12} md={6} xl={6}>
+              <Grid item xs={12} md={3} xl={3}>
                 <SuiBox >
                   <SuiBox ml={0.5}>
                     <SuiTypography component="label" variant="caption" fontWeight="bold">
@@ -239,7 +315,7 @@ function ZoomMeetings() {
                   <SuiInput type="date" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} />
                 </SuiBox>          
               </Grid>
-              <Grid item xs={12} md={6} xl={6}>
+              <Grid item xs={12} md={3} xl={3}>
                 <SuiBox >
                   <SuiBox  ml={0.5}>
                     <SuiTypography component="label" variant="caption" fontWeight="bold">
@@ -249,10 +325,11 @@ function ZoomMeetings() {
                   <SuiInput type="time" placeholder="Time" value={time} onChange={(e) => setTime(e.target.value)} />
                 </SuiBox>
               </Grid>
+                        
             </Grid>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" py={3}>
               <SuiBox display="flex" flexDirection="row" >
-                <SuiButton variant="gradient" buttonColor="secondary"  onClick={() => {console.log('cancel')}} >
+                <SuiButton variant="gradient" buttonColor="secondary"  onClick={() => onBack()} >
                   cancel
                 </SuiButton>
                 <SuiBox pl={2}>
