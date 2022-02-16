@@ -87,29 +87,6 @@ function SignIn() {
    )
 }
 
-const verifyTokenFromZoom = async () => {
-  if(code == null) {
-    setStatus('Invalid link!')
-    return
-  }
-  
-  showProgress('Please wait!');
-
-  getTokenFromZoom(code, getUserEmail(),
-    (response) => {
-      setVerifyToken(false);
-      hideProgress();
-      setShowAlertTitle('Zoom account linked successfully!');
-      setStatus('Connected!');
-   },
-   (errorMsg) => {
-      setVerifyToken(false);
-      hideProgress();
-      setStatus(errorMsg);
-   }
- )
-}
-
 useEffect(() => {
   verifyTokenFromServer()
 }, [verifyToken])
@@ -121,7 +98,7 @@ useEffect(() => {
       image={curved9}
     >
       {progressDialog(progressTitle)}
-      {alertDialog(false, "Zoom account linked successfully!.", showAlertTitle, onAlertOk, () => {})}
+      {alertDialog(false, "Done!.", showAlertTitle, onAlertOk, () => {})}
       <SuiBox mt={3} textAlign="center">
         <SuiTypography mt={3} variant="button" fontWeight="regular" textColor="error" textAlign="center">
           {status}
