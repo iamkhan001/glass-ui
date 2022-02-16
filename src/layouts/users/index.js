@@ -173,7 +173,7 @@ function Tables() {
   }
 
   function onAlertOk() {
-    setShowAlertTitle('');
+    setShowAlertMessage('');
     if(selectedUser == null || action == null) {
       return
     }
@@ -215,7 +215,7 @@ function Tables() {
   function onAlertCancel() {
     selectedUser = null;
     action = null;
-    setShowAlertTitle('');
+    setShowAlertMessage('');
   }
 
   function updateConentView(selection) {
@@ -303,30 +303,25 @@ function Tables() {
     const roleId = getRoleId(role);
 
     const data = {
-      "action": "create",
-      "user_info": {
-        "email": emailNew,
-        "type": 1,
-        "first_name": firstNameNew,
-        "last_name": lastNameNew
-      }
+      'firstName': firstNameNew,
+      'lastName': lastNameNew, 
+      'mobile': mobileNew,
+      'email' : emailNew,
+      'role': roleId,
     }
 
-    createZoomUser(data,
+    apiPostSecure(membersApi, data,
        (response) => {
           setFirstNameNew("");
           setLastNameNew("");
           setEmailNew("");
           setMobileNew("");
-          setRole("Member");
           hideProgress();
-          action = null;
           showAlert(false, "Success!", response.msg)
       },
       (errorMsg) => {
           hideProgress();
-          action = null;
-          // showAlert(false, "Error!", errorMsg)
+          showAlert(false, "Error!", errorMsg)
           setTimeout( () => {showError(null)}, 3000)
       }
     )
