@@ -60,12 +60,12 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
               Details
           </SuiTypography>
         </SuiButton>        
-        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onEdit(meetingId, title)}>
+        {/* <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onEdit(meetingId, title)}>
           <Icon className="material-icons-round">edit</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
               Edit
           </SuiTypography>
-        </SuiButton>
+        </SuiButton> */}
         <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onDelete(meetingId, title)}>
           <Icon className="material-icons-round">delete</Icon>
           <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
