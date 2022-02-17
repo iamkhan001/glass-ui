@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import { Redirect, Link } from 'react-router-dom'
 
 // @mui material components
@@ -15,6 +15,7 @@ import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCar
 
 // Soft UI Dashboard React base styles
 import {isAuthenticated, getUser} from "utils/session" 
+import {countsApi, apiCallSecureGet} from "utils/api"
 
 // Dashboard layout components
 import QrLogin from "./components/qrLogin";
@@ -29,6 +30,25 @@ function Dashboard() {
     return <Redirect to='/authentication/sign-in'  />
   }
   
+
+  const [counts, setCounts] = useState({
+    'meetings': 0,
+    'users': 1,
+  })
+
+  const [loadCounts, setLoadCounts] = useState(true);
+
+  const loadCountsFromServer = () => {
+      apiCallSecureGet(countsApi, (response) => {
+        setLoadCounts(false);
+        setCounts(response.data);
+      }, (error) => {
+        setLoadCounts(false);
+      })
+  }
+
+  useEffect(() => {loadCountsFromServer();}, [loadCounts])
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -37,15 +57,15 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: "Today's meetings" }}
-                count="2"
+                title={{ text: "Upcoming meetings" }}
+                count={counts.meetings}
                 icon={{ color: "info", component: "today" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: "Total users" }}
-                count="4"
+                title={{ text: "Users" }}
+                count={counts.users}
                 icon={{ color: "info", component: "group" }}
               />
             </Grid>

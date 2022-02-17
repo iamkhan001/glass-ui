@@ -25,7 +25,7 @@ import SuiTypography from "components/SuiTypography";
 // Custom styles for the BuildByDevelopers
 import qrCode from "assets/images/qr.png";
 import wavesWhite from "assets/images/shapes/waves-white.svg";
-
+import {myQrCode} from '../../../../utils/diloag'
 import styles from "./styles";
 
 // Images
@@ -52,7 +52,7 @@ function QrLogin() {
                   Scan the QR code to log in with your glass device.
                 </SuiTypography>
               </SuiBox>
-              <SuiTypography
+              {/* <SuiTypography
                 component="a"
                 href="#"
                 variant="button"
@@ -62,7 +62,7 @@ function QrLogin() {
               >
                 Read More
                 <Icon className="font-bold">arrow_forward</Icon>
-              </SuiTypography>
+              </SuiTypography> */}
             </SuiBox>
           </Grid>
           <Grid item xs={12} lg={5} className="ml-auto relative">
@@ -85,7 +85,9 @@ function QrLogin() {
                 width="100%"
                 height="100%"
               />
-              <SuiBox component="img" src={qrCode} alt="QR Login" width="100%" pt={3} />
+              <SuiBox width="100%" pt={3} >
+                {myQrCode()}
+              </SuiBox>
             </SuiBox>
           </Grid>
         </Grid>

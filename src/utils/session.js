@@ -25,6 +25,7 @@ export function saveUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
+    sessionStorage.setItem('user_id',result.account.accountId)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)
@@ -88,6 +89,10 @@ export function getUser(){
         role: sessionStorage.getItem('role', null),
         scope: sessionStorage.getItem('scope', null),
     }
+}
+
+export function getUserId() {
+    return sessionStorage.getItem('user_id', null)
 }
 
 export function getUserEmail() {

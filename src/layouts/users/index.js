@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from "react";
 
 import {Alert, AlertTitle} from "@mui/material";
-import {progressDialog, alertDialog} from "utils/diloag"
+import {progressDialog, alertDialog, qrDialog} from "utils/diloag"
 import {getRoleName, getRoleId} from "utils/ext"
 
 import SuiBox from "components/SuiBox";
@@ -98,6 +98,7 @@ function Tables() {
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
   const [loadUsers, setLoadUsers] = useState(true);
+  const [qrUser, setQrUser] = useState(null);
 
   const [members, setMembers] = useState([]);
 
@@ -132,7 +133,15 @@ function Tables() {
     showAlert(true, `Activate ${user.first_name} ${user.last_name}?`, "Click on okay if you want to activate member.")
   }
 
-  
+  function onViewQrCode(user) {
+    console.log('onViewQrCode >> ', user);
+    setQrUser(user)
+  }
+
+  function onQrClose() {
+    setQrUser(null)
+  }
+
   function onDeactivate(user) {
     selectedUser = user;
     action = 'D';
@@ -519,7 +528,7 @@ function Tables() {
       apiCallSecureGet(membersApi,
       (response) => {
           setLoadUsers(false);
-          setMembers(getRows(loginUser.role, response.list, onActivate, onDeactivate, onEdit, onDelete));
+          setMembers(getRows(loginUser.role, response.list, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete));
           setContent('list');
       },
       (errorMsg) => {
@@ -593,6 +602,7 @@ function Tables() {
       <SuiBox py={3}>
         <SuiBox mb={3}>
           {getAlert(error)}
+          {qrDialog(qrUser, onQrClose)}
           {progressDialog(progressTitle)}
           {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
           {getContentView(content)}

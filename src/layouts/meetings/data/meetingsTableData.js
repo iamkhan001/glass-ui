@@ -4,6 +4,7 @@ import SuiButton from "components/SuiButton";
 import Icon from "@mui/material/Icon";
 import { ContentCopy, MeetingRoomSharp } from '@mui/icons-material';
 import {dateToShowFormat} from "utils/ext"
+import {isAdmin} from '../../../utils/session'
 
 function NameCell({name, agenda}) {
   return (
@@ -37,6 +38,19 @@ function TimeCell({ date, duration }) {
 
 function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
   console.log(`meeting ${meetingId}`)
+
+  if(!isAdmin()) {
+    return (
+      <SuiBox display="flex" flexDirection="row">
+        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(meetingId, url)}>
+          <Icon className="material-icons-round">info</Icon>
+          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+              Details
+          </SuiTypography>
+        </SuiButton>        
+    </SuiBox>
+    )
+  }
 
   return (
     <SuiBox display="flex" flexDirection="row">

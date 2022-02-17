@@ -153,6 +153,7 @@ function Tables() {
         if(response.data.meetings.length > 0) {
           setMeetings(getMeetingRows(response.data.meetings, onCopyLink, onEdit, onDelete));
         }else {
+          setMeetings([])
           setError('Meetings not found!');
         }
     },

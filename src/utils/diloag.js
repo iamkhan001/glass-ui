@@ -6,11 +6,18 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import SuiBox from "components/SuiBox";
+import SuiTypography from "components/SuiTypography";
+
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import QRCode from 'qrcode.react';
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
+import { saveAs } from 'file-saver';
+import {getUserId} from './session'
 
 const Alert = React.forwardRef(
   function Alert(props, ref) {
@@ -64,6 +71,64 @@ export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
   );
 }
 
+export const qrDialog = (user, onClose) => {
+
+  console.log('user', user);
+  const show = user !== null;
+  let qr = null;
+  let name = null;
+  if(user !== null) {
+    const data = {
+      'code': user.accountId
+    };
+    const text = base64_encode(JSON.stringify(data));
+    console.log('encoded', qr);
+    name = `${user.first_name} ${user.last_name}`;
+    qr = (<QRCode value={text} size='150' />);
+  }
+  
+  const donwloadQr = () => {
+    if(user !== null) {
+      const canvas = document.querySelector('.HpQrcode > canvas');
+      canvas?.toBlob(function(blob) {
+        saveAs(blob, `${user.first_name}_${user.last_name}.png`);
+      });
+    }
+  }
+
+  return (
+    <Dialog
+      open={show}
+      onClose={() => {onClose()}}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        QR code for glass {name}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description" className="HpQrcode">
+           {qr}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => {onClose()}}>Close</Button>
+        <Button onClick={() => {donwloadQr()}} >
+          Download
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+export const myQrCode = () => {
+  const data = {
+    'code': getUserId()
+  };
+  const text = base64_encode(JSON.stringify(data));
+  console.log('encoded', text);
+  return (<QRCode bgColor={'transparent'} value={text} size='180' />);
+}
 
 export const progressDialog = (title) => {
   const open = (title != null && title.trim() !== '');

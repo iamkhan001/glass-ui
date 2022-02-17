@@ -5,7 +5,7 @@ import SuiBadge from "components/SuiBadge";
 import Icon from "@mui/material/Icon";
 import SuiButton from "components/SuiButton";
 import getRoleName from "utils/ext"
-
+import QrCodeScannerRoundedIcon from '@mui/icons-material/QrCodeScannerRounded';
 // Images
 import team1 from "assets/images/team-1.jpg";
 import team2 from "assets/images/team-2.jpg";
@@ -66,7 +66,7 @@ function StatusCell({ status }) {
   )
 }
 
-function ActionCell({role, user, onActivate, onDeactivate, onEdit, onDelete}) {
+function ActionCell({role, user, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete}) {
   console.log('ActionCell', user);
   let active;
   /*
@@ -97,6 +97,12 @@ function ActionCell({role, user, onActivate, onDeactivate, onEdit, onDelete}) {
     }
     return (
       <SuiBox display="flex" flexDirection="row">
+          <SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onViewQrCode(user)}>
+            <Icon className="material-icons-round"><QrCodeScannerRoundedIcon /></Icon>
+            <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+                QR 
+            </SuiTypography>
+          </SuiButton>
           {active}
           <SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onEdit(user)}>
             <Icon className="material-icons-round">edit</Icon>
@@ -125,7 +131,7 @@ function ActionCell({role, user, onActivate, onDeactivate, onEdit, onDelete}) {
 
 }
 
-function getAdminRows(role, data, onActivate, onDeactivate, onEdit, onDelete) {
+function getAdminRows(role, data, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete) {
   const rows = [];
   data.map((user) =>
     rows.push(
@@ -133,7 +139,7 @@ function getAdminRows(role, data, onActivate, onDeactivate, onEdit, onDelete) {
         name: <NameCell myRole = {role} image={team1} role={user.role} name={`${user.first_name} ${user.last_name}`}  />,
         email: <EmailCell email={user.email} />,
         status: <StatusCell status={user.is_active} />,
-        action: <ActionCell role={role} user={user} onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete} />,
+        action: <ActionCell role={role} user={user} onViewQrCode={onViewQrCode} onActivate={onActivate} onDeactivate={onDeactivate} onEdit={onEdit} onDelete={onDelete} />,
       }
     )
   );
@@ -155,10 +161,10 @@ function getUserRows(role, data, onActivate, onDeactivate, onEdit, onDelete) {
   return rows;
 }
 
-export default function getRows(role, data, onActivate, onDeactivate, onEdit, onDelete) {
+export default function getRows(role, data, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete) {
   
   if(role === 'A') {
-    return getAdminRows(role, data, onActivate, onDeactivate, onEdit, onDelete);
+    return getAdminRows(role, data, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete);
   }
 
   return getUserRows(role, data, onActivate, onDeactivate, onEdit, onDelete);
