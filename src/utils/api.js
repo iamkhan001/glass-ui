@@ -1,8 +1,8 @@
 import axios from "axios";
 import {isAuthenticated, getAccessToken} from './session'
 
-// export const baseUrl = "http://localhost:8080/";
-export const baseUrl = "https://glass-api.mirobotic.tech/";
+export const baseUrl = "http://192.168.1.197:8080/";
+// export const baseUrl = "https://glass-api.mirobotic.tech/";
 
 export const zoomUrl = "https://api.zoom.us/v2";
 
@@ -12,6 +12,7 @@ const zoomToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IjVNUHV4ZTR5UVYt
 export const zoomConnectUrl = 'https://zoom.us/oauth/authorize?client_id=StvnB7AzT4ei1_thga9krg&response_type=code&redirect_uri=https%3A%2F%2Fglass.mirobotic.tech%2Fauthentication%2Fzoom&state=';
 export const zoomAuthApi = "zoom/auth/";
 export const zoomProfileApi = "zoom/profile/";
+export const contactUsApi = "zoom/contact/";
 
 export const signInApi = "accounts/sign-in/";
 export const signUpApi = "accounts/sign-up/";

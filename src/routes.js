@@ -12,6 +12,9 @@ import SignUp from "layouts/authentication/sign-up";
 import Wifi from "layouts/wifi";
 import ZoomMeetingCreate from "layouts/meeting-create";
 import ZoomMeetingInfo from "layouts/meeting-details";
+import ContactUs from "layouts/terms/contact";
+import Privacy from "layouts/terms/privacy";
+import TermOfService from "layouts/terms/tos";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
@@ -151,6 +154,36 @@ const routes = [
     route: "/meeting-info",
     icon: <Document size="12px" />,
     component: ZoomMeetingInfo,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "contact",
+    key: "contact",
+    route: "/contact",
+    icon: <Document size="12px" />,
+    component: ContactUs,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "privacy",
+    key: "privacy",
+    route: "/privacy",
+    icon: <Document size="12px" />,
+    component: Privacy,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "tos",
+    key: "tos",
+    route: "/terms-of-use",
+    icon: <Document size="12px" />,
+    component: TermOfService,
     noCollapse: false,
     visible: false,
   },
