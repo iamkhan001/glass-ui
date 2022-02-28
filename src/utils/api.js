@@ -248,8 +248,9 @@ export function apiPostSecure(api, data, response, onError) {
   })
   .catch((err) => {
     try {
+      
 
-      console.log('error', err.response)
+      console.log('error res > ',  err.response)
 
       if (err.response) {
         onError(err.response.data.msg)

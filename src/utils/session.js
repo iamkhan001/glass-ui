@@ -43,16 +43,6 @@ export function updateUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('company',result.account.company)
-    sessionStorage.setItem('role',result.account.role)
-
-    sessionStorage.setItem('company_id',result.company.id)
-    sessionStorage.setItem('token_type',result.company.token_type)
-    sessionStorage.setItem('scope',result.company.scope)
-    sessionStorage.setItem('company',result.company.name)
-    sessionStorage.setItem('owner_id',result.company.owner_id)
-    sessionStorage.setItem('owner_first_name',result.owner_first_name)
-    sessionStorage.setItem('owner_last_name',result.company.owner_last_name)
-    sessionStorage.setItem('owner_email',result.company.owner_email)
 }
 
 export function logout() {

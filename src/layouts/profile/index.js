@@ -78,11 +78,11 @@ function Overview() {
   console.log('screen profile');
   
   function onAlertOk() {
-    setShowAlertTitle('');
+    setShowAlertMessage('');
   }
 
   function onAlertCancel() {
-    setShowAlertTitle('');
+    setShowAlertMessage('');
   }
 
   function showError(msg) {

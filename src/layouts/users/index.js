@@ -39,8 +39,8 @@ function getAlert(msg) {
 
   if(msg) {
     view = (
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
+      <Alert severity="info">
+        <AlertTitle>Alert!</AlertTitle>
          {msg}
       </Alert>
     )

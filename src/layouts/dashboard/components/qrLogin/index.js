@@ -73,18 +73,7 @@ function QrLogin() {
               alignItems="center"
               backgroundColor="info"
               borderRadius="lg"
-              backgroundGradient
             >
-              <SuiBox
-                component="img"
-                src={wavesWhite}
-                alt="waves"
-                display="block"
-                position="absolute"
-                left={0}
-                width="100%"
-                height="100%"
-              />
               <SuiBox width="100%" pt={3} >
                 {myQrCode()}
               </SuiBox>
