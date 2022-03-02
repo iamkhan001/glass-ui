@@ -70,7 +70,7 @@ function generateQRCode(ssid, password, selection, isHidden) {
     )
   }
   
-  const qr = `WIFI:S:${ssid};T:${selection};P:${password};H:${isHidden};;`
+  const qr = `WIFI:T:${selection};S:${ssid};P:${password};H:${isHidden};`
   return (
       <QRCode value={qr} size='150' />
   )
@@ -88,7 +88,7 @@ function Wifi() {
   const [password, setPassword] = useState('');
   const [isHidden, setHidden] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const [selection, setSetSelection] = useState("WPA/WPA2");
+  const [selection, setSetSelection] = useState("WPA");
 
   const [error, setError] = useState('');
   const [alert, setAlert] = useState('');
@@ -177,7 +177,7 @@ function Wifi() {
                           open={Boolean(openMenu)}
                           onClose={() => handleCloseMenu("WPA/WPA2")}
                         >
-                          <MenuItem onClick={() => handleCloseMenu("WPA/WPA2")}>WPA/WPA2</MenuItem>
+                          <MenuItem onClick={() => handleCloseMenu("WPA")}>WPA/WPA2</MenuItem>
                           <MenuItem onClick={() => handleCloseMenu("WEP")}>WEP</MenuItem>
                           <MenuItem onClick={() => handleCloseMenu("None")}>None</MenuItem>
                         </Menu>
