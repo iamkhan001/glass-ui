@@ -71,7 +71,7 @@ function QrLogin() {
               display="grid"
               justifyContent="center"
               alignItems="center"
-              backgroundColor="info"
+              backgroundColor="lite"
               borderRadius="lg"
             >
               <SuiBox width="100%" pt={3} >

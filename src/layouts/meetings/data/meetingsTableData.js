@@ -6,11 +6,32 @@ import { ContentCopy, MeetingRoomSharp } from '@mui/icons-material';
 import {dateToShowFormat} from "utils/ext"
 import {isAdmin} from '../../../utils/session'
 
-function NameCell({name, agenda}) {
+function NameCell({name}) {
+
+  let display = name;
+  if(name.length > 15) {
+      display = name.substring(0, 15)+"..."
+  }
+
   return (
-    <SuiBox display="flex" flexDirection="row">
-      <SuiTypography ms={2} variant="h6" fontWeight="large" textColor="text">
-        {name} 
+    <SuiBox >
+      <SuiTypography ms={2} variant="h5" fontWeight="large" textColor="text">
+        {display} 
+      </SuiTypography>
+    </SuiBox>
+  );
+}
+
+function AgendaCell({agenda}) {
+  let display = agenda;
+  if(agenda.length > 20) {
+      display = agenda.substring(0, 20)+"..."
+  }
+
+  return (
+    <SuiBox >
+      <SuiTypography ms={2} variant="body2" fontWeight="large" textColor="text">
+        {display} 
       </SuiTypography>
     </SuiBox>
   );
@@ -79,13 +100,17 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
 export function getMeetingRows(data, onCopyLink, onEdit, onDelete){
   const rows = [];
   data?.map((meeting) =>
-    rows.push(
-      {
-        name: <NameCell name={meeting.topic} agenda={meeting.agenda} />,
-        time: <TimeCell date={meeting.start_time} duration={meeting.duration} />,
-        action: <ActionCell meetingId={meeting.id} title={meeting.topic} url={meeting.join_url} onCopyLink={onCopyLink} onEdit={onEdit} onDelete={onDelete} />,
-      }
-    )
+  {
+      console.log('meeting', meeting);
+      rows.push(
+        {
+          name: <NameCell name={meeting.topic} />,
+          agenda: <AgendaCell agenda={meeting.agenda} />,
+          time: <TimeCell date={meeting.start_time} duration={meeting.duration} />,
+          action: <ActionCell meetingId={meeting.id} title={meeting.topic} url={meeting.join_url} onCopyLink={onCopyLink} onEdit={onEdit} onDelete={onDelete} />,
+        }
+      )
+    }
   );
 
   return rows;
@@ -96,6 +121,7 @@ export default getMeetingRows();
 export function getColoumns() {
   return [
     { name: "name", align: "left" },
+    { name: "agenda", align: "left" },
     { name: "time", align: "left" },
     { name: "action", align: "center" },
   ]
