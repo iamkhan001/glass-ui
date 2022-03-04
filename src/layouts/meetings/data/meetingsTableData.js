@@ -37,13 +37,13 @@ function AgendaCell({agenda}) {
   );
 }
 
-function TimeCell({ date, duration }) {
+function TimeCell({ date, zone, duration }) {
   return (
     <SuiBox>
       <SuiBox display="flex" flexDirection="row">
         <Icon  mr={2}  className="material-icons-round" color="info">today</Icon>
         <SuiTypography  ml={1}  variant="caption" fontWeight="medium" textColor="text">
-          {dateToShowFormat(date)}
+          {dateToShowFormat(date, zone)}
         </SuiTypography>
       </SuiBox>
       <SuiBox display="flex" flexDirection="row">
@@ -106,7 +106,7 @@ export function getMeetingRows(data, onCopyLink, onEdit, onDelete){
         {
           name: <NameCell name={meeting.topic} />,
           agenda: <AgendaCell agenda={meeting.agenda} />,
-          time: <TimeCell date={meeting.start_time} duration={meeting.duration} />,
+          time: <TimeCell date={meeting.start_time} zone={meeting.timezone} duration={meeting.duration} />,
           action: <ActionCell meetingId={meeting.id} title={meeting.topic} url={meeting.join_url} onCopyLink={onCopyLink} onEdit={onEdit} onDelete={onDelete} />,
         }
       )

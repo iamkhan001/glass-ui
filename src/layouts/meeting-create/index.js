@@ -203,7 +203,7 @@ function ZoomMeetings() {
         'start_time': dateToServerFormat(date, time),
         'duration': duration,
         'schedule_for': email,
-        'timezone': timezoneOffset,
+        'timezone': "UTC",
         'password': generatePassword(8),
         'agenda': agenda,
         'members': meetingMembers

@@ -17,10 +17,10 @@ export const getRoleName = (r) => {
 
 export default getRoleName
 
-export const dateToShowFormat = (value) => {
+export const dateToShowFormat = (value, zone) => {
   try{
     // Moment.locale('en');
-    return Moment(value).format('dddd Do MMM YYYY hh:mm a');
+    return Moment(value).tz(zone).format('dddd Do MMM YYYY hh:mm a');
   }catch (e) {
     console.log(e);
   }

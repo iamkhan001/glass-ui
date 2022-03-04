@@ -82,7 +82,7 @@ function Tables() {
 
   function copyJoinDetails(mDetails) {
       onCopyText(
-        `Agenda: ${mDetails.agenda}\nMeeting Id: ${mDetails.id}\nTime: ${dateToShowFormat(mDetails.start_time)}\nPassword: ${mDetails.password}\nJoin Url: ${mDetails.join_url}`
+        `Agenda: ${mDetails.agenda}\nMeeting Id: ${mDetails.id}\nTime: ${dateToShowFormat(mDetails.start_time, mDetails.timezone)}\nPassword: ${mDetails.password}\nJoin Url: ${mDetails.join_url}`
       )
   }
 
@@ -151,7 +151,7 @@ function getMeetingDetails(details) {
       'PMI': details.pmi,
       'Password': details.password,
       'Host': details.host_email,
-      'Time': dateToShowFormat(details.start_time),
+      'Time': dateToShowFormat(details.start_time, details.timezone),
       'Time Zone': details.timezone,
       'Duration': details.duration,
       'Topic': details.topic,
