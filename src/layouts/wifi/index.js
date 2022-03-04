@@ -175,9 +175,9 @@ function Wifi() {
                           getContentAnchorEl={null}
                           transformOrigin={{ vertical: "top" , horizontal: "left" }}
                           open={Boolean(openMenu)}
-                          onClose={() => handleCloseMenu("WPA/WPA2")}
+                          onClose={() => handleCloseMenu("WPA")}
                         >
-                          <MenuItem onClick={() => handleCloseMenu("WPA")}>WPA/WPA2</MenuItem>
+                          <MenuItem onClick={() => handleCloseMenu("WPA")}>WPA</MenuItem>
                           <MenuItem onClick={() => handleCloseMenu("WEP")}>WEP</MenuItem>
                           <MenuItem onClick={() => handleCloseMenu("None")}>None</MenuItem>
                         </Menu>

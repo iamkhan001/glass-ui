@@ -7,7 +7,7 @@ import { Redirect, Link } from 'react-router-dom'
 
 import validator from 'validator'
 
-import {isAuthenticated, updateUser, getUser} from "utils/session" 
+import {isAuthenticated, updateUser, getUser, saveProfile} from "utils/session" 
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -20,9 +20,9 @@ import SuiButton from "components/SuiButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import {profileUpdateApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
+import {profileUpdateApi, profileApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 
 function getAlert(msg) {
@@ -62,18 +62,23 @@ function Overview() {
   const [showAlertMessage, setShowAlertMessage] = useState('');
   const [progressTitle, setProgressTitle] = useState('');
 
-  /*
-  apiCallSecureGet(profileApi,
-    (response) => {
-       saveUser(response);
-   },
-   (errorMsg) => {
-       setError(errorMsg||'Error');
-       setInterval( () => {setError('')}, 3000);
-       console.log('ui error', errorMsg||'Error');
-   }
-  )
-  */
+  const [loadProfile, setLoadProfile] = useState(true);
+
+
+  useEffect(()=> {
+    apiCallSecureGet(profileApi,
+      (response) => {
+         saveProfile(response);
+         setLoadProfile(false);
+     },
+     (errorMsg) => {
+         setLoadProfile(false);
+         setError(errorMsg||'Error');
+         setInterval( () => {setError('')}, 3000);
+         console.log('ui error', errorMsg||'Error');
+     }
+    )
+  },[loadProfile])
 
   console.log('screen profile');
   

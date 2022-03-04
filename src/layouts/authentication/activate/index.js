@@ -160,13 +160,13 @@ function SignIn() {
     console.log('verifyToken');
     apiCallUnsecureGet(`${verifyTokenApi}?token=${token}`,
     (response) => {
-        hideProgress()
         setVerifyToken(false);
+        hideProgress()
         setUserState(response.user);
     },
     (errorMsg) => {
-        hideProgress()
         setVerifyToken(false);
+        hideProgress()
       }
     )
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 import {isAuthenticated, getAccessToken} from './session'
 
-// export const baseUrl = "http://192.168.1.205:8080/";
-export const baseUrl = "http://glass-api.mirobotic.tech/";
+export const baseUrl = "http://192.168.1.205:8080/";
+// export const baseUrl = "http://glass-api.mirobotic.tech/";
 
 export const zoomUrl = "https://api.zoom.us/v2";
 
@@ -154,7 +154,7 @@ export function zoomApiCallPost(api, data, response, error) {
 export function apiCallSecureGet(api, response, error) {
 
   const url = `${baseUrl}${api}`;
-  console.log('apiCallSecureGet ', url);
+  console.log('apiCallSecureGet ', url, getAccessToken());
   axios
     .get(url, 
       {

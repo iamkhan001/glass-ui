@@ -37,6 +37,24 @@ export function saveUser(result) {
     sessionStorage.setItem('owner_email',result.company.owner_email)
 }
 
+export function saveProfile(result) {
+    sessionStorage.setItem('first_name', result.account.first_name)
+    sessionStorage.setItem('last_name', result.account.last_name)
+    sessionStorage.setItem('mobile', result.account.mobile)
+    sessionStorage.setItem('email',result.account.email)
+    sessionStorage.setItem('role',result.account.role)
+    sessionStorage.setItem('user_id',result.account.accountId)
+
+    sessionStorage.setItem('company_id',result.company.id)
+    sessionStorage.setItem('token_type',result.company.token_type)
+    sessionStorage.setItem('scope',result.company.scope)
+    sessionStorage.setItem('company',result.company.name)
+    sessionStorage.setItem('owner_id',result.company.owner_id)
+    sessionStorage.setItem('owner_first_name',result.owner_first_name)
+    sessionStorage.setItem('owner_last_name',result.company.owner_last_name)
+    sessionStorage.setItem('owner_email',result.company.owner_email)
+}
+
 export function updateUser(result) {
     sessionStorage.setItem('first_name', result.account.first_name)
     sessionStorage.setItem('last_name', result.account.last_name)
