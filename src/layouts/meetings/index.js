@@ -21,7 +21,6 @@ import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
 import Icon from "@material-ui/core/Icon";
 import {meetingsApi, usersApi, apiCallSecureGet, apiPostSecure} from "utils/api"
-import {dateToShowFormat, dateToServerFormat} from "utils/ext"
 
 import {getColoumns, getMeetingRows} from "./data/meetingsTableData";
 
@@ -56,13 +55,9 @@ function Tables() {
 
   const [error, setError] = useState('');
   const [progressTitle, setProgressTitle] = useState('');
-  const [showAlertCancel, setShowAlertCancel] = useState(false);
-  const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
 
   const [showToast, setShowToast] = useState(false);
-  const [toastType, setToastType] = useState('success');
-  const [toastMessage, setToastMessage] = useState('');
   const [meetingId, setMeetingId] = useState('');
 
   const [loadMeetings, setLoadMeetings] = useState(true);
@@ -70,11 +65,6 @@ function Tables() {
 
   const columns = getColoumns();
 
-  function showAlert(cancel, title, message) {
-    setShowAlertTitle(title);
-    setShowAlertMessage(message);
-    setShowAlertCancel(cancel);
-  }
 
   const setCreateMeeting = () => {
       history.push('/create-meeting');

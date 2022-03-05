@@ -27,8 +27,6 @@ import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
-import {generateSignature} from 'utils/zoom_api'
-import {Typography } from "@mui/material";
 import {dateToShowFormat, getTimeZone, dateToServerFormat} from "utils/ext"
 import {meetingsApi, apiPostSecure, membersApi, apiCallSecureGet} from "utils/api"
 
@@ -80,7 +78,6 @@ function ZoomMeetings() {
     return <Redirect to='/authentication/sign-in'  />
   }
 
-  const fontSize = '12px';
 
   const history = useHistory();
 
@@ -96,6 +93,9 @@ function ZoomMeetings() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [progress, setProgress] = useState('');
+  const [defaultUser, setDefaultUser] = useState(null);
+
+  const email = getUserEmail();
 
   const styles = {
     control: base => ({
@@ -114,15 +114,17 @@ function ZoomMeetings() {
     (response) => {
         setLoadUsers(false);
         const users = []
-        response.list.map((user) =>
+        response.list.map((user) => {
           users.push(
-            {
-              value: user.accountId,  label: `${user.first_name} ${user.last_name}`
-            }
-          )
+              {
+                value: user.accountId,  label: `${user.first_name} ${user.last_name}`
+              }
+            )
+          }
         );  
+        // setDefaultUser(users[0])
         setMembers(users)
-        console.log('users', users);
+
     },
     (errorMsg) => {
         setLoadUsers(false);
@@ -157,18 +159,26 @@ function ZoomMeetings() {
   console.log('TZ > ',timezoneOffset);
 
   const createMeeting = () => {
+
     console.log('selectedOption', selectedOption);
     
+    console.log('create meeting', selectedOption.length);
+
+    if(selectedOption.length < 1) {
+      showError('Please selec members for this meeting')
+      return
+    }
+
     const meetingMembers = []
-    
+
+
     selectedOption.map((user) =>
       meetingMembers.push(user.value)
     );  
 
-    console.log('create meeting', meetingMembers);
 
     if(title.trim() === "") {
-      showErrorAlert('Enter meeting title')
+      showError('Enter meeting title')
       return
     }
 
@@ -269,8 +279,9 @@ function ZoomMeetings() {
                         placeholder='Search or select members'
                         closeMenuOnSelect={false}
                         components={animatedComponents}
-                        isMulti
                         options={members}
+                        defaultValue={defaultUser}
+                        isMulti
                       />
                   </SuiBox>
                 </SuiBox>
