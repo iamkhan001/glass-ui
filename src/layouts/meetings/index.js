@@ -140,7 +140,7 @@ function Tables() {
     (response) => {
       setProgressTitle("")
         setLoadMeetings(false);
-        if(response.data.meetings.length > 0) {
+        if(response.data.meetings !== null && response.data.meetings.length > 0) {
           setMeetings(getMeetingRows(response.data.meetings, onCopyLink, onEdit, onDelete));
         }else {
           setMeetings([])

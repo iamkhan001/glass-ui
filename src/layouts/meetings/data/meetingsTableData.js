@@ -24,7 +24,7 @@ function NameCell({name}) {
 
 function AgendaCell({agenda}) {
   let display = agenda;
-  if(agenda.length > 20) {
+  if(agenda !== null && agenda.length > 20) {
       display = agenda.substring(0, 20)+"..."
   }
 
