@@ -18,6 +18,7 @@ export function isAuthenticated() {
 export default isAuthenticated;
 
 export function saveUser(result) {
+    console.log('save >> ', result);
     sessionStorage.setItem('refresh', result.refresh)
     sessionStorage.setItem('access',result.access)
     sessionStorage.setItem('first_name', result.account.first_name)

@@ -144,10 +144,18 @@ function ActionCell({role, userId, user, onViewQrCode, onActivate, onDeactivate,
   
   let qr = null;
 
-  if(user.id )
+  if(user.id === userId) {
+    qr = (<SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onViewQrCode(user)}>
+      <Icon className="material-icons-round"><QrCodeScannerRoundedIcon /></Icon>
+        <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+          QR 
+        </SuiTypography>
+    </SuiButton>)
+  }
   
   return (
    <>
+    {qr}
     <SuiButton variant="caption" fontWeight="medium" textColor="secondary" >
       <SuiTypography variant="caption" fontWeight="normal" textColor="info">
         {getRoleName(user.role)}
