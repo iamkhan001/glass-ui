@@ -43,9 +43,8 @@ import styles from "layouts/profile/components/Header/styles";
 
 // Images
 import jovy from "assets/images/team-1.jpg";
-import {getCompanyId, isZoomConnected, isAdmin} from "../../../../utils/session"
 
-function Header() {
+function Header({companyId, name, roleName, isAdmin, isZoomConnected, onDisconnect}) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const classes = styles();
 
@@ -70,14 +69,14 @@ function Header() {
   }, [tabsOrientation]);
 
   function openInNewTab() {
-    const win = window.open(`${zoomConnectUrl}${getCompanyId()}`);
+    const win = window.open(`${zoomConnectUrl}${companyId}`);
     win.focus();
   }
 
   function getConnectView() {
-    console.log('zoom', isZoomConnected())
-    if (!isZoomConnected()) {
-        if(isAdmin()) {
+    console.log('zoom', isZoomConnected)
+    if (!isZoomConnected) {
+        if(isAdmin) {
           return (
             <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
               <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
@@ -89,17 +88,30 @@ function Header() {
 
         return (
           <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-            <SuiTypography style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
+            <SuiButton style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
               Zoom not connected
-            </SuiTypography>
+            </SuiButton>
           </Grid>
         )
     }
+    if(isAdmin) {
+      return (
+        <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
+          <SuiButton style={{ marginLeft: "auto" }} variant="labled" textColor="text" fontWeight="medium" >
+              Zoom Connected
+          </SuiButton>
+          <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="error" onClick={() => onDisconnect()} >
+              Disconnect Zoom
+          </SuiButton>
+        </Grid>
+      )
+    }
+
     return (
       <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-        <SuiTypography style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
+        <SuiButton style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
             Zoom Connected
-        </SuiTypography>
+        </SuiButton>
       </Grid>
     )
   }
@@ -110,7 +122,7 @@ function Header() {
       <SuiBox customClass={classes.profileHeader_background} />
       <Card className={classes.profileHeader_profile}>
         <Grid container spacing={3} alignItems="center">
-          <Grid item>
+          {/* <Grid item>
             <SuiAvatar
               src={jovy}
               alt="profile-image"
@@ -118,14 +130,14 @@ function Header() {
               size="xl"
               customClass="shadow-sm"
             />
-          </Grid>
+          </Grid> */}
           <Grid item>
             <SuiBox height="100%" mt={0.5} lineHeight={1}>
               <SuiTypography variant="h5" fontWeight="medium">
-                Jovy Chiu
+                {name}
               </SuiTypography>
               <SuiTypography variant="button" textColor="text" fontWeight="medium">
-                CEO / Founder
+               {roleName}
               </SuiTypography>
             </SuiBox>
           </Grid>

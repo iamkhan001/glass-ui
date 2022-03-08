@@ -26,6 +26,7 @@ import SuiButton from "components/SuiButton";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
 import { membersApi, memberUpdateApi, createZoomUser, memeberActivateApi, memberDeleteApi, apiCallSecureGet, apiPostSecure,} from "utils/api"
+import {getUserId} from "utils/session"
 
 import BasicTable from './data/membersTable'
 
@@ -528,7 +529,7 @@ function Tables() {
       apiCallSecureGet(membersApi,
       (response) => {
           setLoadUsers(false);
-          setMembers(getRows(loginUser.role, response.list, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete));
+          setMembers(getRows(loginUser.role, getUserId(), response.list, onViewQrCode, onActivate, onDeactivate, onEdit, onDelete));
           setContent('list');
       },
       (errorMsg) => {

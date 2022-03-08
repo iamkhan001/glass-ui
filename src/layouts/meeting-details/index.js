@@ -128,7 +128,7 @@ function Tables() {
          {renderItems}
         </SuiBox>
         <SuiBox display="flex" justifyContent="end" alignItems="center" p={2} px={2}>
-          <SuiButton onClick={() => {copyJoinDetails(details)}}>Copy Join Details</SuiButton>
+          <SuiButton onClick={() => {copyJoinDetails(details)}}>Copy Join Detail</SuiButton>
           <SuiBox mx={2}>
             <SuiButton buttonColor='info' mx={2} onClick={() => {openInNewTab(details.start_url)}} >Start Meeting</SuiButton>
           </SuiBox>
@@ -214,7 +214,7 @@ useEffect(() => {loadZoomMeetings();}, [loadMeetings])
                   <ArrowBack color="secondary" />
                 </Button>
                 <SuiTypography variant="h6" fontWeight="medium" textTransform="capitalize">
-                  Meeting Details
+                  Meeting Detail
                 </SuiTypography>
               </SuiBox>
             </SuiBox>

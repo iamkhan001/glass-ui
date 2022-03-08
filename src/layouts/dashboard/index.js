@@ -12,6 +12,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
+import {getDateTimeNow} from "utils/ext" 
 
 // Soft UI Dashboard React base styles
 import {isAuthenticated, getUser} from "utils/session" 
@@ -39,7 +40,7 @@ function Dashboard() {
   const [loadCounts, setLoadCounts] = useState(true);
 
   const loadCountsFromServer = () => {
-      apiCallSecureGet(countsApi, (response) => {
+      apiCallSecureGet(`${countsApi}?date=${getDateTimeNow()}`, (response) => {
         setLoadCounts(false);
         setCounts(response.data);
       }, (error) => {

@@ -40,3 +40,9 @@ export const dateToServerFormat = (date, time) => {
 export function getTimeZone(){
   return moment.tz.guess();
 }
+
+export const getDateTimeNow = () => {
+    const now = Moment().format("YYYY-MM-DDTHH:mm:ss");
+    console.log('now', now);
+    return now;
+}

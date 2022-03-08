@@ -9,6 +9,7 @@ import { from } from "stylis";
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 
+import {getDateTimeNow} from "utils/ext" 
 import {isAuthenticated, getUser, getUserEmail} from "utils/session" 
 import {Alert, AlertTitle} from "@mui/material";
 import {progressDialog, alertDialog, showToastMessage} from "utils/diloag"
@@ -136,7 +137,7 @@ function Tables() {
   const loadZoomMeetings = async () => {
     console.log('loadZoomMeetings');
     setProgressTitle("Loading meetings!")
-    apiCallSecureGet(`${meetingsApi}?email=${getUserEmail()}`,
+    apiCallSecureGet(`${meetingsApi}?email=${getUserEmail()}&date=${getDateTimeNow()}`,
     (response) => {
       setProgressTitle("")
         setLoadMeetings(false);

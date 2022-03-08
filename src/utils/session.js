@@ -120,3 +120,10 @@ export function isZoomConnected() {
 export function isAdmin() {
     return (sessionStorage.getItem('role', null) === 'A')
 }
+
+export function getRoleName() {
+    if(sessionStorage.getItem('role', null) === 'A') {
+        return "Admin"
+    }
+    return "Member"
+}

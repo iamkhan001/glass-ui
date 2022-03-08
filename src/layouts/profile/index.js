@@ -7,7 +7,7 @@ import { Redirect, Link } from 'react-router-dom'
 
 import validator from 'validator'
 
-import {isAuthenticated, updateUser, getUser, saveProfile} from "utils/session" 
+import {getCompanyId, isZoomConnected, isAdmin, getRoleName, isAuthenticated, updateUser, getUser, saveProfile} from "utils/session" 
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
@@ -20,7 +20,7 @@ import SuiButton from "components/SuiButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import {profileUpdateApi, profileApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
+import {profileUpdateApi, disconnectApi, profileApi, resetPasswordApi, apiCallSecureGet, apiPostSecure, apiPutSecure} from "utils/api"
 
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
@@ -61,6 +61,7 @@ function Overview() {
   const [showAlertTitle, setShowAlertTitle] = useState('');
   const [showAlertMessage, setShowAlertMessage] = useState('');
   const [progressTitle, setProgressTitle] = useState('');
+  const [disconnectMessage, setDisconnectMessage] = useState('');
 
   const [loadProfile, setLoadProfile] = useState(true);
 
@@ -88,6 +89,27 @@ function Overview() {
 
   function onAlertCancel() {
     setShowAlertMessage('');
+  }
+
+    
+  function onDisconnectAlertOk() {
+
+    setDisconnectMessage('');
+    setProgressTitle("Removing zoom account!")
+    apiCallSecureGet(disconnectApi,
+      (response) => {
+        setLoadProfile(true);
+     },
+     (errorMsg) => {
+         setError(errorMsg||'Error');
+         setInterval( () => {setError('')}, 3000);
+         console.log('ui error', errorMsg||'Error');
+     }
+    )
+  }
+
+  function onDisconnectAlertCancel() {
+    setDisconnectMessage('');
   }
 
   function showError(msg) {
@@ -185,6 +207,11 @@ function Overview() {
   
   }
 
+  function onDisconnect() {
+    console.log('onDisconnect')
+    setDisconnectMessage("Do you want to disconnect zoom account?")
+  }
+
   let scope = '----'
   if(user.scope !== null) {
     scope = user.scope;
@@ -192,11 +219,12 @@ function Overview() {
 
   return (
     <DashboardLayout>
-      <Header />
+      <Header companyId={getCompanyId()} name={`${user.firstName} ${user.lastName}`} roleName={getRoleName()} isAdmin={isAdmin()} isZoomConnected={isZoomConnected()} onDisconnect={onDisconnect} />
       <SuiBox mt={5} mb={3}>
       {getAlert(error)}
       {progressDialog(progressTitle)}
       {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
+      {alertDialog(true, "Disconnect zoom?", disconnectMessage, onDisconnectAlertOk, onDisconnectAlertCancel)}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>
           <ProfileInfoCard
