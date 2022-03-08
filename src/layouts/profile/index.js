@@ -98,9 +98,11 @@ function Overview() {
     setProgressTitle("Removing zoom account!")
     apiCallSecureGet(disconnectApi,
       (response) => {
+        setProgressTitle('');
         setLoadProfile(true);
      },
      (errorMsg) => {
+         setProgressTitle('');
          setError(errorMsg||'Error');
          setInterval( () => {setError('')}, 3000);
          console.log('ui error', errorMsg||'Error');
