@@ -143,7 +143,7 @@ function ActionCell({role, userId, user, onViewQrCode, onActivate, onDeactivate,
   }
   
   let qr = null;
-
+  
   if(user.id === userId) {
     qr = (<SuiButton variant="caption" fontWeight="medium" textColor="text"  onClick={() => onViewQrCode(user)}>
       <Icon className="material-icons-round"><QrCodeScannerRoundedIcon /></Icon>

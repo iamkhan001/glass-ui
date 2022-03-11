@@ -27,6 +27,7 @@ import Icon from "@material-ui/core/Icon";
 import {meetingsApi, usersApi, apiCallSecureGet, apiPostSecure} from "utils/api"
 import {dateToShowFormat, dateToServerFormat} from "utils/ext"
 import data from "layouts/dashboard/components/Projects/data";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 // Custom styles for the Tables
 
@@ -86,6 +87,10 @@ function Tables() {
       )
   }
 
+  function getCopyText(mDetails) {
+    return `Agenda: ${mDetails.agenda}\nMeeting Id: ${mDetails.id}\nTime: ${dateToShowFormat(mDetails.start_time, mDetails.timezone)}\nPassword: ${mDetails.password}\nJoin Url: ${mDetails.join_url}`
+  }
+
   function openInNewTab(url) {
     const win = window.open(url, '_blank');
     win.focus();
@@ -128,7 +133,12 @@ function Tables() {
          {renderItems}
         </SuiBox>
         <SuiBox display="flex" justifyContent="end" alignItems="center" p={2} px={2}>
-          <SuiButton onClick={() => {copyJoinDetails(details)}}>Copy Join Detail</SuiButton>
+        <CopyToClipboard
+          text={getCopyText(details)}
+          onCopy={() => setShowToast(true)}>
+            <SuiButton>Copy Join Detail</SuiButton>
+          </CopyToClipboard>
+          {/* <SuiButton onClick={() => {copyJoinDetails(details)}}>Copy Join Detail</SuiButton> */}
           <SuiBox mx={2}>
             <SuiButton buttonColor='info' mx={2} onClick={() => {openInNewTab(details.start_url)}} >Start Meeting</SuiButton>
           </SuiBox>
