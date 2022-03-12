@@ -122,9 +122,14 @@ export const qrDialog = (user, onClose) => {
 }
 
 export const myQrCode = () => {
+  const userId = getUserId();
+
+  console.log('userId', userId);
+
   const data = {
-    'code': getUserId()
+    'code': userId
   };
+
   const text = base64_encode(JSON.stringify(data));
   console.log('encoded', text);
   return (<QRCode bgColor={'transparent'} value={text} size='200' />);

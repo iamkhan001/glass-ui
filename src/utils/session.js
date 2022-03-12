@@ -44,7 +44,7 @@ export function saveProfile(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
-    sessionStorage.setItem('user_id',result.account.accountId)
+    // sessionStorage.setItem('user_id',result.account.accountId)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)

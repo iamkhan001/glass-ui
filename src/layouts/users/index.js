@@ -11,7 +11,7 @@ import {getRoleName, getRoleId} from "utils/ext"
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
 
-import {isAuthenticated, getUser} from "utils/session" 
+import {isAuthenticated, getUser, getUserId} from "utils/session" 
 import validator from 'validator'
 
 import Menu from "@material-ui/core/Menu";
@@ -26,7 +26,6 @@ import SuiButton from "components/SuiButton";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
 import { membersApi, memberUpdateApi, createZoomUser, memeberActivateApi, memberDeleteApi, apiCallSecureGet, apiPostSecure,} from "utils/api"
-import {getUserId} from "utils/session"
 
 import BasicTable from './data/membersTable'
 

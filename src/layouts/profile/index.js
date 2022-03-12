@@ -155,7 +155,7 @@ function Overview() {
           setMobile(user.mobile);
           setCompany(user.company);
           setProgressTitle('');
-          setLoadProfile(true);
+          // setLoadProfile(true);
           showAlert(false, "Success!", "Account details updated successfully!")
       },
       (errorMsg) => {
