@@ -19,6 +19,8 @@ export default isAuthenticated;
 
 export function saveUser(result) {
     console.log('save >> ', result);
+    console.log('save user_id >> ', result.account.accountId);
+
     sessionStorage.setItem('refresh', result.refresh)
     sessionStorage.setItem('access',result.access)
     sessionStorage.setItem('first_name', result.account.first_name)
@@ -26,7 +28,7 @@ export function saveUser(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
-    sessionStorage.setItem('user_id',result.account.accountId)
+    sessionStorage.setItem('x_user_id',result.account.accountId)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)
@@ -44,7 +46,7 @@ export function saveProfile(result) {
     sessionStorage.setItem('mobile', result.account.mobile)
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
-    // sessionStorage.setItem('user_id',result.account.accountId)
+    // sessionStorage.setItem('x_user_id',result.account.accountId)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)
@@ -101,7 +103,7 @@ export function getUser(){
 }
 
 export function getUserId() {
-    return sessionStorage.getItem('user_id', null)
+    return sessionStorage.getItem('x_user_id', null)
 }
 
 export function getUserEmail() {
