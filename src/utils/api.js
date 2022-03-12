@@ -1,8 +1,8 @@
 import axios from "axios";
 import {isAuthenticated, getAccessToken} from './session'
 
-// export const baseUrl = "http://localhost:8080/";
-export const baseUrl = "http://glass-api.mirobotic.tech/";
+export const baseUrl = "http://localhost:8080/";
+// export const baseUrl = "http://glass-api.mirobotic.tech/";
 
 export const zoomUrl = "https://api.zoom.us/v2";
 

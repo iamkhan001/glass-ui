@@ -17,7 +17,7 @@ import MuiAlert from '@mui/material/Alert';
 import QRCode from 'qrcode.react';
 import {decode as base64_decode, encode as base64_encode} from 'base-64';
 import { saveAs } from 'file-saver';
-import {getUserId} from './session'
+import {getQrId} from './session'
 
 const Alert = React.forwardRef(
   function Alert(props, ref) {
@@ -122,17 +122,18 @@ export const qrDialog = (user, onClose) => {
 }
 
 export const myQrCode = () => {
-  const userId = getUserId();
+  
+  const qrData = getQrId();
 
-  console.log('userId', userId);
+  console.log('qrData', qrData);
 
-  const data = {
-    'code': userId
-  };
+  // const data = {
+  //   'code': userId
+  // };
 
-  const text = base64_encode(JSON.stringify(data));
-  console.log('encoded', text);
-  return (<QRCode bgColor={'transparent'} value={text} size='200' />);
+  // const text = base64_encode(JSON.stringify(data));
+  // console.log('encoded', qrData);
+  return (<QRCode bgColor={'transparent'} value={qrData} size='200' />);
 }
 
 export const progressDialog = (title) => {

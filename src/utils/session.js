@@ -29,6 +29,7 @@ export function saveUser(result) {
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
     sessionStorage.setItem('x_user_id',result.account.accountId)
+    sessionStorage.setItem('qr_id',result.qr)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)
@@ -47,6 +48,7 @@ export function saveProfile(result) {
     sessionStorage.setItem('email',result.account.email)
     sessionStorage.setItem('role',result.account.role)
     // sessionStorage.setItem('x_user_id',result.account.accountId)
+    sessionStorage.setItem('qr_id',result.qr)
 
     sessionStorage.setItem('company_id',result.company.id)
     sessionStorage.setItem('token_type',result.company.token_type)
@@ -74,6 +76,7 @@ export function logout() {
     sessionStorage.removeItem('mobile')
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('role')
+    sessionStorage.removeItem('qr_id')
 
     sessionStorage.removeItem('company_id')
     sessionStorage.removeItem('token_type')
@@ -104,6 +107,10 @@ export function getUser(){
 
 export function getUserId() {
     return sessionStorage.getItem('x_user_id', null)
+}
+
+export function getQrId() {
+    return sessionStorage.getItem('qr_id', null)
 }
 
 export function getUserEmail() {
