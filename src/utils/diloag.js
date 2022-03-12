@@ -84,7 +84,7 @@ export const qrDialog = (user, onClose) => {
     const text = base64_encode(JSON.stringify(data));
     console.log('encoded', qr);
     name = `${user.first_name} ${user.last_name}`;
-    qr = (<QRCode value={text} size='150' />);
+    qr = (<QRCode value={text} size='250' />);
   }
   
   const donwloadQr = () => {
