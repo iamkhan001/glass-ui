@@ -9,8 +9,8 @@ import {isAdmin} from '../../../utils/session'
 function NameCell({name}) {
 
   let display = name;
-  if(name.length > 15) {
-      display = name.substring(0, 15)+"..."
+  if(name.length > 20) {
+      display = name.substring(0, 20)+"..."
   }
 
   return (
@@ -24,8 +24,8 @@ function NameCell({name}) {
 
 function AgendaCell({agenda}) {
   let display = agenda;
-  if(agenda && agenda.length > 20) {
-      display = agenda.substring(0, 20)+"..."
+  if(agenda && agenda.length > 15) {
+      display = agenda.substring(0, 15)+"..."
   }
 
   return (
