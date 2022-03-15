@@ -15,7 +15,7 @@ function NameCell({name}) {
 
   return (
     <SuiBox >
-      <SuiTypography ms={2} variant="h5" fontWeight="large" textColor="text">
+      <SuiTypography ms={2} variant="body" fontWeight="large" textColor="text">
         {display} 
       </SuiTypography>
     </SuiBox>
@@ -30,7 +30,7 @@ function AgendaCell({agenda}) {
 
   return (
     <SuiBox >
-      <SuiTypography ms={2} variant="body2" fontWeight="large" textColor="text">
+      <SuiTypography ms={2} variant="body" fontWeight="large" textColor="text">
         {display} 
       </SuiTypography>
     </SuiBox>
@@ -42,13 +42,13 @@ function TimeCell({ date, zone, duration }) {
     <SuiBox>
       <SuiBox display="flex" flexDirection="row">
         <Icon  mr={2}  className="material-icons-round" color="info">today</Icon>
-        <SuiTypography  ml={1}  variant="caption" fontWeight="medium" textColor="text">
+        <SuiTypography  ml={1}   variant="body" fontWeight="large" textColor="text">
           {dateToShowFormat(date, zone)}
         </SuiTypography>
       </SuiBox>
       <SuiBox display="flex" flexDirection="row">
         <Icon  mr={2} className="material-icons-round" color="info">schedule</Icon>
-        <SuiTypography ml={1} variant="caption" fontWeight="medium" textColor="text">
+        <SuiTypography ml={1}  variant="body" fontWeight="large" textColor="text">
         {duration} mins 
         </SuiTypography>
       </SuiBox>      
@@ -65,7 +65,7 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
       <SuiBox display="flex" flexDirection="row">
         <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(meetingId, url)}>
           <Icon className="material-icons-round">info</Icon>
-          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+          <SuiTypography margin="5px"  variant="body" fontWeight="medium" textColor="text">
               Details
           </SuiTypography>
         </SuiButton>        
@@ -75,9 +75,9 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
 
   return (
     <SuiBox display="flex" flexDirection="row">
-        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onCopyLink(meetingId, url)}>
+        <SuiButton  variant="body" fontWeight="medium" textColor="text" onClick={() => onCopyLink(meetingId, url)}>
           <Icon className="material-icons-round">info</Icon>
-          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+          <SuiTypography margin="5px"  variant="body" fontWeight="medium" textColor="text">
               Details
           </SuiTypography>
         </SuiButton>        
@@ -87,9 +87,9 @@ function ActionCell({meetingId, title, url, onCopyLink, onEdit, onDelete}) {
               Edit
           </SuiTypography>
         </SuiButton> */}
-        <SuiButton variant="caption" fontWeight="medium" textColor="text" onClick={() => onDelete(meetingId, title)}>
+        <SuiButton  variant="body" fontWeight="medium" textColor="text" onClick={() => onDelete(meetingId, title)}>
           <Icon className="material-icons-round">delete</Icon>
-          <SuiTypography margin="5px" variant="caption" fontWeight="medium" textColor="text">
+          <SuiTypography margin="5px"  variant="body" fontWeight="medium" textColor="text">
               Delete
           </SuiTypography>
         </SuiButton>
