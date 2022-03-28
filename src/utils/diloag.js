@@ -79,9 +79,9 @@ export const qrDialog = (user, onClose) => {
   let name = null;
   if(user !== null) {
     const data = {
-      'code': user.accountId
+      'code': base64_encode(user.accountId)
     };
-    const text = base64_encode(JSON.stringify(data));
+    const text = JSON.stringify(data);
     console.log('encoded', qr);
     name = `${user.first_name} ${user.last_name}`;
     qr = (<QRCode value={text} size='250' />);
