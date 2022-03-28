@@ -133,7 +133,7 @@ export const myQrCode = () => {
 
   // const text = base64_encode(JSON.stringify(data));
   // console.log('encoded', qrData);
-  return (<QRCode bgColor={'transparent'} value={qrData} size='200' />);
+  return (<QRCode bgColor={'transparent'} value={qrData} size='170' />);
 }
 
 export const progressDialog = (title) => {
