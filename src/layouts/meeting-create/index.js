@@ -27,7 +27,7 @@ import Table from "examples/Table";
 import SuiButton from "components/SuiButton";
 import SuiInput from "components/SuiInput";
 import Divider from "@mui/material/Divider";
-import {dateToShowFormat, getTimeZone, dateToServerFormat} from "utils/ext"
+import {dateToShowFormat, getDateNow, getTimeNow, getTimeZone, dateToServerFormat} from "utils/ext"
 import {meetingsApi, apiPostSecure, membersApi, apiCallSecureGet} from "utils/api"
 
 function showErrorAlert(msg) {
@@ -83,8 +83,8 @@ function ZoomMeetings() {
 
   const [title, setTitle] = useState('')
   const [agenda, setAgenda] = useState('')
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
+  const [date, setDate] = useState(getDateNow())
+  const [time, setTime] = useState(getTimeNow())
   const [duration, setDuration] = useState('')
   const [selectedOption, setSelectedOption] = useState([]);
   const [loadUsers, setLoadUsers] = useState(true);
@@ -96,6 +96,8 @@ function ZoomMeetings() {
   const [defaultUser, setDefaultUser] = useState(null);
 
   const email = getUserEmail();
+
+
 
   const styles = {
     control: base => ({
@@ -242,6 +244,9 @@ function ZoomMeetings() {
         showError(err.msg)
       })
   }
+
+  console.log('getTimeNow', date, time);
+  // setTime(timeNow)
 
   console.log('members', members.length);
 

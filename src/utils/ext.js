@@ -46,3 +46,21 @@ export const getDateTimeNow = () => {
     console.log('now', now);
     return now;
 }
+
+export const getTimeNow = () => {
+  
+  let date = Moment()
+    .add(2, 'minutes')
+
+  return date.format("HH:mm");
+
+}
+
+export const getDateNow = () => {
+  
+  let date = Moment()
+    .add(2, 'minutes')
+
+  return date.format("YYYY-MM-DD");
+
+}
