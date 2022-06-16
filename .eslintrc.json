@@ -21,6 +21,7 @@
         "custom": "ignore"
       }
     ],
+    "react/require-default-props": "off",
     "react/jsx-curly-spacing": [2, "never"],
     "react/prop-types": "off",
     "prettier/prettier": "off",

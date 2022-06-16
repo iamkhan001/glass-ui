@@ -199,16 +199,16 @@ const routes = [
     noCollapse: false,
     visible: false,
   },
-  {
-    type: "collapse",
-    name: "verifyzoom",
-    key: "verifyzoom",
-    route: "/verifyzoom",
-    icon: <Document size="12px" />,
-    component: Verify,
-    noCollapse: false,
-    visible: false,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "verifyzoom",
+  //   key: "verifyzoom",
+  //   route: "/verifyzoom",
+  //   icon: <Document size="12px" />,
+  //   component: Verify,
+  //   noCollapse: false,
+  //   visible: false,
+  // },
 ];
 
 export default routes;
