@@ -5,9 +5,7 @@ var template = { __html: __html };
 class Verify extends Component {
   render() {
     return (
-      <div className="screen-share">
-        <span dangerouslySetInnerHTML={template} />
-      </div>
+      "c6282ef19cf94cd48efcac3a3dbc3b19"
     );
   }
 }
