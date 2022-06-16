@@ -23,6 +23,8 @@ import Document from "examples/Icons/Document";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
+import Tos from "layouts/docs/tos";
+import Verify from "layouts/zoomverify";
 
 
 const routes = [
@@ -184,6 +186,26 @@ const routes = [
     route: "/terms-of-use",
     icon: <Document size="12px" />,
     component: TermOfService,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "tos",
+    key: "tos",
+    route: "/terms-of-service",
+    icon: <Document size="12px" />,
+    component: Tos,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "verifyzoom",
+    key: "verifyzoom",
+    route: "/verifyzoom",
+    icon: <Document size="12px" />,
+    component: Verify,
     noCollapse: false,
     visible: false,
   },

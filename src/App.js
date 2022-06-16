@@ -103,14 +103,14 @@ export default function App() {
     // </CacheProvider>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {layout === "dashboard" && (
+        {/* <CssBaseline /> */}
+        {/* {layout === "dashboard" && (
           <>
             <Sidenav routes={routes} />
             <Configurator />
           </>
-        )}
-        {layout === "vr" && <Configurator />}
+        )} */}
+        {/* {layout === "vr" && <Configurator />} */}
         <Switch>
           {getRoutes(routes)}
           <Redirect from="*" to="/authentication/sign-in" />
