@@ -12,9 +12,9 @@ import SignUp from "layouts/authentication/sign-up";
 import Wifi from "layouts/wifi";
 import ZoomMeetingCreate from "layouts/meeting-create";
 import ZoomMeetingInfo from "layouts/meeting-details";
-import ContactUs from "layouts/terms/contact";
-import Privacy from "layouts/terms/privacy";
-import TermOfService from "layouts/terms/tos";
+import ContactUs from "layouts/docs/contact";
+import Privacy from "layouts/docs/privacy";
+import TermOfService from "layouts/docs/tos";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
@@ -23,8 +23,8 @@ import Document from "examples/Icons/Document";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
-import Tos from "layouts/docs/tos";
-import Verify from "layouts/zoomverify";
+import Documentation from "layouts/docs/documentation";
+import About from "layouts/docs/about";
 
 
 const routes = [
@@ -191,24 +191,25 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "tos",
-    key: "tos",
-    route: "/terms-of-service",
+    name: "documentation",
+    key: "documentation",
+    route: "/help",
     icon: <Document size="12px" />,
-    component: Tos,
+    component: Documentation,
     noCollapse: false,
     visible: false,
   },
-  // {
-  //   type: "collapse",
-  //   name: "verifyzoom",
-  //   key: "verifyzoom",
-  //   route: "/verifyzoom",
-  //   icon: <Document size="12px" />,
-  //   component: Verify,
-  //   noCollapse: false,
-  //   visible: false,
-  // },
+  {
+    type: "collapse",
+    name: "about",
+    key: "documentation",
+    route: "/help",
+    icon: <Document size="12px" />,
+    component: Documentation,
+    noCollapse: false,
+    visible: false,
+  },
+
 ];
 
 export default routes;

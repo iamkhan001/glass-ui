@@ -1,19 +1,22 @@
 import { useState, React } from "react";
-import { useHistory, } from 'react-router-dom'
+import { useHistory, Redirect, Link } from 'react-router-dom'
+import Card from "@mui/material/Card";
+import Divider from "@mui/material/Divider";
+import SuiBox from "components/SuiBox";
+import SuiTypography from "components/SuiTypography";
+import BasicLayout from "layouts/docs/components/BasicLayout";
+import Grid from "@mui/material/Grid";
+import SuiInput from "components/SuiInput";
+import SuiButton from "components/SuiButton";
+
+// Images
+import curved6 from "assets/images/curved-images/curved14.jpg";
+
+import axios from "axios";
+
 import {progressDialog, alertDialog} from "utils/diloag"
 import {Alert, AlertTitle} from "@mui/material";
 
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
-import PageLayout from "examples/LayoutContainers/PageLayout";
-
-import SuiBox from "components/SuiBox";
-import SuiTypography from "components/SuiTypography";
-import SuiInput from "components/SuiInput";
-import SuiButton from "components/SuiButton";
-import curved9 from "assets/images/curved-images/curved-6.jpg";
-import CoverLayout from "../../authentication/components/CoverLayout";
 import { apiPostUnsecure, contactUsApi } from "utils/api";
 import validator from 'validator'
 
@@ -228,15 +231,21 @@ const contact = (
     )
 
   return (
-    <PageLayout background="#b5b5b5" >
-      <Grid container justifyContent="center" >
-        <Grid item xs={12} md={6} xl={6} m={8}>
-            {progressDialog(progressTitle)}
-            {alertDialog(false, "Done!.", showAlertTitle, onAlertOk, () => {})}
-            {contact}
+    <BasicLayout
+      title="CONTACT US"
+      description="ZOOMABLE"
+      image={curved6}
+    >
+      <Card>
+        <Grid container justifyContent="center" >
+          <Grid >
+              {progressDialog(progressTitle)}
+              {alertDialog(false, "Done!.", showAlertTitle, onAlertOk, () => {})}
+              {contact}
+          </Grid>
         </Grid>
-      </Grid>
-    </PageLayout>
+      </Card>
+    </BasicLayout>
   );
 }
 

@@ -27,10 +27,10 @@ import SuiTypography from "components/SuiTypography";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
 // Authentication layout components
-import Footer from "layouts/authentication/components/Footer";
+import Footer from "layouts/docs/components/Footer";
 
 // Custom styles for the Baise
-import styles from "layouts/authentication/components/CoverLayout/styles";
+import styles from "layouts/docs/components/CoverLayout/styles";
 
 // Soft UI Dashboard React page layout routes
 

@@ -1,37 +1,25 @@
 import { useState, React } from "react";
-import { useHistory, } from 'react-router-dom'
-import {progressDialog, alertDialog} from "utils/diloag"
-import {Alert, AlertTitle} from "@mui/material";
-
+import { useHistory, Redirect, Link } from 'react-router-dom'
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-import PageLayout from "examples/LayoutContainers/PageLayout";
-
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
-import SuiInput from "components/SuiInput";
-import SuiButton from "components/SuiButton";
-import curved9 from "assets/images/curved-images/curved-6.jpg";
-import CoverLayout from "../../authentication/components/CoverLayout";
-import { apiPostUnsecure, contactUsApi } from "utils/api";
-import validator from 'validator'
+import BasicLayout from "layouts/docs/components/BasicLayout";
 
+// Images
+import curved6 from "assets/images/curved-images/curved14.jpg";
+
+import axios from "axios";
 
 function Privacy() {
 
   const policy = (
     <Card className="h-100">
           <SuiBox py={2} px={4}>
-            <SuiBox display="flex" justifyContent="space-between" alignItems="center">
-              <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
-                Privacy Policy
-              </SuiTypography>
-            </SuiBox>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
-              <p>At glass.mirobotic.tech, accessible from https://glass.mirobotic.tech, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by glass.mirobotic.tech and how we use it.</p>
+              <p>At zoomable.tech, accessible from https://zoomable.tech, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by zoomable.tech and how we use it.</p>
               <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
-              <p>This Privacy Policy applies only to our online activities and is valid for users of our website with regards to the information that they shared and/or collect in glass.mirobotic.tech. This policy is not applicable to any information collected offline or via channels other than this website. </p>
+              <p>This Privacy Policy applies only to our online activities and is valid for users of our website with regards to the information that they shared and/or collect in zoomable.tech. This policy is not applicable to any information collected offline or via channels other than this website. </p>
             </SuiTypography>
             <SuiBox opacity={0.3}>
               <Divider />
@@ -73,30 +61,30 @@ function Privacy() {
               Log Files
             </SuiTypography>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
-              <p>glass.mirobotic.tech follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
+              <p>zoomable.tech follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
             </SuiTypography>
 
             <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
               Cookies and Web Beacons
             </SuiTypography>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
-              <p>Like any other website, glass.mirobotic.tech uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+              <p>Like any other website, zoomable.tech uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
             </SuiTypography>
 
             <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
               Advertising Partners Privacy Policies
             </SuiTypography>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
-              <p>You may consult this list to find the Privacy Policy for each of the advertising partners of glass.mirobotic.tech. </p>
-              <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on glass.mirobotic.tech, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
-              <p>Note that glass.mirobotic.tech has no access to or control over these cookies that are used by third-party advertisers.</p>
+              <p>You may consult this list to find the Privacy Policy for each of the advertising partners of zoomable.tech. </p>
+              <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on zoomable.tech, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
+              <p>Note that zoomable.tech has no access to or control over these cookies that are used by third-party advertisers.</p>
             </SuiTypography>
 
             <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
               Third Party Privacy Policies
             </SuiTypography>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
-              <p>glass.mirobotic.tech's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options. </p>
+              <p>zoomable.tech's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options. </p>
               <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
             </SuiTypography>
 
@@ -130,20 +118,22 @@ function Privacy() {
             </SuiTypography>
             <SuiTypography align='justify' fontWeight='light' variant='h6' >
               <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
-              <p>glass.mirobotic.tech does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+              <p>zoomable.tech does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
             </SuiTypography>
           </SuiBox>
       </Card>
     )
 
   return (
-    <PageLayout background="#b5b5b5" >
-      <Grid container justifyContent="center" >
-        <Grid item xs={12} md={8} xl={8} m={8}>
-            {policy}
-        </Grid>
-      </Grid>
-    </PageLayout>
+    <BasicLayout
+      title="PRIVACY POLICY"
+      description="ZOOMABLE"
+      image={curved6}
+    >
+      <Card>
+        {policy}
+      </Card>
+    </BasicLayout>
   );
 }
 
