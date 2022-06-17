@@ -13,7 +13,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
 // Authentication layout components
-import Footer from "layouts/terms/components/Footer";
+import Footer from "layouts/authentication/components/Footer";
 
 // Custom styles for the BaiseLayout
 import styles from "layouts/docs/components/BasicLayout/styles";

@@ -46,16 +46,16 @@ function Footer() {
         </Grid>
         <Grid item xs={12} lg={8}>
           <SuiBox display="flex" justifyContent="center" mt={1} mb={3}>
-            <SuiBox mr={3} color="secondary">
+            <SuiBox component="a" href="https://www.facebook.com/mirobotic.sg" mr={3} color="secondary">
               <FacebookIcon fontSize="small" />
             </SuiBox>
-            <SuiBox mr={3} color="secondary">
+            <SuiBox component="a" href="https://twitter.com/mi_robotic" mr={3} color="secondary">
               <TwitterIcon fontSize="small" />
             </SuiBox>
-            <SuiBox mr={3} color="secondary">
+            <SuiBox component="a" href="https://www.instagram.com/mirobotic/" mr={3} color="secondary">
               <InstagramIcon fontSize="small" />
             </SuiBox>
-            <SuiBox color="secondary">
+            <SuiBox component="a" href="https://www.linkedin.com/company/mirobotic" color="secondary">
               <LinkedInIcon fontSize="small" />
             </SuiBox>
           </SuiBox>

@@ -236,7 +236,7 @@ const contact = (
       description="ZOOMABLE"
       image={curved6}
     >
-      <Card>
+      <Card p={3}>
         <Grid container justifyContent="center" >
           <Grid >
               {progressDialog(progressTitle)}

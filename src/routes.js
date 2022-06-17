@@ -1,4 +1,3 @@
-// Soft UI Dashboard React layouts
 import Dashboard from "layouts/dashboard";
 import Meetings from "layouts/meetings";
 import Users from "layouts/users";
@@ -14,9 +13,7 @@ import ZoomMeetingCreate from "layouts/meeting-create";
 import ZoomMeetingInfo from "layouts/meeting-details";
 import ContactUs from "layouts/docs/contact";
 import Privacy from "layouts/docs/privacy";
-import TermOfService from "layouts/docs/tos";
-
-// Soft UI Dashboard React icons
+import TOU from "layouts/docs/tou";
 import Shop from "examples/Icons/Shop";
 import Office from "examples/Icons/Office";
 import Document from "examples/Icons/Document";
@@ -25,7 +22,7 @@ import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import Documentation from "layouts/docs/documentation";
 import About from "layouts/docs/about";
-
+import Home from "layouts/docs/home";
 
 const routes = [
   {
@@ -185,14 +182,14 @@ const routes = [
     key: "tos",
     route: "/terms-of-use",
     icon: <Document size="12px" />,
-    component: TermOfService,
+    component: TOU,
     noCollapse: false,
     visible: false,
   },
   {
     type: "collapse",
-    name: "documentation",
-    key: "documentation",
+    name: "tos",
+    key: "tos",
     route: "/help",
     icon: <Document size="12px" />,
     component: Documentation,
@@ -201,11 +198,21 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "about",
-    key: "documentation",
-    route: "/help",
+    name: "tos",
+    key: "about",
+    route: "/about",
     icon: <Document size="12px" />,
-    component: Documentation,
+    component: About,
+    noCollapse: false,
+    visible: false,
+  },
+  {
+    type: "collapse",
+    name: "tos",
+    key: "home",
+    route: "/home",
+    icon: <Document size="12px" />,
+    component: Home,
     noCollapse: false,
     visible: false,
   },

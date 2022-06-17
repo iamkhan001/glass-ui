@@ -64,19 +64,7 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()}, made with
-        <SuiBox fontSize={size.regular} color="text" mb={-0.5} mx={0.25}>
-          <Icon color="inherit" fontSize="inherit">
-            favorite
-          </Icon>
-        </SuiBox>
-        by
-        <Link href={href} target="_blank">
-          <SuiTypography variant="button" fontWeight="medium">
-            &nbsp;{name}&nbsp;
-          </SuiTypography>
-        </Link>
-        for a better experience with Google Glass.
+        MI ROBOTIC &copy; 2022 
       </SuiBox>
       <SuiBox component="ul" customClass={classes.footer_list}>
         {renderLinks()}
@@ -89,10 +77,10 @@ function Footer({ company, links }) {
 Footer.defaultProps = {
   company: { href: "https://mirobotic.sg/", name: "MI ROBOTIC" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "MI ROBOTIC" },
-    { href: "https://mirobotic.sg/aboutus/", name: "About Us" },
-    { href: "https://mirobotic.sg/contactus/", name: "Contact Us" },
-    { href: "https://mirobotic.sg/services/", name: "Services" },
+    { href: "https://www.mirobotic.sg/", name: "MI ROBOTIC" },
+    { href: "https://mirobotic.sg/aboutus/", name: "ABOUT" },
+    { href: "https://mirobotic.sg/contactus/", name: "CONTACT" },
+    { href: "https://mirobotic.sg/services/", name: "SERVICES" },
   ],
 };
 

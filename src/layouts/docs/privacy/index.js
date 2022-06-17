@@ -130,7 +130,7 @@ function Privacy() {
       description="ZOOMABLE"
       image={curved6}
     >
-      <Card>
+      <Card p={3}>
         {policy}
       </Card>
     </BasicLayout>

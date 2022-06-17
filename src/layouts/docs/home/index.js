@@ -11,7 +11,7 @@ import curved6 from "assets/images/curved-images/curved14.jpg";
 
 import axios from "axios";
 
-function Privacy() {
+function Home() {
 
   const policy = (
     <Card className="h-100">
@@ -56,4 +56,4 @@ function Privacy() {
   );
 }
 
-export default Privacy;
+export default Home;

@@ -27,7 +27,7 @@ import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
 import styles from "examples/Sidenav/styles/sidenav";
 
 // Images
-import SoftUILogo from "assets/images/logo-ct.png";
+import AppLogo from "assets/images/logo.png";
 
 // Soft UI Dashboard React context
 import { useSoftUIController } from "context";
@@ -145,13 +145,13 @@ function Sidenav({ routes, ...rest }) {
         <NavLink to="/">
           <SuiBox
             component="img"
-            src={SoftUILogo}
-            alt="Soft UI Logo"
+            src={AppLogo}
+            alt="ZOOMABLE"
             customClass={classes.sidenav_logo}
           />
           <SuiBox customClass={classes.sidenav_logoLabel}>
             <SuiTypography component="h6" variant="button" fontWeight="medium">
-              MI ROBOTIC
+              ZOOMABLE
             </SuiTypography>
           </SuiBox>
         </NavLink>
