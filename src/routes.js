@@ -22,6 +22,7 @@ import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
 import Documentation from "layouts/docs/documentation";
 import About from "layouts/docs/about";
+import Home from "layouts/home";
 
 const routes = [
   {
@@ -202,6 +203,17 @@ const routes = [
     route: "/about",
     icon: <Document size="12px" />,
     component: About,
+    noCollapse: false,
+    visible: false,
+  },
+
+  {
+    type: "collapse",
+    name: "home",
+    key: "home",
+    route: "/home",
+    icon: <Document size="12px" />,
+    component: Home,
     noCollapse: false,
     visible: false,
   },

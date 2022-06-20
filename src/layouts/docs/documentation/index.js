@@ -14,9 +14,13 @@ import imgMeetingList from "assets/screens/meeting-list.png";
 import imgMeetingCreate from "assets/screens/meeting-create.png";
 import imgDashboard from "assets/screens/dashboard.png";
 import imgUserList from "assets/screens/user-list.png";
-import imgUserCreate from "assets/screens/user-add.png";
 import imgZoomConnect from "assets/screens/zoom-connect.png";
-import imgZoomRemove from "assets/screens/zoom-disconnect.png";
+
+import appLogin from "assets/screens/app/login.png";
+import appHome from "assets/screens/app/meetings.png";
+import appMeetingList from "assets/screens/app/meeting-list.png";
+import appScan from "assets/screens/app/scan-qr.png";
+import appMeetingStart from "assets/screens/app/meeting-start.png";
 
 import axios from "axios";
 const imgWidth = 600
@@ -108,6 +112,11 @@ function Documentation() {
                 />
                 <li>Open ZOOMABLE app on google glass</li>
                 <li>If user is not logged in, you will see login button on screen, tap on it to login</li>
+                <img
+                  width={imgWidth}
+                  src={appLogin}
+                  alt="Create meeting"
+                />
                 <li>Scan QR Code on google glass to login</li>
               </ol>
             </SuiTypography>
@@ -119,7 +128,23 @@ function Documentation() {
                 <li>Open ZOOMABLE app on your Google glass</li>
                 <li>If you are logged into app then you will see menu options on home screen</li>
                 <li>Select <b>My Meetings</b> to open meeting list. This screen will list all meetings created in ZOOMABLE web portal</li>
+                <img
+                  width={imgWidth}
+                  src={appHome}
+                  alt="Create meeting"
+                />
                 <li>Navigate into meeting list and tap on meeting you need to join</li>
+                <img
+                  width={imgWidth}
+                  src={appMeetingList}
+                  alt="Create meeting"
+                />
+                <li>Once meeting is started, you can use guestures to navigate between options shown in image below</li>
+                <img
+                  width={imgWidth}
+                  src={appMeetingStart}
+                  alt="Create meeting"
+                />
               </ol>
             </SuiTypography>
 
@@ -132,12 +157,37 @@ function Documentation() {
               <ol>
                 <li>Create QR code using zoom meeting link. You can create QR code using any online tool such as <a href="https://www.qrcode-monkey.com/" target={"blank"}>qrcode-monkey</a> </li>
                 <li>Open ZOOMABLE app on your Google Glass and select <b>Scan QR code</b> option</li>
+                <img
+                  width={imgWidth}
+                  src={appScan}
+                  alt="Create meeting"
+                />
                 <li>Now scan QR code created for your zoom meeting link and meeting will be joined</li>
               </ol>
             </SuiTypography>
-
-          
-
+            <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
+              App guestures
+            </SuiTypography>
+            <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
+              <ol>
+                <li><b>Swipe Left / Right:</b> Navigate between options on screen</li>
+                <li><b>Swipe Down:</b> Back or Exit from screen or app</li>
+              </ol>
+            </SuiTypography>
+            <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
+              Voice Commands
+            </SuiTypography>
+            <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
+              You can use voice commands to access app features. for every command you need to say wake-up keyword <b>"OK Glass"</b>
+              <ol>
+                <li><b>Ok Glass, My Meeting:</b> Open my meetings</li>
+                <li><b>Ok Glass, (Meeting title):</b> In Meetings screen, you can say meeting title or name followed by wake up word to join meeting</li>
+                <li><b>Ok Glass, Instant Meeting:</b> Start Instant Meeting</li>
+                <li><b>Ok Glass, Scan QR:</b> Scan QR Code to join meeting</li>
+                <li><b>Ok Glass, Logout:</b> Logout account from app</li>
+                <li><b>Ok Glass, Back:</b> Back to previous screen</li>
+              </ol>
+            </SuiTypography>
           </SuiBox>
       </Card>
     )

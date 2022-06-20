@@ -68,6 +68,7 @@ export default function App() {
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
+      
       if (route.collapse) {
         return getRoutes(route.collapse);
       }
@@ -78,42 +79,23 @@ export default function App() {
 
       return null;
     });
-
-
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <StylesProvider jss={jss}>
-        <ThemeProvider theme={themeRTL}>
-          <CssBaseline />
-          {layout === "dashboard" && (
-            <>
-              <Sidenav routes={routes} />
-              <Configurator />
-            </>
-          )}
-          {layout === "vr" && <Configurator />}
-          <Switch>
-            {getRoutes(routes)}
-            <Redirect from="*" to="/dashboard" />
-          </Switch>
-        </ThemeProvider>
-      </StylesProvider>
-    </CacheProvider>
-  ) : (
+  
+    console.log('layout', layout);
+  return  (
     // </CacheProvider>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {layout === "dashboard" && (
           <>
-            <Sidenav routes={routes} />
+            <Sidenav id={'sideNav'} routes={routes} />
             <Configurator />
           </>
         )}
         {layout === "vr" && <Configurator />}
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to="/home/" />
+          <Redirect from="*" to="/home" />
         </Switch>
       </ThemeProvider>
     </StyledEngineProvider>

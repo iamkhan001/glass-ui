@@ -13,6 +13,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 import {getDateTimeNow} from "utils/ext" 
+import Sidenav from "examples/Sidenav";
 
 // Soft UI Dashboard React base styles
 import {isAuthenticated, getUser} from "utils/session" 
@@ -50,6 +51,10 @@ function Dashboard() {
 
   useEffect(() => {loadCountsFromServer();}, [loadCounts])
 
+  const onHelpClick = () => {
+    console.log('onHelpClick')
+  }
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -78,7 +83,7 @@ function Dashboard() {
               <QrLogin />
             </Grid>
             <Grid item xs={12} lg={3}>
-              <ContactUs />
+              <ContactUs onHelpClick={onHelpClick}/>
             </Grid>
           </Grid>
         </SuiBox>
