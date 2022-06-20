@@ -17,6 +17,11 @@ function Footer() {
       <Grid container justifyContent="center">
         <Grid item xs={10} lg={8}>
           <SuiBox display="flex" justifyContent="center" flexWrap="wrap" mb={3}>
+          <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
+              <SuiTypography component="a" href="home/" variant="body2" textColor="secondary">
+                HOME
+              </SuiTypography>
+            </SuiBox>
             <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
               <SuiTypography component="a" href="privacy" variant="body2" textColor="secondary">
                 PRIVACY POLICY
