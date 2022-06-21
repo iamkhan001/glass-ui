@@ -172,7 +172,7 @@ useEffect(() => {loadZoomMeetings();}, [loadMeetings])
         <SuiBox mb={3}>
           <Card>
             <SuiBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <SuiTypography variant="h6">My meetings</SuiTypography>
+              <SuiTypography variant="h6">My meeting</SuiTypography>
               <SuiButton variant="gradient" buttonColor="dark"  onClick={() => setCreateMeeting()}>
                   <Icon className="material-icons-round font-bold">add</Icon>
                   &nbsp;Create Meeting

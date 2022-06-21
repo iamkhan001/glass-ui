@@ -34,7 +34,7 @@ function Documentation() {
               Connect Zoom account
             </SuiTypography>
             <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
-              <p>To access your meetings on ZOOMABLE, you need to connect your zoom account</p>
+              <p>To access your Meeting on ZOOMABLE, you need to connect your zoom account</p>
               <p>Open profile and click on <b>Connect Zoom</b>. you will be redirected to zoom for login and give access of your account to ZOOMABLE</p>
               <img
                   width={imgWidth}
@@ -47,7 +47,7 @@ function Documentation() {
               User Management
             </SuiTypography>
             <SuiTypography   ml={3} align='justify' fontWeight='light' variant='h6' >
-              With ZOOMABLE, you can share meetings with your staff or members in your team or organization. <br></br>
+              With ZOOMABLE, you can share Meeting with your staff or members in your team or organization. <br></br>
               To manage users, click on <b>Members</b> from navigation drawer and you will se list of members.<br></br>
               <img
                   width={imgWidth}
@@ -65,7 +65,7 @@ function Documentation() {
 
 
             <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
-              Zoom Meetings
+              Zoom Meeting
             </SuiTypography>
             <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
               <ol>
@@ -114,7 +114,7 @@ function Documentation() {
               <ol>
                 <li>Open ZOOMABLE app on your Google Glass EE2</li>
                 <li>If you are logged into app then you will see menu options on home screen</li>
-                <li>Select <b>My Meetings</b> to open meeting list. This screen will list all meetings created in ZOOMABLE web portal</li>
+                <li>Select <b>My Meeting</b> to open meeting list. This screen will list all meetings created in ZOOMABLE web portal</li>
                 <img
                   width={imgWidth}
                   src={appHome}
@@ -167,8 +167,8 @@ function Documentation() {
             <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
               You can use voice commands to access app features. for every command you need to say wake-up keyword <b>"OK Glass"</b>
               <ol>
-                <li><b>Ok Glass, My Meeting:</b> Open my meetings</li>
-                <li><b>Ok Glass, (Meeting title):</b> In Meetings screen, you can say meeting title or name followed by wake up word to join meeting</li>
+                <li><b>Ok Glass, My Meeting:</b> Open my Meeting</li>
+                <li><b>Ok Glass, (Meeting title):</b> In Meeting screen, you can say meeting title or name followed by wake up word to join meeting</li>
                 <li><b>Ok Glass, Instant Meeting:</b> Start Instant Meeting</li>
                 <li><b>Ok Glass, Scan QR:</b> Scan QR Code to join meeting</li>
                 <li><b>Ok Glass, Logout:</b> Logout account from app</li>

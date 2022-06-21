@@ -37,9 +37,9 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "My Meetings",
-    key: "meetings",
-    route: "/meetings",
+    name: "My meeting",
+    key: "meeting",
+    route: "/meeting",
     icon: <Office size="12px" />,
     component: Meetings,
     noCollapse: true,
@@ -63,7 +63,7 @@ const routes = [
     icon: <Cube size="12px" />,
     component: Licenses,
     noCollapse: true,
-    visible: true,
+    visible: false,
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {

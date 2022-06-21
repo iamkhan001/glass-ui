@@ -49,12 +49,12 @@ const appLink = "https://drive.google.com/file/d/1h6H6kP1C6kchkJlViUZqleqNmesHs9
 const cards = [
   {
     'name': 'Dashboard',
-    'info': 'It\'s an overview of your zoom meetings, staff and scan QR code to login into ZOOMABLE app on your Google Glass EE2',
+    'info': 'It\'s an overview of your zoom meeting, staff and scan QR code to login into ZOOMABLE app on your Google Glass EE2',
     'image': webDashboard,
   },
   {
-    'name': 'Meetings',
-    'info': 'Access your zoom meetings created on ZOOMABLE. you can add memebers in meeting to schedule meetings for them.',
+    'name': 'Meeting',
+    'info': 'Access your zoom meeting created on ZOOMABLE. you can add memebers in meeting to schedule Meeting for them.',
     'image': webMeetings,
   },
   // {
@@ -146,7 +146,7 @@ function content() {
               ZOOMABLE
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Access your zoom meetings on Google Glass EE2
+              Access your zoom Meeting on Google Glass EE2
             </Typography>
             <Stack
               sx={{ pt: 4 }}S
@@ -171,8 +171,8 @@ function content() {
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
               Using ZOOMABLE, you can access all of your meetings on Google Glass EE2. 
-              You can create meetings by login on zoomable.com, here you can create and manage users / staff in your business and create meetings for them.
-              We provide simple and easy to use UI on Google Glass EE2 for zoom meetings.
+              You can create meeting by login on zoomable.com, here you can create and manage users / staff in your business and create meeting for them.
+              We provide simple and easy to use UI on Google Glass EE2 for zoom meeting.
               Also you can join any zoom meeting by just scanning QR code via glass and join the meeting. 
           </Typography>
       </Container>
