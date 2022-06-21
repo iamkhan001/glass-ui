@@ -46,23 +46,10 @@ import BasicLayout from "./components/BasicLayout";
 
 const appLink = "https://drive.google.com/file/d/1h6H6kP1C6kchkJlViUZqleqNmesHs9gy/view?usp=sharing"
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const cards = [
   {
     'name': 'Dashboard',
-    'info': 'It\'s an overview of your zoom meetings, staff and scan QR code to login into ZOOMABLE app on your google glass',
+    'info': 'It\'s an overview of your zoom meetings, staff and scan QR code to login into ZOOMABLE app on your Google Glass EE2',
     'image': webDashboard,
   },
   {
@@ -70,26 +57,26 @@ const cards = [
     'info': 'Access your zoom meetings created on ZOOMABLE. you can add memebers in meeting to schedule meetings for them.',
     'image': webMeetings,
   },
-  {
-    'name': 'Members',
-    'info': 'Manage your staff or colleagues on ZOOMABLE. Invite them on ZOOMABLE to join your team',
-    'image': webUsers,
-  },
-  {
-    'name': 'Zoomable App',
-    'info': 'Access your zoom meetings on your google glass using ZOOMABLE app. You can Join meetings by navigating through meetings or by scaning QR code with zoom link.',
-    'image': appHome,
-  },
-  {
-    'name': 'Your Meetings',
-    'info': 'Access all meetings created for you using ZOOMABLE portal. You can also use voice commands to access your meetings.',
-    'image': appMeetingList,
-  },
-  {
-    'name': 'Join Meetings',
-    'info': 'Join your zoom meetings on ZOOMABLE with easy to use Interface specially designed for your Google Glass.',
-    'image': appMeetingStart,
-  }
+  // {
+  //   'name': 'Members',
+  //   'info': 'Manage your staff or colleagues on ZOOMABLE. Invite them on ZOOMABLE to join your team',
+  //   'image': webUsers,
+  // },
+  // {
+  //   'name': 'Zoomable App',
+  //   'info': 'Access your zoom meetings on your Google Glass EE2 using ZOOMABLE app. You can Join meetings by navigating through meetings or by scaning QR code with zoom link.',
+  //   'image': appHome,
+  // },
+  // {
+  //   'name': 'Your Meetings',
+  //   'info': 'Access all meetings created for you using ZOOMABLE portal. You can also use voice commands to access your meetings.',
+  //   'image': appMeetingList,
+  // },
+  // {
+  //   'name': 'Join Meetings',
+  //   'info': 'Join your zoom meetings on ZOOMABLE with easy to use Interface specially designed for your Google Glass EE2.',
+  //   'image': appMeetingStart,
+  // }
 ];
 
 const theme = createTheme();
@@ -107,6 +94,11 @@ function content() {
   const login = () => {
     history.push('/authentication/sign-in');
   }
+
+  const contact = () => {
+    history.push('/contact');
+  }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -154,7 +146,7 @@ function content() {
               ZOOMABLE
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Access your zoom meetings on Google Glass
+              Access your zoom meetings on Google Glass EE2
             </Typography>
             <Stack
               sx={{ pt: 4 }}S
@@ -162,7 +154,7 @@ function content() {
               spacing={2}
               justifyContent="center"
             >
-              <Button color='info' variant="outlined" onClick={() => openInNewTab(appLink)}>Get ZOOMABLE</Button>
+              <Button color='info' variant="outlined" onClick={() => contact()}>Contact Us</Button>
             </Stack>
           </Container>
         </Box>
@@ -178,9 +170,9 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-              Using ZOOMABLE, you can access all of your meetings on google glass. 
+              Using ZOOMABLE, you can access all of your meetings on Google Glass EE2. 
               You can create meetings by login on zoomable.com, here you can create and manage users / staff in your business and create meetings for them.
-              We provide simple and easy to use UI on google glass for zoom meetings.
+              We provide simple and easy to use UI on Google Glass EE2 for zoom meetings.
               Also you can join any zoom meeting by just scanning QR code via glass and join the meeting. 
           </Typography>
       </Container>

@@ -210,9 +210,8 @@ const contact = (
               </SuiBox>
             </SuiBox>
         </SuiBox>
-            <SuiTypography align='justify' fontWeight='light' variant='h6' >
+            <SuiTypography mt={0} align='justify' fontWeight='light' variant='h6' >
               <p  class="info">
-                In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us at:
                 <br />
                 <b>Phone</b> <br />
                 +65 9878 0603 <br />
