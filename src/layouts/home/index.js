@@ -170,7 +170,7 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-              Using ZOOMABLE, you can access all of your meetings on Google Glass EE2. 
+              Using ZOOMABLE, you can access all of your meeting on Google Glass EE2. 
               You can create meeting by login on zoomable.com, here you can create and manage users / staff in your business and create meeting for them.
               We provide simple and easy to use UI on Google Glass EE2 for zoom meeting.
               Also you can join any zoom meeting by just scanning QR code via glass and join the meeting. 

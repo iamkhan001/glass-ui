@@ -63,7 +63,7 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
-                title={{ text: "Upcoming meetings" }}
+                title={{ text: "Upcoming meeting" }}
                 count={counts.meetings}
                 icon={{ color: "info", component: "today" }}
               />
