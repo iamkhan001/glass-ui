@@ -64,7 +64,7 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        ZOOMABLE &copy; 2022 
+        MI ROBOTIC Pte Ltd &copy; 2022 
       </SuiBox>
       <SuiBox component="ul" customClass={classes.footer_list}>
         {renderLinks()}

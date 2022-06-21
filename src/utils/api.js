@@ -2,7 +2,7 @@ import axios from "axios";
 import {isAuthenticated, getAccessToken} from './session'
 
 // export const baseUrl = "http://localhost:8080/";
-export const baseUrl = "http://api.zoomable.tech/";
+export const baseUrl = "https://zoomable.tech/api/";
 
 export const zoomUrl = "https://api.zoom.us/v2";
 
