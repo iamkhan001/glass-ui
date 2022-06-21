@@ -64,7 +64,7 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        MI ROBOTIC &copy; 2022 
+        ZOOMABLE &copy; 2022 
       </SuiBox>
       <SuiBox component="ul" customClass={classes.footer_list}>
         {renderLinks()}
@@ -75,12 +75,12 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "https://mirobotic.sg/", name: "MI ROBOTIC" },
+  company: { href: "/home", name: "ZOOMABLE" },
   links: [
-    { href: "https://www.mirobotic.sg/", name: "MI ROBOTIC" },
-    { href: "https://mirobotic.sg/aboutus/", name: "ABOUT" },
-    { href: "https://mirobotic.sg/contactus/", name: "CONTACT" },
-    { href: "https://mirobotic.sg/services/", name: "SERVICES" },
+    { href: "/home", name: "ZOOMABLE" },
+    { href: "/about", name: "ABOUT" },
+    { href: "/contact", name: "CONTACT" },
+    { href: "/help", name: "HELP" },
   ],
 };
 
