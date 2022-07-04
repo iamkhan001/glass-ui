@@ -109,29 +109,29 @@ function SignUp() {
         <SuiBox pt={2} pb={3} px={3}>
           <SuiBox component="form" role="form">
             <SuiBox mb={2}>
-              <SuiInput type="name" placeholder="First Name" value={firstName} onChange={(e) => setFristName (e.target.value)} />
+              <SuiInput autoComplete="off"  type="name" placeholder="First Name" value={firstName} onChange={(e) => setFristName (e.target.value)} />
             </SuiBox>            
             <SuiBox mb={2}>
-              <SuiInput type="name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName (e.target.value)} />
+              <SuiInput autoComplete="off"  type="name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName (e.target.value)} />
             </SuiBox>   
             <SuiBox mb={2}>
-              <SuiInput type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} />
+              <SuiInput autoComplete="off"  name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} />
             </SuiBox>                     
             <SuiBox mb={2}>
-              <SuiInput type="name" placeholder="Company name (optional)" value={company} onChange={(e) => setCompany (e.target.value)} />
+              <SuiInput autoComplete="off"  type="name" placeholder="Company name (optional)" value={company} onChange={(e) => setCompany (e.target.value)} />
             </SuiBox>
             <SuiBox mb={2}>
-              <SuiInput type="phone" placeholder="Phone Number (optional)" value={mobile} onChange={(e) => setMobile (e.target.value)} />
+              <SuiInput autoComplete="off"  name="phone" type="phone" placeholder="Phone Number (optional)" value={mobile} onChange={(e) => setMobile (e.target.value)} />
             </SuiBox>
 
             <SuiBox mb={2}>
-              <SuiInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} />
+              <SuiInput autoComplete="off"  name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} />
             </SuiBox>
             <SuiBox mb={2}>
-              <SuiInput type="password" placeholder="Confirm Password" value={confPassword} onChange={(e) => setConfPassword (e.target.value)} />
+              <SuiInput autoComplete="off"  type="password" placeholder="Confirm Password" value={confPassword} onChange={(e) => setConfPassword (e.target.value)} />
             </SuiBox>
             <SuiBox mt={3} textAlign="center">
-            <SuiTypography mt={3} variant="button" fontWeight="regular" textColor="error" textAlign="center">
+            <SuiTypography mt={3}  variant="button" fontWeight="regular" textColor="error" textAlign="center">
               {error}
               </SuiTypography>
             </SuiBox>            
