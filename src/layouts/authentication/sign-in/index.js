@@ -14,6 +14,7 @@ import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import CoverLayout from "../components/CoverLayout";
+import {isAuthenticated} from "utils/session" 
 
 function SignIn() {
 
@@ -23,11 +24,11 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // if(isAuthenticated()) {
-  //   return <Redirect to='/dashboard'  />
-  // }
+  if(isAuthenticated()) {
+    return <Redirect to='/dashboard'  />
+  }
 
-  logout();
+  // logout();
 
   async function login() {
 

@@ -1,5 +1,10 @@
 import { useState, React } from "react";
 import { useHistory, Redirect, Link } from 'react-router-dom'
+
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import Footer from "examples/Footer";
+
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import SuiBox from "components/SuiBox";
@@ -13,12 +18,14 @@ import SuiButton from "components/SuiButton";
 import curved6 from "assets/images/curved-images/curved14.jpg";
 
 import axios from "axios";
+import {isAuthenticated} from "utils/session" 
 
 import {progressDialog, alertDialog} from "utils/diloag"
 import {Alert, AlertTitle} from "@mui/material";
 
 import { apiPostUnsecure, contactUsApi } from "utils/api";
 import validator from 'validator'
+
 
 function useQueryParams() {
     const params = new URLSearchParams(
@@ -128,7 +135,7 @@ function ContactUs() {
     apiPostUnsecure(contactUsApi, data,
       (response) => {
         hideProgress();
-        setShowAlertTitle('Message sent successfully. Our representative will connect with you soon.');
+        setShowAlertTitle('If you have not received any email from us within 2 working days, please check your spam folder or simply call / whatsapp us (+65 9878 0603). Sometimes your IT infrastructure block our reply');
      },
      (errorMsg) => {
         hideProgress();
@@ -216,12 +223,10 @@ const contact = (
                 <b>Phone</b> <br />
                 +65 9878 0603 <br />
                 <b>Email</b> <br />
-                info@mirobotic.sg <br />
+                hello@mirobotic.sg <br />
                 <b>Address</b><br />
                 <address>
-                    67 Ayer Rajah Crescent, #07-01<br />
-                    Singapore, Singapore 139950<br />
-                    Singapore<br />
+                67 Ayer Rajah Crescent, #07-01, Singapore 139950<br />
                 </address> 
               </p>
             </SuiTypography>
@@ -229,6 +234,22 @@ const contact = (
     </Card>
     )
 
+    if(isAuthenticated()) {
+      return (
+        <DashboardLayout>
+          <DashboardNavbar />
+          <SuiBox py={3}>
+            <Grid >
+                {progressDialog(progressTitle)}
+                {alertDialog(false, "You message was successfully submitted!", showAlertTitle, onAlertOk, () => {})}
+                {contact}
+            </Grid>
+          </SuiBox>
+          <Footer />
+        </DashboardLayout>
+      );
+    }
+    
   return (
     <BasicLayout
       title="CONTACT US"
@@ -239,7 +260,7 @@ const contact = (
         <Grid container justifyContent="center" >
           <Grid >
               {progressDialog(progressTitle)}
-              {alertDialog(false, "Done!.", showAlertTitle, onAlertOk, () => {})}
+              {alertDialog(false, "You message was successfully submitted!", showAlertTitle, onAlertOk, () => {})}
               {contact}
           </Grid>
         </Grid>

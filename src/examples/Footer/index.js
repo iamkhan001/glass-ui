@@ -38,7 +38,7 @@ function Footer({ company, links }) {
   const renderLinks = () =>
     links.map((link) => (
       <SuiBox key={link.name} component="li" px={2}>
-        <Link href={link.href} target="_blank">
+        <Link href={link.href} >
           <SuiTypography variant="button" fontWeight="regular" textColor="text">
             {link.name}
           </SuiTypography>
@@ -79,8 +79,8 @@ Footer.defaultProps = {
   links: [
     { href: "/home", name: "ZOOMABLE" },
     { href: "/about", name: "ABOUT" },
-    { href: "/contact", name: "CONTACT" },
-    { href: "/help", name: "HELP" },
+    { href: "/privacy", name: "PRIVACY POLICY" },
+    { href: "/tos", name: "TERMS OF SERVICE" },
   ],
 };
 

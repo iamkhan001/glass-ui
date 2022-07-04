@@ -20,9 +20,12 @@ import Document from "examples/Icons/Document";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import CreditCard from "examples/Icons/CreditCard";
 import Cube from "examples/Icons/Cube";
-import Documentation from "layouts/docs/documentation";
+import Help from "layouts/docs/help/help";
 import About from "layouts/docs/about";
 import Home from "layouts/home";
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const routes = [
   {
@@ -88,10 +91,30 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Help",
+    key: "help",
+    route: "/help",
+    icon: <HelpCenterIcon size="12px" />,
+    component: Help,
+    noCollapse: true,
+    visible: true,
+  },
+  {
+    type: "collapse",
+    name: "Contact Us",
+    key: "contact",
+    route: "/contact",
+    icon: <SupportAgentIcon size="12px" />,
+    component: ContactUs,
+    noCollapse: true,
+    visible: true,
+  },
+  {
+    type: "collapse",
     name: "Sign Out",
     key: "sign-out",
     route: "/authentication/sign-out",
-    icon: <Document size="12px" />,
+    icon: <LogoutIcon size="12px" />,
     component: SignOut,
     noCollapse: true,
     visible: true,
@@ -158,16 +181,6 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "contact",
-    key: "contact",
-    route: "/contact",
-    icon: <Document size="12px" />,
-    component: ContactUs,
-    noCollapse: false,
-    visible: false,
-  },
-  {
-    type: "collapse",
     name: "privacy",
     key: "privacy",
     route: "/privacy",
@@ -183,16 +196,6 @@ const routes = [
     route: "/terms-of-use",
     icon: <Document size="12px" />,
     component: TOU,
-    noCollapse: false,
-    visible: false,
-  },
-  {
-    type: "collapse",
-    name: "tos",
-    key: "tos",
-    route: "/help",
-    icon: <Document size="12px" />,
-    component: Documentation,
     noCollapse: false,
     visible: false,
   },

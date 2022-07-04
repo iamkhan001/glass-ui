@@ -170,11 +170,8 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-              Using ZOOMABLE, you can access all of your meeting on Google Glass EE2. 
-              You can create meeting by login on zoomable.com, here you can create and manage users / staff in your business and create meeting for them.
-              We provide simple and easy to use UI on Google Glass EE2 for zoom meeting.
-              Also you can join any zoom meeting by just scanning QR code via glass and join the meeting. 
-          </Typography>
+          Using ZOOMABLE, you can access all your meetings on Google Glass EE2. You can create meetings by login on zoomable.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
+           </Typography>
       </Container>
       <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}

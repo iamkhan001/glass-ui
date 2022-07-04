@@ -8,6 +8,7 @@ import { from } from "stylis";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 import SuiTypography from "components/SuiTypography";
+import Typography from '@mui/material/Typography';
 
 import {getDateTimeNow} from "utils/ext" 
 import {isAuthenticated, getUser, getUserEmail} from "utils/session" 
@@ -35,8 +36,7 @@ function getAlert(msg) {
 
   if(msg) {
     view = (
-      <Alert severity="info">
-        <AlertTitle>Alert!</AlertTitle>
+      <Alert severity="info" >
          {msg}
       </Alert>
     )
@@ -145,7 +145,7 @@ function Tables() {
           setMeetings(getMeetingRows(response.data.meetings, onCopyLink, onEdit, onDelete));
         }else {
           setMeetings([])
-          setError('Meetings not found!');
+          setError('There is no available meeting!');
         }
     },
     (errorMsg) => {
@@ -165,6 +165,11 @@ useEffect(() => {loadZoomMeetings();}, [loadMeetings])
     <DashboardLayout>
       <DashboardNavbar />
       <SuiBox py={3}>
+        <SuiBox mb={3}>
+            <SuiTypography variant='body2'>
+              You can add members in the meeting and create Zoom meeting through ZOOMABLE
+            </SuiTypography>
+          </SuiBox>
           {showToastMessage(showToast, "success", "Meeting link copied!", handleClose)}
           {getAlert(error)}
           {progressDialog(progressTitle)}

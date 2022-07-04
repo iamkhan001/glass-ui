@@ -234,7 +234,7 @@ function ZoomMeetings() {
             setDate('');
             setTime('');
             setDuration('');
-            showMessage('Meeting Created Successfully')
+            showMessage('Meeting is created successfully')
             return
           }
           showError(response.data.message)

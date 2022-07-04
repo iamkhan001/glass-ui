@@ -14,6 +14,7 @@ import Footer from "examples/Footer";
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 import {getDateTimeNow} from "utils/ext" 
 import Sidenav from "examples/Sidenav";
+import Typography from '@mui/material/Typography';
 
 // Soft UI Dashboard React base styles
 import {isAuthenticated, getUser} from "utils/session" 
@@ -55,10 +56,24 @@ function Dashboard() {
     console.log('onHelpClick')
   }
 
+  useEffect(() => {
+    let sideNav = document.getElementById("sideNav");
+    if (sideNav) {
+        sideNav.style.display = "";
+        console.log('sideNav',sideNav);
+    }
+    console.log('sideNav', sideNav )
+  }, [])
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <SuiBox py={3}>
+        <SuiBox mb={3}>
+          <Typography variant='body2'>
+            Overview of the number of Zoom meetings and users. You can login ZOOMABLE app via scan QR code
+          </Typography>
+        </SuiBox>
         <SuiBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
