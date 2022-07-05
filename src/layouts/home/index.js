@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { useState, useEffect } from "react";
 import { useHistory, Redirect } from 'react-router-dom'
 
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,36 +13,22 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Footer  from 'examples/Footer';
-import SuiButton from "components/SuiButton";
 
 import appLogo from "assets/images/logo.png";
 import bgVr from "assets/images/bg2.png";
 import webDashboard from "assets/screens/dashboard.png";
 import webMeetings from "assets/screens/meeting-list.png";
-import webUsers from "assets/screens/user-list.png";
 
-
-import appHome from "assets/screens/app/meetings.png";
-import appMeetingList from "assets/screens/app/meeting-list.png";
-import appMeetingStart from "assets/screens/app/meeting-start.png";
 
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
-
-import curved9 from "assets/images/curved-images/curved-6.jpg";
-import BasicLayout from "./components/BasicLayout";
-
-const appLink = "https://drive.google.com/file/d/1h6H6kP1C6kchkJlViUZqleqNmesHs9gy/view?usp=sharing"
 
 const cards = [
   {
@@ -222,11 +206,6 @@ function content() {
               <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
                 <Typography component="a" href="terms-of-use" variant="body2" textColor="secondary">
                   TERMS OF USE
-                </Typography>
-              </SuiBox>
-              <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
-                <Typography component="a" href="help" variant="body2" textColor="secondary">
-                  HELP
                 </Typography>
               </SuiBox>
               <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
