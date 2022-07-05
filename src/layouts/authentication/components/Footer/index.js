@@ -48,11 +48,11 @@ function Footer() {
               TERMS OF USE
             </SuiTypography>
           </SuiBox>
-          <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
+          {/* <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
             <SuiTypography component="a" href="/help" variant="body2" textColor="secondary">
               HELP
             </SuiTypography>
-          </SuiBox>
+          </SuiBox> */}
           <SuiBox mr={{ xs: 2, lg: 3, xl: 6 }}>
             <SuiTypography component="a" href="/about" variant="body2" textColor="secondary">
               ABOUT
