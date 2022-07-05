@@ -115,7 +115,11 @@ function SignUp() {
               <SuiInput autoComplete="off"  type="name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName (e.target.value)} />
             </SuiBox>   
             <SuiBox mb={2}>
-              <SuiInput autoComplete="off"  name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} />
+              <SuiInput autoComplete="off"  name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} 
+                onFocus={(event) => {
+                  event.target.setAttribute('autocomplete', 'off');
+                  console.log(event.target.autocomplete);
+                }}/>
             </SuiBox>                     
             <SuiBox mb={2}>
               <SuiInput autoComplete="off"  type="name" placeholder="Company name (optional)" value={company} onChange={(e) => setCompany (e.target.value)} />
@@ -125,7 +129,10 @@ function SignUp() {
             </SuiBox>
 
             <SuiBox mb={2}>
-              <SuiInput autoComplete="off"  name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} />
+              <SuiInput autoComplete="off"  name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} onFocus={(event) => {
+                  event.target.setAttribute('autocomplete', 'off');
+                  console.log(event.target.autocomplete);
+                }} />
             </SuiBox>
             <SuiBox mb={2}>
               <SuiInput autoComplete="off"  type="password" placeholder="Confirm Password" value={confPassword} onChange={(e) => setConfPassword (e.target.value)} />

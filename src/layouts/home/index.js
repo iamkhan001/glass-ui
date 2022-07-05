@@ -49,12 +49,12 @@ const appLink = "https://drive.google.com/file/d/1h6H6kP1C6kchkJlViUZqleqNmesHs9
 const cards = [
   {
     'name': 'Dashboard',
-    'info': 'It\'s an overview of your zoom meeting, staff and scan QR code to login into ZOOMABLE app on your Google Glass EE2',
+    'info': 'Overview of the number of Zoom meetings and users. You can login ZOOMABLE app via scan QR code',
     'image': webDashboard,
   },
   {
     'name': 'Meeting',
-    'info': 'Access your zoom meeting created on ZOOMABLE. you can add memebers in meeting to schedule Meeting for them.',
+    'info': 'You can add members in the meeting and create Zoom meeting through ZOOMABLE',
     'image': webMeetings,
   },
   // {
@@ -170,8 +170,8 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-          Using ZOOMABLE, you can access all your meetings on Google Glass EE2. You can create meetings by login on zoomable.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
-           </Typography>
+            Using ZOOMABLE, you can access all your meetings on Google Glass EE2. You can create meetings by login on zoomable.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
+          </Typography>
       </Container>
       <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
