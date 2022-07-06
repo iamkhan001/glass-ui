@@ -14,6 +14,7 @@ import appHome from "assets/screens/app/meetings.png";
 import appMeetingList from "assets/screens/app/meeting-list.png";
 import appScan from "assets/screens/app/scan-qr.png";
 import appMeetingStart from "assets/screens/app/meeting-start.png";
+import imgDisconnect from "assets/screens/disconnect.png";
 
 const imgWidth = 600
 
@@ -168,6 +169,20 @@ export const content = () => {
                     <li><b>Ok Glass, Back:</b> Back to previous screen</li>
                   </ol>
                 </SuiTypography>
+
+                <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
+                  Disconnect / Remove Zoom account
+                </SuiTypography>
+                <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
+                  <p>If you want to change zoom account or remove zoom account from ZOOMABLE, then just got to profile and click on disconnect zoom button as shown in image below.</p>
+                  <p>Note: Once you disconnected your zoom account, It will also delete all meetings created on ZOOMABLE. </p>
+                  <img
+                      width={imgWidth}
+                      src={imgDisconnect}
+                      alt="Disconnect Zoom"
+                    />
+                </SuiTypography>
+
               </SuiBox>
           </Card>
         )
