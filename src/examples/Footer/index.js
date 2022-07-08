@@ -75,9 +75,9 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "/home", name: "ZOOMABLE" },
+  company: { href: "/home", name: "ZCONNECT" },
   links: [
-    { href: "/home", name: "ZOOMABLE" },
+    { href: "/home", name: "ZCONNECT" },
     { href: "/about", name: "ABOUT" },
     { href: "/privacy", name: "PRIVACY POLICY" },
     { href: "/tos", name: "TERMS OF SERVICE" },

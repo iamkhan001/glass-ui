@@ -14,7 +14,7 @@ import appHome from "assets/screens/app/meetings.png";
 import appMeetingList from "assets/screens/app/meeting-list.png";
 import appScan from "assets/screens/app/scan-qr.png";
 import appMeetingStart from "assets/screens/app/meeting-start.png";
-import imgDisconnect from "assets/screens/disconnect.png";
+import imgDisconnect from "assets/screens/zoom-disconnect.png";
 
 const imgWidth = 600
 

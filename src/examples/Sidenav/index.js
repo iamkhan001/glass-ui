@@ -146,12 +146,12 @@ function Sidenav({ routes, ...rest }) {
           <SuiBox
             component="img"
             src={AppLogo}
-            alt="ZOOMABLE"
+            alt="ZCONNECT"
             customClass={classes.sidenav_logo}
           />
           <SuiBox customClass={classes.sidenav_logoLabel}>
             <SuiTypography component="h6" variant="button" fontWeight="medium">
-              ZOOMABLE
+              ZCONNECT
             </SuiTypography>
           </SuiBox>
         </NavLink>

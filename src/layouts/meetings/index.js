@@ -167,7 +167,7 @@ useEffect(() => {loadZoomMeetings();}, [loadMeetings])
       <SuiBox py={3}>
         <SuiBox mb={3}>
             <SuiTypography variant='body2'>
-              You can add members in the meeting and create Zoom meeting through ZOOMABLE
+              You can add members in the meeting and create Zoom meeting through ZCONNECT
             </SuiTypography>
           </SuiBox>
           {showToastMessage(showToast, "success", "Meeting link copied!", handleClose)}
