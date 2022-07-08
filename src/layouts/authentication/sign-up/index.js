@@ -96,7 +96,7 @@ function SignUp() {
 
   return (
     <BasicLayout
-      title="Welcome to MI ROBOTIC!"
+      title="Welcome to ZCONNECT!"
       description="A leading tech company in AI and VR"
       image={curved6}
     >

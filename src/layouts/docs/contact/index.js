@@ -253,7 +253,7 @@ const contact = (
   return (
     <BasicLayout
       title="CONTACT US"
-      description="ZOOMABLE"
+      description="ZCONNECT"
       image={curved6}
     >
       <Card p={3}>

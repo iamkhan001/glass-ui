@@ -71,7 +71,7 @@ function Dashboard() {
       <SuiBox py={3}>
         <SuiBox mb={3}>
           <Typography variant='body2'>
-            Overview of the number of Zoom meetings and users. You can login ZOOMABLE app via scan QR code
+            Overview of the number of Zoom meetings and users. You can login ZCONNECT app via scan QR code
           </Typography>
         </SuiBox>
         <SuiBox mb={3}>

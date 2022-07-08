@@ -35,7 +35,7 @@ function Help() {
   return (
     <BasicLayout
       title="HELP"
-      description="ZOOMABLE"
+      description="ZCONNECT"
       image={curved6}
     >
       <Card p={3}>

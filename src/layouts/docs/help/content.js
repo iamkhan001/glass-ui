@@ -28,8 +28,8 @@ export const content = () => {
                   Connect Zoom account
                 </SuiTypography>
                 <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
-                  <p>To access your Meeting on ZOOMABLE, you need to connect your zoom account</p>
-                  <p>Open profile and click on <b>Connect Zoom</b>. you will be redirected to zoom for login and give access of your account to ZOOMABLE</p>
+                  <p>To access your Meeting on ZCONNECT, you need to connect your zoom account</p>
+                  <p>Open profile and click on <b>Connect Zoom</b>. you will be redirected to zoom for login and give access of your account to ZCONNECT</p>
                   <img
                       width={imgWidth}
                       src={imgZoomConnect}
@@ -41,7 +41,7 @@ export const content = () => {
                   User Management
                 </SuiTypography>
                 <SuiTypography   ml={3} align='justify' fontWeight='light' variant='h6' >
-                  With ZOOMABLE, you can share Meeting with your staff or members in your team or organization. <br></br>
+                  With ZCONNECT, you can share Meeting with your staff or members in your team or organization. <br></br>
                   To manage users, click on <b>Members</b> from navigation drawer and you will se list of members.<br></br>
                   <img
                       width={imgWidth}
@@ -52,7 +52,7 @@ export const content = () => {
                   <ol>
                     <li>See list of all members</li>
                     <li>Add / Edit Members</li>
-                    <li>Create QR code for user to login into ZOOMABLE app on Google Glass EE2</li>
+                    <li>Create QR code for user to login into ZCONNECT app on Google Glass EE2</li>
                     <li>Activate, Deactivate or Delete members</li>
                   </ol>
                 </SuiTypography>
@@ -80,18 +80,18 @@ export const content = () => {
                   
                 </SuiTypography>
                 <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
-                  Login into ZOOMABLE app on your Google Glass EE2
+                  Login into ZCONNECT app on your Google Glass EE2
                 </SuiTypography>
                 <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
                   <ol>
-                    <li>Login your account on www.zoomable.tech</li>
+                    <li>Login your account on www.ZCONNECT.tech</li>
                     <li>On dashboard, you will see QR code of your account</li>
                     <img
                       width={imgWidth}
                       src={imgDashboard}
                       alt="Create meeting"
                     />
-                    <li>Open ZOOMABLE app on Google Glass EE2</li>
+                    <li>Open ZCONNECT app on Google Glass EE2</li>
                     <li>If user is not logged in, you will see login button on screen, tap on it to login</li>
                     <img
                       width={imgWidth}
@@ -106,9 +106,9 @@ export const content = () => {
                 </SuiTypography>
                 <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
                   <ol>
-                    <li>Open ZOOMABLE app on your Google Glass EE2</li>
+                    <li>Open ZCONNECT app on your Google Glass EE2</li>
                     <li>If you are logged into app then you will see menu options on home screen</li>
-                    <li>Select <b>My Meeting</b> to open meeting list. This screen will list all meetings created in ZOOMABLE web portal</li>
+                    <li>Select <b>My Meeting</b> to open meeting list. This screen will list all meetings created in ZCONNECT web portal</li>
                     <img
                       width={imgWidth}
                       src={appHome}
@@ -133,11 +133,11 @@ export const content = () => {
                   Join meeting using QR Code
                 </SuiTypography>
                 <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
-                  You can join any zoom meeting on your Google Glass EE2 using ZOOMABLE.
+                  You can join any zoom meeting on your Google Glass EE2 using ZCONNECT.
                   Follow following steps to join meeting
                   <ol>
                     <li>Create QR code using zoom meeting link. You can create QR code using any online tool such as <a href="https://www.qrcode-monkey.com/" target={"blank"}>qrcode-monkey</a> </li>
-                    <li>Open ZOOMABLE app on your Google Glass EE2 and select <b>Scan QR code</b> option</li>
+                    <li>Open ZCONNECT app on your Google Glass EE2 and select <b>Scan QR code</b> option</li>
                     <img
                       width={imgWidth}
                       src={appScan}
@@ -174,8 +174,8 @@ export const content = () => {
                   Disconnect / Remove Zoom account
                 </SuiTypography>
                 <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
-                  <p>If you want to change zoom account or remove zoom account from ZOOMABLE, then just got to profile and click on disconnect zoom button as shown in image below.</p>
-                  <p>Note: Once you disconnected your zoom account, It will also delete all meetings created on ZOOMABLE. </p>
+                  <p>If you want to change zoom account or remove zoom account from ZCONNECT, then just got to profile and click on disconnect zoom button as shown in image below.</p>
+                  <p>Note: Once you disconnected your zoom account, It will also delete all meetings created on ZCONNECT. </p>
                   <img
                       width={imgWidth}
                       src={imgDisconnect}

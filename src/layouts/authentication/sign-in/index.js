@@ -67,7 +67,7 @@ function SignIn() {
 
   return (
     <CoverLayout
-      title="Welcome to MI ROBOTIC!"
+      title="Welcome to ZCONNECT!"
       description="Enter your email and password to sign in"
       image={curved9}
     >

@@ -33,32 +33,32 @@ import SuiBox from "components/SuiBox";
 const cards = [
   {
     'name': 'Dashboard',
-    'info': 'Overview of the number of Zoom meetings and users. You can login ZOOMABLE app via scan QR code',
+    'info': 'Overview of the number of Zoom meetings and users. You can login ZCONNECT app via scan QR code',
     'image': webDashboard,
   },
   {
     'name': 'Meeting',
-    'info': 'You can add members in the meeting and create Zoom meeting through ZOOMABLE',
+    'info': 'You can add members in the meeting and create Zoom meeting through ZCONNECT',
     'image': webMeetings,
   },
   // {
   //   'name': 'Members',
-  //   'info': 'Manage your staff or colleagues on ZOOMABLE. Invite them on ZOOMABLE to join your team',
+  //   'info': 'Manage your staff or colleagues on ZCONNECT. Invite them on ZCONNECT to join your team',
   //   'image': webUsers,
   // },
   // {
-  //   'name': 'Zoomable App',
-  //   'info': 'Access your zoom meetings on your Google Glass EE2 using ZOOMABLE app. You can Join meetings by navigating through meetings or by scaning QR code with zoom link.',
+  //   'name': 'ZCONNECT App',
+  //   'info': 'Access your zoom meetings on your Google Glass EE2 using ZCONNECT app. You can Join meetings by navigating through meetings or by scaning QR code with zoom link.',
   //   'image': appHome,
   // },
   // {
   //   'name': 'Your Meetings',
-  //   'info': 'Access all meetings created for you using ZOOMABLE portal. You can also use voice commands to access your meetings.',
+  //   'info': 'Access all meetings created for you using ZCONNECT portal. You can also use voice commands to access your meetings.',
   //   'image': appMeetingList,
   // },
   // {
   //   'name': 'Join Meetings',
-  //   'info': 'Join your zoom meetings on ZOOMABLE with easy to use Interface specially designed for your Google Glass EE2.',
+  //   'info': 'Join your zoom meetings on ZCONNECT with easy to use Interface specially designed for your Google Glass EE2.',
   //   'image': appMeetingStart,
   // }
 ];
@@ -95,7 +95,7 @@ function content() {
             alt="Create meeting"
           />
           <Typography variant="h6" color="inherit" noWrap>
-            ZOOMABLE
+            ZCONNECT
           </Typography>
 
           <div>
@@ -127,7 +127,7 @@ function content() {
               color="text.primary"
               gutterBottom
             >
-              ZOOMABLE
+              ZCONNECT
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
               Access your zoom Meeting on Google Glass EE2
@@ -154,7 +154,7 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-            Using ZOOMABLE, you can access all your meetings on Google Glass EE2. You can create meetings by login on zoomable.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
+            Using ZCONNECT, you can access all your meetings on Google Glass EE2. You can create meetings by login on ZCONNECT.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
           </Typography>
       </Container>
       <Container sx={{ py: 8 }} maxWidth="md">
