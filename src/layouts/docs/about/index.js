@@ -23,7 +23,7 @@ function About() {
                 <Divider />
               </SuiBox>
               <SuiTypography align='justify' fontWeight='light' variant='h6' >
-                Using ZCONNECT, you can access all of your Zoom meeting on Google Glass EE2. You can create meeting by login on zconnect.tech, here you can create and manage users / staff in your business and create meeting. We provide simple and easy to use UI on Google Glass EE2 for Zoom meeting. Also you can join any Zoom meeting by just scanning QR code via Google Glass EE2 and join the meeting.
+                Using ZCONNECT, you can access all of your Zoom meeting on Google Glass EE2. You can create meeting by login on ZCONNECT.tech, here you can create and manage users / staff in your business and create meeting. We provide simple and easy to use UI on Google Glass EE2 for Zoom meeting. Also you can join any Zoom meeting by just scanning QR code via Google Glass EE2 and join the meeting.
               </SuiTypography>
           </SuiBox>
       </Card>

@@ -154,7 +154,7 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-            Using ZCONNECT, you can access all your meetings on Google Glass EE2. You can create meetings by login on ZCONNECT.com, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
+            Using ZCONNECT, you can access all your meetings on Google Glass EE2. You can create meetings by login on ZCONNECT.tech, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
           </Typography>
       </Container>
       <Container sx={{ py: 8 }} maxWidth="md">

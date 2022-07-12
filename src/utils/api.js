@@ -9,7 +9,7 @@ export const zoomUrl = "https://api.zoom.us/v2";
 const zoomToken = ""
 
 
-export const zoomConnectUrl = 'https://zoom.us/oauth/authorize?client_id=StvnB7AzT4ei1_thga9krg&response_type=code&redirect_uri=https%3A%2F%2Fzoomable.tech%2Fauthentication%2Fzoom&state=';
+export const zoomConnectUrl = 'https://zoom.us/oauth/authorize?client_id=StvnB7AzT4ei1_thga9krg&response_type=code&redirect_uri=https%3A%2F%2Fzconnect.tech%2Fauthentication%2Fzoom&state=';
 export const zoomAuthApi = "zoom/auth/";
 export const zoomProfileApi = "zoom/profile/";
 export const contactUsApi = "zoom/contact/";

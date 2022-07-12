@@ -10,6 +10,7 @@ import BasicLayout from "layouts/docs/components/BasicLayout";
 import curved6 from "assets/images/curved-images/curved14.jpg";
 
 import axios from "axios";
+import { Box } from "@mui/material";
 
 function Privacy() {
 
@@ -17,7 +18,7 @@ function Privacy() {
     <Card className="h-100">
           <SuiBox py={2} px={4}>
             <SuiTypography  align='justify' fontWeight='light' variant='h6' >
-              <p>At ZCONNECT accessible from <a href="https://zconnect.tech">zconnect.tech</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ZCONNECT.tech and how we use it.</p>
+              <p>At ZCONNECT accessible from <a href="https://ZCONNECT.tech">ZCONNECT.tech</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ZCONNECT.tech and how we use it.</p>
               <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
               <p>This Privacy Policy applies only to our online activities and is valid for users of our website with regards to the information that they shared and/or collect in ZCONNECT.tech. This policy is not applicable to any information collected offline or via channels other than this website. </p>
             </SuiTypography>
@@ -46,15 +47,17 @@ function Privacy() {
             </SuiTypography>
             <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
               <p>We use the information we collect in various ways, including to:</p>
-              <ul>
-                <li>Provide, operate, and maintain our website</li>
-                <li>Improve, personalize, and expand our website</li>
-                <li>Understand and analyze how you use our website</li>
-                <li>Develop new products, services, features, and functionality</li>
-                <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
-                <li>Send you emails</li>
-                <li>Find and prevent fraud</li>
-              </ul>
+              <Box ml={2}>
+                <ul >
+                  <li>Provide, operate, and maintain our website</li>
+                  <li>Improve, personalize, and expand our website</li>
+                  <li>Understand and analyze how you use our website</li>
+                  <li>Develop new products, services, features, and functionality</li>
+                  <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
+                  <li>Send you emails</li>
+                  <li>Find and prevent fraud</li>
+                </ul>
+              </Box>
             </SuiTypography>
 
             <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
