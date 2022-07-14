@@ -130,7 +130,7 @@ function content() {
               ZCONNECT
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Access your Zoom Meeting on Google Glass EE2
+              Access your Zoom meeting on Google Glass EE2
             </Typography>
             <Stack
               sx={{ pt: 4 }}S
