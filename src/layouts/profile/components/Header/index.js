@@ -79,7 +79,7 @@ function Header({companyId, name, roleName, isAdmin, isZoomConnected, onDisconne
         if(isAdmin) {
           return (
             <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-              <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
+              <SuiButton  style={{ marginLeft: "auto", textTransform: 'none' }} variant="gradient" buttonColor="info" onClick={() => openInNewTab()} >
                   Connect Zoom
               </SuiButton>
             </Grid>
@@ -88,7 +88,7 @@ function Header({companyId, name, roleName, isAdmin, isZoomConnected, onDisconne
 
         return (
           <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-            <SuiButton style={{ marginLeft: "auto" }} variant="button" textColor="text" fontWeight="medium" >
+            <SuiButton style={{ marginLeft: "auto", textTransform: 'none' }} variant="button" textColor="text" fontWeight="medium" >
               Zoom not connected
             </SuiButton>
           </Grid>
@@ -97,10 +97,10 @@ function Header({companyId, name, roleName, isAdmin, isZoomConnected, onDisconne
     if(isAdmin) {
       return (
         <Grid item xs={12} md={6} lg={4} fullWidth  className="ml-auto" style={{ display: "flex" }}>
-          <SuiButton style={{ marginLeft: "auto" }} variant="labled" textColor="text" fontWeight="medium" >
+          <SuiButton style={{ marginLeft: "auto", textTransform: 'none' }} variant="labled" textColor="text" fontWeight="medium" >
               Zoom Connected
           </SuiButton>
-          <SuiButton style={{ marginLeft: "auto" }} variant="gradient" buttonColor="error" onClick={() => onDisconnect()} >
+          <SuiButton style={{ marginLeft: "auto", textTransform: 'none' }} variant="gradient" buttonColor="error" onClick={() => onDisconnect()} >
               Disconnect Zoom
           </SuiButton>
         </Grid>

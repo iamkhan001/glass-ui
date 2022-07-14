@@ -94,13 +94,13 @@ function Tables() {
   }
 
   function onEdit(id, title) {
-    console.log('edit >> ', id, title);
+    console.log('edit >> ', title);
   }
 
   function onDelete(id, title) {
     setMeetingId(id);
     setShowAlertMessage(`Do you want to delete ${title} meeting?`)
-    console.log('onDelete >> ', meetingId, title);
+    // console.log('onDelete >> ', meetingId, title);
   }
 
   function onAlertOk() {
@@ -111,7 +111,7 @@ function Tables() {
       'meeting': meetingId
     }
 
-    console.log(`OK ${meetingId}`);
+    // console.log(`OK ${meetingId}`);
     setProgressTitle('Deleting Meeting')
     apiPostSecure(meetingsApi,  data,
       (response) => {
@@ -131,11 +131,11 @@ function Tables() {
 
   function onAlertCancel() {
     setShowAlertMessage('')
-    console.log('onAlertCancel');
+    // console.log('onAlertCancel');
   }
 
   const loadZoomMeetings = async () => {
-    console.log('loadZoomMeetings');
+    // console.log('loadZoomMeetings');
     setProgressTitle("Loading meetings!")
     apiCallSecureGet(`${meetingsApi}?email=${getUserEmail()}&date=${getDateTimeNow()}`,
     (response) => {
@@ -150,11 +150,11 @@ function Tables() {
     },
     (errorMsg) => {
       setProgressTitle("")
-        console.log('error >>> ', errorMsg);
+        // console.log('error >>> ', errorMsg);
         setLoadMeetings(false);
         setError('Something went wrong!');
         setInterval( () => {setError('')}, 3000);
-        console.log('ui error', errorMsg||'Error');
+        // console.log('ui error', errorMsg||'Error');
       }
     )
 }

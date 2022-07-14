@@ -67,7 +67,7 @@ function generatePassword(length) {
     for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
-  console.log('password', result);
+  // console.log('password', result);
   return result;
 }
 
@@ -111,7 +111,7 @@ function ZoomMeetings() {
   };
 
   const loadMembers = async () => {
-    console.log('loadMembers');
+    // console.log('loadMembers');
     apiCallSecureGet(membersApi,
     (response) => {
         setLoadUsers(false);
@@ -131,7 +131,7 @@ function ZoomMeetings() {
     (errorMsg) => {
         setLoadUsers(false);
         showError(errorMsg||'Error');
-        console.log('ui error', errorMsg||'Error');
+        // console.log('ui error', errorMsg||'Error');
       }
     )
   }
@@ -150,21 +150,16 @@ function ZoomMeetings() {
     setTimeout( () => {setMessage('')}, 3000);
   }
 
-  function handleChange(selectedOption){
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
-    );
-  };
 
   const timezoneOffset = getTimeZone();
 
-  console.log('TZ > ',timezoneOffset);
+  // console.log('TZ > ',timezoneOffset);
 
   const createMeeting = () => {
 
-    console.log('selectedOption', selectedOption);
+    // console.log('selectedOption', selectedOption);
     
-    console.log('create meeting', selectedOption.length);
+    // console.log('create meeting', selectedOption.length);
 
     if(selectedOption.length < 1) {
       showError('Please selec members for this meeting')
@@ -221,7 +216,7 @@ function ZoomMeetings() {
         'members': meetingMembers
     }
 
-    console.log('body', body);
+    // console.log('body', body);
 
     setProgress('Creating Meeting')
 
@@ -245,13 +240,13 @@ function ZoomMeetings() {
       })
   }
 
-  console.log('getTimeNow', date, time);
+  // console.log('getTimeNow', date, time);
   // setTime(timeNow)
 
-  console.log('members', members.length);
+  // console.log('members', members.length);
 
   function onBack() {
-    console.log('on back');
+    // console.log('on back');
     history.goBack();
   }
 

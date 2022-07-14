@@ -6,7 +6,7 @@ export function getAccessToken() {
 
 export function isAuthenticated() {
     const access = sessionStorage.getItem('access', null);
-    console.log(`access >> ${access}`);
+    // console.log(`access >> ${access}`);
     
     if(access != null) {
         return true
@@ -18,8 +18,8 @@ export function isAuthenticated() {
 export default isAuthenticated;
 
 export function saveUser(result) {
-    console.log('save >> ', result);
-    console.log('save user_id >> ', result.account.accountId);
+    // console.log('save >> ', result);
+    // console.log('save user_id >> ', result.account.accountId);
 
     sessionStorage.setItem('refresh', result.refresh)
     sessionStorage.setItem('access',result.access)
@@ -89,7 +89,7 @@ export function logout() {
 
     localStorage.clear();
 
-    console.log(`clear storage:`)
+    // console.log(`clear storage:`)
 }
 
 export function getUser(){
@@ -123,7 +123,7 @@ export function getCompanyId() {
 
 export function isZoomConnected() {
     const token = sessionStorage.getItem('token_type', null);
-    console.log('token', token);
+    // console.log('token', token);
     return token === 'bearer'
 }
 

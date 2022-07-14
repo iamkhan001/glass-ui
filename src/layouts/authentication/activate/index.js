@@ -42,7 +42,7 @@ function SignIn() {
 
   const { token } = useQueryParams();
 
-  console.log(token)
+  // console.log(token)
 
   function showProgress(title) {
     setProgressTitle(title)
@@ -96,7 +96,7 @@ function SignIn() {
 
   }
 
-  console.log('screen login');
+  // console.log('screen login');
 
   function getContent(user) {
 
@@ -157,7 +157,7 @@ function SignIn() {
       return
     }
     showProgress('Please wait!');
-    console.log('verifyToken');
+    // console.log('verifyToken');
     apiCallUnsecureGet(`${verifyTokenApi}?token=${token}`,
     (response) => {
         setVerifyToken(false);

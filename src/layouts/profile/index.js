@@ -76,12 +76,12 @@ function Overview() {
          setLoadProfile(false);
          setError(errorMsg||'Error');
          setInterval( () => {setError('')}, 3000);
-         console.log('ui error', errorMsg||'Error');
+        //  console.log('ui error', errorMsg||'Error');
      }
     )
   },[loadProfile])
 
-  console.log('screen profile');
+  // console.log('screen profile');
   
   function onAlertOk() {
     setShowAlertMessage('');
@@ -95,7 +95,7 @@ function Overview() {
   function onDisconnectAlertOk() {
 
     setDisconnectMessage('');
-    setProgressTitle("Removing zoom account!")
+    setProgressTitle("Removing Zoom account!")
     apiCallSecureGet(disconnectApi,
       (response) => {
         setProgressTitle('');
@@ -105,7 +105,7 @@ function Overview() {
          setProgressTitle('');
          setError(errorMsg||'Error');
          setInterval( () => {setError('')}, 3000);
-         console.log('ui error', errorMsg||'Error');
+        //  console.log('ui error', errorMsg||'Error');
      }
     )
   }
@@ -211,8 +211,8 @@ function Overview() {
   }
 
   function onDisconnect() {
-    console.log('onDisconnect')
-    setDisconnectMessage("Do you want to disconnect zoom account?")
+    // console.log('onDisconnect')
+    setDisconnectMessage("Do you want to disconnect Zoom account?")
   }
 
   let scope = '----'
@@ -227,7 +227,7 @@ function Overview() {
       {getAlert(error)}
       {progressDialog(progressTitle)}
       {alertDialog(showAlertCancel, showAlertTitle, showAlertMessage, onAlertOk, onAlertCancel)}
-      {alertDialog(true, "Disconnect zoom?", disconnectMessage, onDisconnectAlertOk, onDisconnectAlertCancel)}
+      {alertDialog(true, "Disconnect Zoom?", disconnectMessage, onDisconnectAlertOk, onDisconnectAlertCancel)}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>
           <ProfileInfoCard
@@ -239,7 +239,7 @@ function Overview() {
                 email: `${user.email}`,
                 location: `location`,
                 role: "Admin",
-                zoom_scope: scope || "----"
+                'Zoom scope': scope || "----"
               }}
               social={[
               ]}

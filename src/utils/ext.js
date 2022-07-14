@@ -43,7 +43,7 @@ export function getTimeZone(){
 
 export const getDateTimeNow = () => {
     const now = Moment().format("YYYY-MM-DDTHH:mm:ss");
-    console.log('now', now);
+    // console.log('now', now);
     return now;
 }
 

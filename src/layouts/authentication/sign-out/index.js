@@ -56,7 +56,7 @@ function SignIn() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  console.log('screen login');
+  // console.log('screen login');
 
   return (
     <CoverLayout

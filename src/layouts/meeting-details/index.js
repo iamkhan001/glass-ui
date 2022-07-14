@@ -77,7 +77,7 @@ function Tables() {
 
   function onCopyText(text) {
     navigator.clipboard.writeText(text);
-    console.log('copy >> ', text);
+    // console.log('copy >> ', text);
     setShowToast(true)
   }
 
@@ -174,7 +174,7 @@ function getMeetingDetails(details) {
 }
 
 const loadZoomMeetings = async () => {
-    console.log('loadZoomMeetings');
+    // console.log('loadZoomMeetings');
     const body = {
       'action': 'info',
       'meeting': meetingId
@@ -191,18 +191,18 @@ const loadZoomMeetings = async () => {
     },
     (errorMsg) => {
       setProgressTitle("")
-        console.log('error >>> ', errorMsg);
+        // console.log('error >>> ', errorMsg);
         setLoadMeetings(false);
         setError('Something went wrong!');
         setInterval( () => {setError('')}, 3000);
-        console.log('ui error', errorMsg||'Error');
+        // console.log('ui error', errorMsg||'Error');
       }
     )
 }
-console.log('meeting', meetingId)
+// console.log('meeting', meetingId)
 
 function onBack() {
-  console.log('on back');
+  // console.log('on back');
   history.goBack();
 }
 

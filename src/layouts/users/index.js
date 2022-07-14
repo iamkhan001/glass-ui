@@ -107,7 +107,7 @@ function Tables() {
 
   const columns = getColumns(loginUser.role);
 
-  console.log('login', loginUser);
+  // console.log('login', loginUser);
 
   const classes = styles();
 
@@ -115,7 +115,7 @@ function Tables() {
   const handleOpenMenu = ({ currentTarget }) => setOpenMenu(currentTarget);
 
   const handleCloseMenu = (value) => {
-    console.log(`change ${value} ${this}` );
+    // console.log(`change ${value} ${this}` );
     setOpenMenu(false);
     setRole(value)
   }
@@ -129,12 +129,12 @@ function Tables() {
   function onActivate(user) {
     selectedUser = user;
     action = 'A';
-    console.log('onActivate >> ', user);
+    // console.log('onActivate >> ', user);
     showAlert(true, `Activate ${user.first_name} ${user.last_name}?`, "Click on okay if you want to activate member.")
   }
 
   function onViewQrCode(user) {
-    console.log('onViewQrCode >> ', user);
+    // console.log('onViewQrCode >> ', user);
     setQrUser(user)
   }
 
@@ -145,12 +145,12 @@ function Tables() {
   function onDeactivate(user) {
     selectedUser = user;
     action = 'D';
-    console.log('onDeactivate >> ', user);
+    // console.log('onDeactivate >> ', user);
     showAlert(true, `Deactivate ${user.first_name} ${user.last_name}?`, "Click on okay if you want to deactivate member.")
   }
 
   function onEdit(user) {
-    console.log('edit >> ', user);
+    // console.log('edit >> ', user);
     selectedUser = user;
     setFirstName(user.first_name);
     setLastName(user.last_name);
@@ -164,7 +164,7 @@ function Tables() {
   function onDelete(user) {
     selectedUser = user;
     action = 'R';
-    console.log('onDelete >> ', user);
+    // console.log('onDelete >> ', user);
     showAlert(true, `Delete ${user.first_name} ${user.last_name}?`, "Click on okay if you want to delete member.")
   }
   
@@ -228,14 +228,14 @@ function Tables() {
   }
 
   function updateConentView(selection) {
-    console.log('selection >> ', selection);
+    // console.log('selection >> ', selection);
     setLoadUsers(true);
     setContent(selection);
   }
 
 
   function updateMember() {
-    console.log('updateMember');
+    // console.log('updateMember');
 
     if(firstName.trim() === "") {
       showError('Enter first name')
@@ -289,7 +289,7 @@ function Tables() {
   }
 
   function addMember() {
-    console.log('add member');
+    // console.log('add member');
 
     if(firstNameNew.trim() === "") {
       showError('Enter first name')
@@ -524,7 +524,7 @@ function Tables() {
   )
 
   const loadMembers = async () => {
-      console.log('loadMembers');
+      // console.log('loadMembers');
       apiCallSecureGet(membersApi,
       (response) => {
           setLoadUsers(false);
@@ -535,7 +535,7 @@ function Tables() {
           setLoadUsers(false);
           setError(errorMsg||'Error');
           setInterval( () => {setError('')}, 3000);
-          console.log('ui error', errorMsg||'Error');
+          // console.log('ui error', errorMsg||'Error');
         }
       )
   }
@@ -556,7 +556,7 @@ function Tables() {
 
   function showMembers() {
 
-    console.log('show members');
+    // console.log('show members');
 
     return (
       <Card>

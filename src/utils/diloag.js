@@ -27,7 +27,7 @@ const Alert = React.forwardRef(
 
 export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
 
-  console.log('alert');
+  // console.log('alert');
 
   const open = message.trim() !== "";
 
@@ -73,7 +73,7 @@ export const alertDialog = (showCancel, title, message, onOkey, onCancel) => {
 
 export const qrDialog = (user, onClose) => {
 
-  console.log('user', user);
+  // console.log('user', user);
   const show = user !== null;
   let qr = null;
   let name = null;
@@ -82,7 +82,7 @@ export const qrDialog = (user, onClose) => {
       'code': base64_encode(user.accountId)
     };
     const text = JSON.stringify(data);
-    console.log('encoded', qr);
+    // console.log('encoded', qr);
     name = `${user.first_name} ${user.last_name}`;
     qr = (<QRCode value={text} size='250' />);
   }
@@ -125,7 +125,7 @@ export const myQrCode = () => {
   
   const qrData = getQrId();
 
-  console.log('qrData', qrData);
+  // console.log('qrData', qrData);
 
   // const data = {
   //   'code': userId

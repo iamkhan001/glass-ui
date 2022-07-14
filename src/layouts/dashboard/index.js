@@ -27,7 +27,7 @@ import ContactUs from "./components/contactUs";
 // Data
 function Dashboard() {
 
-  console.log('screen dashboard');
+  // console.log('screen dashboard');
 
   if(!isAuthenticated()) {
     return <Redirect to='/authentication/sign-in'  />
@@ -60,9 +60,9 @@ function Dashboard() {
     let sideNav = document.getElementById("sideNav");
     if (sideNav) {
         sideNav.style.display = "";
-        console.log('sideNav',sideNav);
+        // console.log('sideNav',sideNav);
     }
-    console.log('sideNav', sideNav )
+    // console.log('sideNav', sideNav )
   }, [])
 
   return (

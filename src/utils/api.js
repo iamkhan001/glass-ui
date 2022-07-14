@@ -49,7 +49,7 @@ export function getRouts() {
 
 export function apiCallUnsecureGet(api, response, error) {
 
-  console.log('apiCallSecureGet ', api);
+  // console.log('apiCallSecureGet ', api);
   axios
     .get(`${baseUrl}${api}`)
     .then((res) => {
@@ -65,20 +65,20 @@ export function apiCallUnsecureGet(api, response, error) {
       if (err.response) {
         error(err.response.data.msg)
       } else if (err.request) {
-        console.log(err.request);
+        // console.log(err.request);
         error(err.request)
       } else {
-        console.log('Error', err.message);
+        // console.log('Error', err.message);
         error(`Error ${err.message}`)
       }
-      console.log(err.config);
+      // console.log(err.config);
     });
 
 }
 
 export function zoomApiCallGet(api, response, error) {
 
-  console.log('apiCallSecureGet ', api);
+  // console.log('apiCallSecureGet ', api);
   axios
     .get(`${api}`, 
       {
@@ -88,7 +88,7 @@ export function zoomApiCallGet(api, response, error) {
       }
     )
     .then((res) => {
-        console.warn('result', res)
+        // console.warn('result', res)
         const result = res.data;
         if(result.code === 200) {
             response(result)
@@ -100,20 +100,20 @@ export function zoomApiCallGet(api, response, error) {
       if (err.response) {
         error(err.response.data.msg)
       } else if (err.request) {
-        console.log(err.request);
+        // console.log(err.request);
         error(err.request)
       } else {
-        console.log('Error', err.message);
+        // console.log('Error', err.message);
         error(`Error ${err.message}`)
       }
-      console.log(err.config);
+      // console.log(err.config);
     });
 
 }
 
 export function zoomApiCallPost(api, data, response, error) {
 
-  console.log('zoomApiCallPost ', api, 'data ', data);
+  // console.log('zoomApiCallPost ', api, 'data ', data);
 
   axios
   .post(
@@ -126,7 +126,7 @@ export function zoomApiCallPost(api, data, response, error) {
       }
     )
   .then((res) => {
-      console.warn('result', res)
+      // console.warn('result', res)
 
       const result = res.data;
 
@@ -141,13 +141,13 @@ export function zoomApiCallPost(api, data, response, error) {
       if (err.response) {
           error(err.response.data.msg)
         } else if (err.request) {
-          console.log(err.request);
+          // console.log(err.request);
           error(err.request)
         } else {
-          console.log('Error', err.message);
+          // console.log('Error', err.message);
           error(`Error ${err.message}`)
         }
-        console.log(err.config);
+        // console.log(err.config);
   });
 }
 
@@ -155,7 +155,7 @@ export function zoomApiCallPost(api, data, response, error) {
 export function apiCallSecureGet(api, response, error) {
 
   const url = `${baseUrl}${api}`;
-  console.log('apiCallSecureGet ', url, getAccessToken());
+  // console.log('apiCallSecureGet ', url, getAccessToken());
   axios
     .get(url, 
       {
@@ -165,7 +165,7 @@ export function apiCallSecureGet(api, response, error) {
       }
     )
     .then((res) => {
-        console.warn('result', res)
+        // console.warn('result', res)
         const result = res.data;
         if(result.code === 200) {
             response(result)
@@ -177,20 +177,20 @@ export function apiCallSecureGet(api, response, error) {
       if (err.response) {
         error(err.response.data.msg)
       } else if (err.request) {
-        console.log(err.request);
+        // console.log(err.request);
         error(err.request)
       } else {
-        console.log('Error', err.message);
+        // console.log('Error', err.message);
         error(`Error ${err.message}`)
       }
-      console.log(err.config);
+      // console.log(err.config);
     });
 
 }
 
 export function apiPostUnsecure(api, data, response, error) {
 
-    console.log('apiPostUnsecure ', api, 'data ', data);
+    // console.log('apiPostUnsecure ', api, 'data ', data);
 
     axios
     .post(`${baseUrl}${api}`, data)
@@ -210,20 +210,20 @@ export function apiPostUnsecure(api, data, response, error) {
         if (err.response) {
             error(err.response.data.msg)
           } else if (err.request) {
-            console.log(err.request);
+            // console.log(err.request);
             error(err.request)
           } else {
-            console.log('Error', err.message);
+            // console.log('Error', err.message);
             error(`Error ${err.message}`)
           }
-          console.log(err.config);
+          // console.log(err.config);
     });
 }
 
 
 export function apiPostSecure(api, data, response, onError) {
 
-  console.log('apiPostSecure ', api, 'data ', data);
+  // console.log('apiPostSecure ', api, 'data ', data);
 
   axios
   .post(
@@ -236,7 +236,7 @@ export function apiPostSecure(api, data, response, onError) {
       }
     )
   .then((res) => {
-      console.log('result', res.data)
+      // console.log('result', res.data)
 
       const result = res.data;
 
@@ -251,28 +251,28 @@ export function apiPostSecure(api, data, response, onError) {
     try {
       
 
-      console.log('error res > ',  err.response)
+      // console.log('error res > ',  err.response)
 
       if (err.response) {
         onError(err.response.data.msg)
       } else if (err.request) {
-        console.log(err.request);
+        // console.log(err.request);
         onError(err.request)
       } else {
-        console.log('Error', err.message);
+        // console.log('Error', err.message);
         onError(`Error ${err.message}`)
       }
     }catch(e) {
-      console.log(e);
+      // console.log(e);
       onError('Something went wrong!')
     }
-      console.log(err.config);
+      // console.log(err.config);
   });
 }
 
 export function createZoomUser(data, response, error) {
 
-  console.log('createZoomUser ', data);
+  // console.log('createZoomUser ', data);
 
   axios
   .post(
@@ -285,26 +285,26 @@ export function createZoomUser(data, response, error) {
       }
     )
   .then((res) => {
-      console.warn('result ok', res)
+      // console.warn('result ok', res)
   })
   .catch((err) => {
-    console.warn('result err', err)
+    // console.warn('result err', err)
       if (err.response) {
           error(err.response.data.msg)
         } else if (err.request) {
-          console.log(err.request);
+          // console.log(err.request);
           error(err.request)
         } else {
-          console.log('Error', err.message);
+          // console.log('Error', err.message);
           error(`Error ${err.message}`)
         }
-        console.log(err.config);
+        // console.log(err.config);
   });
 }
 
 export function getTokenFromZoom(code, state, onResponse, onError) {
 
-  console.log('getTokenFromZoom ', code);
+  // console.log('getTokenFromZoom ', code);
 
   var bodyFormData = new FormData();
   bodyFormData.append('grant_type', 'authorization_code');
@@ -321,11 +321,11 @@ export function getTokenFromZoom(code, state, onResponse, onError) {
     },
   })
     .then(function (response) {
-      console.log(response);
+      // console.log(response);
       onResponse('success!')
     })
     .catch(function (response) {
-      console.log(response);
+      // console.log(response);
       onError('failed');
     });
   
@@ -333,7 +333,7 @@ export function getTokenFromZoom(code, state, onResponse, onError) {
 
 export function getZoomMeetings(response, error) {
 
-  console.log('getZoomMeetings ');
+  // console.log('getZoomMeetings ');
 
   const requestOptions = {
     method: 'GET',
@@ -344,15 +344,15 @@ export function getZoomMeetings(response, error) {
 
   fetch(`https://api.zoom.us/v2/users/jovy@mirobotic.sg/meetings`, requestOptions)
       .then(res => {
-        console.warn('result >', res)
+        // console.warn('result >', res)
         response(res.json())
       })
       .then(data => {
-        console.warn('error >>', data)
+        // console.warn('error >>', data)
         error(data)
       })
       .catch(err => {
-        console.warn('error >>>', err)
+        // console.warn('error >>>', err)
         error("Server error")
       })
 
@@ -360,7 +360,7 @@ export function getZoomMeetings(response, error) {
 
 export function apiPutSecure(api, data, response, error) {
 
-  console.log('apiPutSecure ', api, 'data ', data);
+  // console.log('apiPutSecure ', api, 'data ', data);
 
   axios
   .put(
@@ -373,7 +373,7 @@ export function apiPutSecure(api, data, response, error) {
       }
     )
   .then((res) => {
-      console.warn('result', res)
+      // console.warn('result', res)
 
       const result = res.data;
 
@@ -388,13 +388,13 @@ export function apiPutSecure(api, data, response, error) {
       if (err.response) {
           error(err.response.data.msg)
         } else if (err.request) {
-          console.log(err.request);
+          // console.log(err.request);
           error(err.request)
         } else {
-          console.log('Error', err.message);
+          // console.log('Error', err.message);
           error(`Error ${err.message}`)
         }
-        console.log(err.config);
+        // console.log(err.config);
   });
 }
 

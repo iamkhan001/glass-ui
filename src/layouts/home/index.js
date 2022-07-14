@@ -48,7 +48,7 @@ const cards = [
   // },
   // {
   //   'name': 'ZCONNECT App',
-  //   'info': 'Access your zoom meetings on your Google Glass EE2 using ZCONNECT app. You can Join meetings by navigating through meetings or by scaning QR code with zoom link.',
+  //   'info': 'Access your Zoom meetings on your Google Glass EE2 using ZCONNECT app. You can Join meetings by navigating through meetings or by scaning QR code with Zoom link.',
   //   'image': appHome,
   // },
   // {
@@ -58,7 +58,7 @@ const cards = [
   // },
   // {
   //   'name': 'Join Meetings',
-  //   'info': 'Join your zoom meetings on ZCONNECT with easy to use Interface specially designed for your Google Glass EE2.',
+  //   'info': 'Join your Zoom meetings on ZCONNECT with easy to use Interface specially designed for your Google Glass EE2.',
   //   'image': appMeetingStart,
   // }
 ];
@@ -130,7 +130,7 @@ function content() {
               ZCONNECT
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Access your zoom Meeting on Google Glass EE2
+              Access your Zoom Meeting on Google Glass EE2
             </Typography>
             <Stack
               sx={{ pt: 4 }}S
@@ -154,7 +154,7 @@ function content() {
             Features
           </Typography>
           <Typography variant="h5" align="center" color="text.secondary" component="p">
-            Using ZCONNECT, you can access all your meetings on Google Glass EE2. You can create meetings by login on ZCONNECT.tech, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any zoom meeting by just scanning QR code via Google Glass EE2
+            Using ZCONNECT, you can access all your meetings on Google Glass EE2. You can create meetings by login on ZCONNECT.tech, here you can create and manage meetings for users. We provide a user-friendly interface to connect. Also you can join any Zoom meeting by just scanning QR code via Google Glass EE2
           </Typography>
       </Container>
       <Container sx={{ py: 8 }} maxWidth="md">

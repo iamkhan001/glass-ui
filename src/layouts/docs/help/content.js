@@ -28,8 +28,8 @@ export const content = () => {
                   Connect Zoom account
                 </SuiTypography>
                 <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
-                  <p>To access your Meeting on ZCONNECT, you need to connect your zoom account</p>
-                  <p>Open profile and click on <b>Connect Zoom</b>. you will be redirected to zoom for login and give access of your account to ZCONNECT</p>
+                  <p>To access your Meeting on ZCONNECT, you need to connect your Zoom account</p>
+                  <p>Open profile and click on <b>Connect Zoom</b>. you will be redirected to Zoom for login and give access of your account to ZCONNECT</p>
                   <img
                       width={imgWidth}
                       src={imgZoomConnect}
@@ -133,17 +133,17 @@ export const content = () => {
                   Join meeting using QR Code
                 </SuiTypography>
                 <SuiTypography ml={3} align='justify' fontWeight='light' variant='h6' >
-                  You can join any zoom meeting on your Google Glass EE2 using ZCONNECT.
+                  You can join any Zoom meeting on your Google Glass EE2 using ZCONNECT.
                   Follow following steps to join meeting
                   <ol>
-                    <li>Create QR code using zoom meeting link. You can create QR code using any online tool such as <a href="https://www.qrcode-monkey.com/" target={"blank"}>qrcode-monkey</a> </li>
+                    <li>Create QR code using Zoom meeting link. You can create QR code using any online tool such as <a href="https://www.qrcode-monkey.com/" target={"blank"}>qrcode-monkey</a> </li>
                     <li>Open ZCONNECT app on your Google Glass EE2 and select <b>Scan QR code</b> option</li>
                     <img
                       width={imgWidth}
                       src={appScan}
                       alt="Create meeting"
                     />
-                    <li>Now scan QR code created for your zoom meeting link and meeting will be joined</li>
+                    <li>Now scan QR code created for your Zoom meeting link and meeting will be joined</li>
                   </ol>
                 </SuiTypography>
                 <SuiTypography mt={2} variant="h4" fontWeight="medium" textTransform="capitalize">
@@ -174,8 +174,8 @@ export const content = () => {
                   Disconnect / Remove Zoom account
                 </SuiTypography>
                 <SuiTypography  ml={3} align='justify' fontWeight='light' variant='h6' >
-                  <p>If you want to change zoom account or remove zoom account from ZCONNECT, then just got to profile and click on disconnect zoom button as shown in image below.</p>
-                  <p>Note: Once you disconnected your zoom account, It will also delete all meetings created on ZCONNECT. </p>
+                  <p>If you want to change Zoom account or remove Zoom account from ZCONNECT, then just got to profile and click on disconnect Zoom button as shown in image below.</p>
+                  <p>Note: Once you disconnected your Zoom account, It will also delete all meetings created on ZCONNECT. </p>
                   <img
                       width={imgWidth}
                       src={imgDisconnect}

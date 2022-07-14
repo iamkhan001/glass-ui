@@ -63,7 +63,7 @@ function showSuccessAlert(msg) {
 
 function generateQRCode(ssid, password, selection, isHidden) {
 
-  console.log('qr code', ssid, password, selection, isHidden);
+  // console.log('qr code', ssid, password, selection, isHidden);
   if(ssid === null || password.trim() === '') {
     return (
       <SuiBox component="img"  src={qrCodeImage} alt="QR Login" width="200px" pt={3} />
@@ -99,7 +99,7 @@ function Wifi() {
   const handleOpenMenu = ({ currentTarget }) => setOpenMenu(currentTarget);
 
   const handleCloseMenu = (enc) => {
-    console.log(`change ${enc} ${this}` );
+    // console.log(`change ${enc} ${this}` );
     setOpenMenu(false);
     setSetSelection(enc);
   }

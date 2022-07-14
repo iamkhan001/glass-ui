@@ -1,8 +1,5 @@
 import { Crypto } from 'crypto-js'
 
-const sdk_key = "5MPuxe4yQV-bWGrQXSSueA";
-const sdk_secret = "f62ZxooQ5ZzwUzyYdUDJhQtkOOvlTSu0vXtP";
-
 
 /*
 export function generateSignature(meetingNumber, role) {

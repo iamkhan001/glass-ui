@@ -42,7 +42,7 @@ function SignUp() {
 
   const role = "A";
   
-  console.log('screen register');
+  // console.log('screen register');
 
   async function register() {
     
@@ -118,7 +118,7 @@ function SignUp() {
               <SuiInput autoComplete="off"  name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail (e.target.value)} 
                 onFocus={(event) => {
                   event.target.setAttribute('autocomplete', 'off');
-                  console.log(event.target.autocomplete);
+                  // console.log(event.target.autocomplete);
                 }}/>
             </SuiBox>                     
             <SuiBox mb={2}>
@@ -131,7 +131,7 @@ function SignUp() {
             <SuiBox mb={2}>
               <SuiInput autoComplete="off"  name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword (e.target.value)} onFocus={(event) => {
                   event.target.setAttribute('autocomplete', 'off');
-                  console.log(event.target.autocomplete);
+                  // console.log(event.target.autocomplete);
                 }} />
             </SuiBox>
             <SuiBox mb={2}>

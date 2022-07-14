@@ -44,8 +44,8 @@ function SignIn() {
 
   const { code, state } = useQueryParams();
 
-  console.log('code', code)
-  console.log('state', state)
+  // console.log('code', code)
+  // console.log('state', state)
 
   function showProgress(title) {
     setProgressTitle(title)
@@ -60,7 +60,7 @@ function SignIn() {
     history.push('/dashboard');
   }
 
-  console.log('screen login');
+  // console.log('screen login');
 
   const verifyTokenFromServer = async () => {
 
